@@ -9,27 +9,15 @@
 
 import * as types from 'actions/actionTypes';
 
-export function createNewCollection(title, description, behavior) {
+export function getBooksRequest() {
   return {
-    type: types.CREATE_COLLECTION,
-    title,
-    description,
-    behavior
+    type: types.GET_BOOKS_REQUEST
   };
 }
 
-export function editCollection(title, description, behavior) {
+export function getBooksSuccess(books) {
   return {
-    type: types.EDIT_COLLECTION,
-    title,
-    description,
-    behavior
-  };
-}
-
-export function libraryBehavior(behavior) {
-  return {
-    type: types.SHOW_CONTENT,
-    behavior
+    type: types.GET_BOOKS_SUCCESS,
+    books
   };
 }

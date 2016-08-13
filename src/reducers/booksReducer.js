@@ -8,14 +8,12 @@
  * They reduce a collection of values down to a single value. 
  */
 
-import * as types from 'collections/actions/actionTypes';
+import * as types from 'actions/actionTypes';
 import React from 'react';
 
 const initialState = {
-  info: {
-    'title': '',
-    'description': '',
-    'behavior': ''
+  books: {
+    'items': []
   }
 };
 
@@ -23,29 +21,18 @@ const booksReducer = function(state = initialState, action) {
 
   switch(action.type) {
 
-    case types.CREATE_COLLECTION:
-      var stateClone = _.cloneDeep(state);
-      return React.addons.update(stateClone, { info: { $merge: {
-        title: action.title,
-        description: action.description,
-        behavior: "CREATE"
-      }}});
+    case types.GET_BOOKS_REQUEST:
+      return Object.assign({}, state, { 
+        isFetching: true,
+        didInvalidate: false
+      });
 
-    case types.EDIT_COLLECTION:
-      var stateClone = _.cloneDeep(state);
-      return React.addons.update(stateClone, { info: { $merge: {
-        title: action.title,
-        description: action.description,
-        behavior: "EDIT"
-      }}});
-
-    case types.SHOW_CONTENT:
-      var stateClone = _.cloneDeep(state);
-      return React.addons.update(stateClone, { info: { $merge: {
-        title: '',
-        description: '',
-        behavior: "SHOW"
-      }}});
+    case types.GET_BOOKS_SUCCESS:
+      return Object.assign({}, state, { 
+        isFetching: false,
+        didInvalidate: false,
+        books: action.books
+      });
   }
 
   return state;

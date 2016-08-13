@@ -11,30 +11,25 @@
 
 import fetch from 'isomorphic-fetch'
 import store from 'store';
-import * as bookActions from 'actions/bookActions';
+
+import booksJSON from 'books.json';
+
+import {
+  getBooksSuccess,
+  getBooksRequest
+} from 'actions/bookActions';
+
+import * as c from 'utils/constants';
 
 /**
  * Get all collections
  */
 
-export function getCollections(content = '') {
+export function getBooks(term, index, max_results) {
   /*
-  return dispatch => {
-    dispatch(getCollectionsRequest(content))
-    return fetch(`http://www.example.com/collections/?content=${content}`)
-      .then(response => response.json())
-      .then(json => dispatch(getCollectionsSuccess(json)))
-  } */
-
-  // code below here is temporary for development
-  let collections = [
-    { 'name': 'PHP', 'url': 'http://someurl/', 'type': 'existing_collection' },
-    { 'name': 'javaScript', 'url': 'http://someurl/', 'type': 'existing_collection' },
-    { 'name': 'python', 'url': 'http://someurl/', 'type': 'existing_collection' }
-  ];
-
-  store.dispatch(getCollectionsSuccess(collections));
-  store.dispatch(addDropdownItems(collections));
-
-  return collections;
+  store.dispatch(getBooksRequest())
+  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}q=${encodeURIComponent(term)}&startIndex=${index}&maxResults=${max_results}&key=${c.API_KEY}&projection=full&fields=totalItems,items(id,volumeInfo)`)
+    .then(response => response.json())
+    .then(json => store.dispatch(getBooksSuccess(json))) */
+  store.dispatch(getBooksSuccess(booksJSON));
 }

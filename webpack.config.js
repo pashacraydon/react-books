@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -27,6 +28,10 @@ module.exports = {
 
   module: {
     loaders: [
+      { 
+        test: /\.json$/, 
+        loader: "json-loader" 
+      },
       {
         test: /\.js$/,
         exclude: /\/node_modules/,
@@ -48,6 +53,10 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.ProvidePlugin({
       _: 'lodash'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/static/css/app.css', to: 'app.css' }
+    ])
   ]
 };
+

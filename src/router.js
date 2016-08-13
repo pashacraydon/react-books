@@ -8,12 +8,10 @@
 
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-
-// Pages
-import BooksContainer from 'components/containers/BooksContainer';
+import AppContainer from 'components/containers/AppContainer';
 
 export default (
   <Router history={browserHistory}>
-      <Route path="/" component={BooksContainer} />
+      <Route path="/" component={AppContainer} />
   </Router>
 );

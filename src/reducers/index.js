@@ -9,9 +9,11 @@
  */
 
 import { combineReducers } from 'redux';
+import booksReducer from 'reducers/booksReducer';
 
 // Combine Reducers
 var reducers = combineReducers({
+  booksState: booksReducer
 });
 
 export default reducers;
