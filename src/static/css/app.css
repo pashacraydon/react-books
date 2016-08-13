@@ -4,7 +4,19 @@ body {
 }
 
 header {
-  text-align: center;
+  width: 26%;
+  padding: 2em 2% 2em;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #eee;
+}
+
+.books-layout {
+  padding: 2em 5% 2em;
+  width: 60%;
+  float: right;
 }
 
 ul li {
@@ -17,11 +29,54 @@ form input[type="text"] {
   border: 1px solid #DDD;
   padding: 10px;
   font-size: 21px;
-  min-width: 500px;
+  min-width: 200px;
 }
 
 form button {
   font-size:21px;
   padding: 10px;
   cursor:pointer;
+}
+
+.book {
+  position: relative;
+  border: 1px solid #FFF;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  height: 90%;
+  width: 90%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: smaller;
+  padding: 5%;
+  border: 1px solid #AAA;
+}
+
+.detail-view {
+  position: fixed;
+  width: 80%;
+  left: 0;
+  margin: 5% 10% 0;
+  background-color: #FFF;
+  padding: 2em;
+  -webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid #666;
+  z-index: 99;
+}
+
+.detail-view img  {
+  float: left;
+  margin-right: 2em;
+}
+
+.close-detail {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 42px;
 }

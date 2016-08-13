@@ -8,7 +8,6 @@
  * of the request then store the response.
  */
 
-
 import fetch from 'isomorphic-fetch'
 import store from 'store';
 
@@ -19,17 +18,31 @@ import {
   getBooksRequest
 } from 'actions/bookActions';
 
+import {
+  getBookDetailsSuccess,
+  getBookDetailsRequest
+} from 'actions/bookDetailsActions';
+
 import * as c from 'utils/constants';
 
 /**
- * Get all collections
+ * Get a series of books
  */
 
 export function getBooks(term, index, max_results) {
-  /*
   store.dispatch(getBooksRequest())
-  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}q=${encodeURIComponent(term)}&startIndex=${index}&maxResults=${max_results}&key=${c.API_KEY}&projection=full&fields=totalItems,items(id,volumeInfo)`)
+  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(term)}&startIndex=${index}&maxResults=${max_results}&projection=full&fields=totalItems,items(id,volumeInfo)`)
     .then(response => response.json())
-    .then(json => store.dispatch(getBooksSuccess(json))) */
-  store.dispatch(getBooksSuccess(booksJSON));
+    .then(json => store.dispatch(getBooksSuccess(json)));
+}
+
+/**
+ * Get the details for a single book
+ */
+
+export function getBookDetails(id) {
+  store.dispatch(getBookDetailsRequest())
+  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
+    .then(response => response.json())
+    .then(json => store.dispatch(getBookDetailsSuccess(json)));
 }

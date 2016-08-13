@@ -6,6 +6,10 @@
  * The list of action types.
  */
 
-/* collection actions */
 export const GET_BOOKS_REQUEST = 'GET_BOOKS_REQUEST';
 export const GET_BOOKS_SUCCESS = 'GET_BOOKS_SUCCESS';
+
+export const GET_BOOK_DETAILS_REQUEST = 'GET_BOOK_DETAILS_REQUEST';
+export const GET_BOOK_DETAILS_SUCCESS = 'GET_BOOK_DETAILS_SUCCESS';
+
+export const DESTROY_BOOK_DETAILS = 'DESTROY_BOOK_DETAILS';
