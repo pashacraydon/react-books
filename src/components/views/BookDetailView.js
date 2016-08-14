@@ -8,7 +8,7 @@
 
 import store from 'store';
 import * as booksApi from 'api/booksApi';
-import { destroyBookDetails } from 'actions/bookDetailsActions';
+import { destroyBookDetails } from 'actions/bookDetailActions';
 import React, { Component, PropTypes } from 'react';
 
 export default class BookDetailView extends Component {
@@ -24,6 +24,9 @@ export default class BookDetailView extends Component {
 
   render () {
     const { book } = this.props;
+    const description = book.description
+                            .substring(0, 300 - 3)
+                            .replace(/(<([^>]+)>)/ig, '') + '...';
     return (
       <div className="detail-view">
        <a className="close-detail"
@@ -46,7 +49,7 @@ export default class BookDetailView extends Component {
         <strong>Author: {book.authors}</strong>}
         <br />
         {book.description &&
-        <div className="description">{book.description}</div>}
+        <div className="description">{description}</div>}
         </div>
       </div>
     )

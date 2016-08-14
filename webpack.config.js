@@ -55,7 +55,8 @@ module.exports = {
       _: 'lodash'
     }),
     new CopyWebpackPlugin([
-      { from: 'src/static/css/app.css', to: 'app.css' }
+      { from: 'src/static/css/app.css', to: 'app.css' },
+      { from: 'src/static/images/loading.gif', to: 'loading.gif' }
     ])
   ]
 };

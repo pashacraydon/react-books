@@ -23,15 +23,19 @@ const booksReducer = function(state = initialState, action) {
 
     case types.GET_BOOKS_REQUEST:
       return Object.assign({}, state, { 
-        isFetching: true,
-        didInvalidate: false
+        books: {
+          isFetching: true,
+          didInvalidate: false
+        }
       });
 
     case types.GET_BOOKS_SUCCESS:
-      return Object.assign({}, state, { 
-        isFetching: false,
-        didInvalidate: false,
-        books: action.books
+      return Object.assign({}, state, {
+        books: {
+          isFetching: false,
+          didInvalidate: false,
+          items: action.books.items
+        }
       });
   }
 

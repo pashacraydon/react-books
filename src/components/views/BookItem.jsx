@@ -54,7 +54,6 @@ export default class BooksItem extends Component {
           data-bookid={id}
           onClick={this.showDetail}
           onMouseOut={this.onMouseOut}>
-          {volumeInfo.title}
         </a>}
       </li>
     )

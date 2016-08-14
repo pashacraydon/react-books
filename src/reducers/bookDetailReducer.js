@@ -12,24 +12,30 @@ import * as types from 'actions/actionTypes';
 import React from 'react';
 
 const initialState = {
-  book: {}
+  book: {
+    volume: {}
+  }
 };
 
-const bookDetailsReducer = function(state = initialState, action) {
+const bookDetailReducer = function(state = initialState, action) {
 
   switch(action.type) {
 
-    case types.GET_BOOK_DETAILS_REQUEST:
+    case types.GET_BOOK_DETAIL_REQUEST:
       return Object.assign({}, state, { 
-        isFetching: true,
-        didInvalidate: false
+        book: {
+          isFetching: true,
+          didInvalidate: false
+        }
       });
 
-    case types.GET_BOOK_DETAILS_SUCCESS:
-      return Object.assign({}, state, { 
-        isFetching: false,
-        didInvalidate: false,
-        book: action.books.volumeInfo
+    case types.GET_BOOK_DETAIL_SUCCESS:
+      return Object.assign({}, state, {
+        book: {
+          isFetching: false,
+          didInvalidate: false,
+          volume: action.books.volumeInfo
+        }
       });
 
     case types.DESTROY_BOOK_DETAILS:
@@ -42,4 +48,4 @@ const bookDetailsReducer = function(state = initialState, action) {
 
 }
 
-export default bookDetailsReducer;
+export default bookDetailReducer;

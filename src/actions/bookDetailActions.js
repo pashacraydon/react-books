@@ -9,15 +9,15 @@
 
 import * as types from 'actions/actionTypes';
 
-export function getBookDetailsRequest() {
+export function getBookDetailRequest() {
   return {
-    type: types.GET_BOOK_DETAILS_REQUEST
+    type: types.GET_BOOK_DETAIL_REQUEST
   };
 }
 
-export function getBookDetailsSuccess(books) {
+export function getBookDetailSuccess(books) {
   return {
-    type: types.GET_BOOK_DETAILS_SUCCESS,
+    type: types.GET_BOOK_DETAIL_SUCCESS,
     books
   };
 }

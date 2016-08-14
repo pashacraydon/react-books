@@ -19,9 +19,9 @@ import {
 } from 'actions/bookActions';
 
 import {
-  getBookDetailsSuccess,
-  getBookDetailsRequest
-} from 'actions/bookDetailsActions';
+  getBookDetailSuccess,
+  getBookDetailRequest
+} from 'actions/bookDetailActions';
 
 import * as c from 'utils/constants';
 
@@ -41,8 +41,10 @@ export function getBooks(term, index, max_results) {
  */
 
 export function getBookDetails(id) {
-  store.dispatch(getBookDetailsRequest())
+  store.dispatch(getBookDetailRequest())
   return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
     .then(response => response.json())
-    .then(json => store.dispatch(getBookDetailsSuccess(json)));
+    .then(json => store.dispatch(getBookDetailSuccess(json)));
 }
+
+

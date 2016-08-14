@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  width: 26%;
+  width: 21%;
   padding: 2em 2% 2em;
   position: fixed;
   left: 0;
@@ -15,8 +15,25 @@ header {
 
 .books-layout {
   padding: 2em 5% 2em;
-  width: 60%;
+  width: 65%;
   float: right;
+}
+
+.loading-books {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.7);
+  z-index: 9999;
+}
+
+img.loading-gif {
+  width: 60px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
 }
 
 ul li {
@@ -27,14 +44,14 @@ ul li {
 
 form input[type="text"] {
   border: 1px solid #DDD;
-  padding: 10px;
+  padding: 5px;
   font-size: 21px;
-  min-width: 200px;
+  min-width: 150px;
 }
 
 form button {
   font-size:21px;
-  padding: 10px;
+  padding: 5px;
   cursor:pointer;
 }
 
@@ -45,28 +62,33 @@ form button {
 
 .overlay {
   position: absolute;
-  bottom: 10px;
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: smaller;
-  padding: 5%;
+  -webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
   border: 1px solid #AAA;
 }
 
 .detail-view {
   position: fixed;
-  width: 80%;
+  width: 60%;
   left: 0;
-  margin: 5% 10% 0;
+  margin: 5% 20% 0;
   background-color: #FFF;
-  padding: 2em;
   -webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
   box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
   border: 1px solid #666;
   z-index: 99;
+}
+
+.detail-info {
+ padding: 0 30px 0 30px;
+}
+
+.description {
+  padding: 1em 0 1em;
 }
 
 .detail-view img  {
@@ -76,7 +98,7 @@ form button {
 
 .close-detail {
   position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 42px;
+  right: 10px;
+  top: 0;
+  font-size: 32px;
 }

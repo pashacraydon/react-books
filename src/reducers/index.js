@@ -10,12 +10,12 @@
 
 import { combineReducers } from 'redux';
 import booksReducer from 'reducers/booksReducer';
-import bookDetailsReducer from 'reducers/bookDetailsReducer';
+import bookDetailReducer from 'reducers/bookDetailReducer';
 
 // Combine Reducers
 var reducers = combineReducers({
   booksState: booksReducer,
-  bookDetailsState: bookDetailsReducer
+  bookDetailsState: bookDetailReducer
 });
 
 export default reducers;
