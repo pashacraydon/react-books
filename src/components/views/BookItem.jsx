@@ -46,7 +46,8 @@ export default class BooksItem extends Component {
         <a href="#"
           onMouseOver={this.onMouseOver}
         >
-          <img src={volumeInfo.imageLinks.thumbnail} />
+          {volumeInfo.imageLinks &&
+          <img src={volumeInfo.imageLinks.thumbnail} />}
         </a>
         {show_overlay &&
         <a href="#" 

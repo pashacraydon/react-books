@@ -11,11 +11,13 @@
 import { combineReducers } from 'redux';
 import booksReducer from 'reducers/booksReducer';
 import bookDetailReducer from 'reducers/bookDetailReducer';
+import paginationReducer from 'reducers/paginationReducer';
 
 // Combine Reducers
 var reducers = combineReducers({
   booksState: booksReducer,
-  bookDetailsState: bookDetailReducer
+  bookDetailsState: bookDetailReducer,
+  paginationState: paginationReducer
 });
 
 export default reducers;

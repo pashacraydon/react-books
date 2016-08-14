@@ -15,17 +15,31 @@ import * as bookActions from 'actions/bookActions';
 import BooksLayout from 'components/layouts/BooksLayout';
 import BookDetailView from 'components/views/BookDetailView';
 import SearchFormView from 'components/views/SearchFormView';
+import PaginationView from 'components/views/PaginationView';
 
 class AppContainer extends Component {
 
   componentWillMount () {
-    booksApi.getBooks(c.DEFAULT_SEARCH, 1, 10);
+    let search_info = {
+      'term': c.DEFAULT_SEARCH,
+      'index': c.SEARCH_START_INDEX,
+      'max_results': c.RESULTS_PER_PAGE
+    };
+
+    booksApi.getBooks(search_info);
   }
 
   render () {
-    const { books, book } = this.props;
+    const { books, book, pagination } = this.props;
     const book_exists = (book.volume && Object.keys(book.volume).length > 0);
     const books_exist = (books.items && books.items.length > 0);
+    const is_fetching = (books.isFetching || book.isFetching);
+
+    var term = '';
+    if (books.info && books.info.term) {
+      term = books.info.term;
+    }
+
     return (
       <div className="app-wrapper">
         <header>
@@ -39,7 +53,9 @@ class AppContainer extends Component {
           </p>
         </header>
         <div className="books-layout">
-          {books.isFetching || book.isFetching &&
+          {term != '*' &&
+          <h1>results for: {term}</h1>}
+          {is_fetching &&
           <div className="loading-books">
             <img className="loading-gif" src="loading.gif"/>
           </div>}
@@ -47,6 +63,7 @@ class AppContainer extends Component {
           <BookDetailView book={book.volume} />}
           {books_exist &&
           <BooksLayout books={books.items} />}
+          <PaginationView data={pagination} />
         </div>
       </div>
     )
@@ -61,7 +78,8 @@ AppContainer.propTypes = {
 const mapStateToProps = function (store) {
   return {
     books: store.booksState.books,
-    book: store.bookDetailsState.book
+    book: store.bookDetailsState.book,
+    pagination: store.paginationState.pagination
   }
 }
 

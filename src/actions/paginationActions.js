@@ -1,5 +1,5 @@
 /**
- * @file bookActions.js
+ * @file paginationActions.js
  * @created by Example
  * @copyright Copyright (c) 2016 Example
  *
@@ -9,15 +9,9 @@
 
 import * as types from 'actions/actionTypes';
 
-export function getBooksRequest() {
+export function buildPagination(books, search_info) {
   return {
-    type: types.GET_BOOKS_REQUEST
-  };
-}
-
-export function getBooksSuccess(books, search_info) {
-  return {
-    type: types.GET_BOOKS_SUCCESS,
+    type: types.BUILD_PAGINATION,
     books,
     search_info
   };

@@ -24,9 +24,11 @@ export default class BookDetailView extends Component {
 
   render () {
     const { book } = this.props;
-    const description = book.description
+    const description = book.description ?
+                        book.description
                             .substring(0, 300 - 3)
-                            .replace(/(<([^>]+)>)/ig, '') + '...';
+                            .replace(/(<([^>]+)>)/ig, '') + '...'
+                        : '';
     return (
       <div className="detail-view">
        <a className="close-detail"

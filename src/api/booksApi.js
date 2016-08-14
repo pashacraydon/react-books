@@ -23,17 +23,25 @@ import {
   getBookDetailRequest
 } from 'actions/bookDetailActions';
 
+import {
+  buildPagination
+} from 'actions/paginationActions';
+
 import * as c from 'utils/constants';
 
 /**
  * Get a series of books
  */
 
-export function getBooks(term, index, max_results) {
+export function getBooks(search_info) {
+  const { term, max_results, index } = search_info;
   store.dispatch(getBooksRequest())
   return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(term)}&startIndex=${index}&maxResults=${max_results}&projection=full&fields=totalItems,items(id,volumeInfo)`)
     .then(response => response.json())
-    .then(json => store.dispatch(getBooksSuccess(json)));
+    .then((json) => {
+      store.dispatch(getBooksSuccess(json, search_info))
+      store.dispatch(buildPagination(json, search_info))
+    });
 }
 
 /**

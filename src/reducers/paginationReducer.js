@@ -1,5 +1,5 @@
 /**
- * @file booksReducer.js
+ * @file paginationReducer.js
  * @created by Example
  * @copyright Copyright (c) 2016 Example
  *
@@ -12,29 +12,18 @@ import * as types from 'actions/actionTypes';
 import React from 'react';
 
 const initialState = {
-  books: {
+  pagination: {
     'items': []
   }
 };
 
-const booksReducer = function(state = initialState, action) {
+const paginationReducer = function(state = initialState, action) {
 
   switch(action.type) {
 
-    case types.GET_BOOKS_REQUEST:
-      return Object.assign({}, state, { 
-        books: {
-          isFetching: true,
-          didInvalidate: false
-        }
-      });
-
-    case types.GET_BOOKS_SUCCESS:
+    case types.BUILD_PAGINATION:
       return Object.assign({}, state, {
-        books: {
-          isFetching: false,
-          didInvalidate: false,
-          items: action.books.items,
+        pagination: {
           totalItems: action.books.totalItems,
           info: action.search_info
         }
@@ -45,4 +34,4 @@ const booksReducer = function(state = initialState, action) {
 
 }
 
-export default booksReducer;
+export default paginationReducer;
