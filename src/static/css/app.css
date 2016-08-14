@@ -12,6 +12,7 @@ header {
   top: 0;
   height: 100%;
   background-color: #eee;
+  text-align: center;
 }
 
 .books-layout {
@@ -30,9 +31,13 @@ header {
   z-index: 9999;
 }
 
-img.loading-gif {
+.loading-gif {
+  background: transparent url('loading.gif') no-repeat scroll 0 0;
+  background-size: 50px;
   width: 60px;
   position: absolute;
+  height: 50px;
+  width: 50px;
   right: 40px;
   top: 40px;
 }
@@ -46,12 +51,13 @@ ul li {
 form input[type="text"] {
   border: 1px solid #DDD;
   padding: 5px;
-  font-size: 21px;
-  min-width: 150px;
+  font-size: 18px;
+  width: 150px;
+  margin-right: 5px;
 }
 
 form button {
-  font-size:21px;
+  font-size:18px;
   padding: 5px;
   cursor:pointer;
 }
@@ -127,6 +133,7 @@ form button {
   position: fixed;
   width: 65%;
   left: 0;
+  top: 3em;
   margin: 5% 20% 0;
   background-color: #FFF;
   -webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
@@ -153,7 +160,7 @@ form button {
   margin: 2em 1em;
 }
 
-.pagination button {
+.pagination a {
   background-color: #EEE;
   border: 1px solid #AAA;
   padding: 0.25em 1em 0.25em;

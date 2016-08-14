@@ -6,9 +6,8 @@
  * Component View to show a single book
  */
 
-import * as c from 'utils/constants';
-import * as booksApi from 'api/booksApi';
 import React, { Component, PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 
 export default class SearchView extends Component {
   constructor() {
@@ -17,12 +16,8 @@ export default class SearchView extends Component {
 
   onSearchSubmit(event) {
     event.preventDefault();
-    let search_query = document.getElementsByName('q')[0].value;
-    booksApi.getBooks({
-      'term': search_query,
-      'index': c.SEARCH_START_INDEX, 
-      'max_results': c.RESULTS_PER_PAGE
-    });
+    let searchQuery = document.getElementsByName('q')[0].value;
+    browserHistory.push(`/page/0/${searchQuery}/1/`);
   }
 
   render () {

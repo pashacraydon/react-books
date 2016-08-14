@@ -1,5 +1,5 @@
 /**
- * @file BooksContainer.js
+ * @file AppLayout.jsx
  * @created by Example
  * @copyright Copyright (c) 2016 Example
  *
@@ -17,30 +17,7 @@ import BookDetailView from 'components/views/BookDetailView';
 import SearchFormView from 'components/views/SearchFormView';
 import PaginationView from 'components/views/PaginationView';
 
-class AppContainer extends Component {
-
-  componentWillMount () {
-    var searchInfo = {};
-    if (Object.keys(this.props.routeParams).length > 0) {
-      const { page, query } = this.props.routeParams;
-      let index = page * c.RESULTS_PER_PAGE;
-
-      searchInfo = {
-        'term': query,
-        'index': index,
-        'max_results': c.RESULTS_PER_PAGE
-      };
-    }
-    else {
-      searchInfo = {
-        'term': c.DEFAULT_SEARCH,
-        'index': c.SEARCH_START_INDEX,
-        'max_results': c.RESULTS_PER_PAGE
-      };
-    }
-
-    booksApi.getBooks(searchInfo);
-  }
+export default class AppLayout extends Component {
 
   render () {
     const { books, book, pagination } = this.props;
@@ -48,16 +25,16 @@ class AppContainer extends Component {
     const books_exist = (books.items && books.items.length > 0);
     const is_fetching = (books.isFetching || book.isFetching);
 
-    var term = '';
-    if (books.info && books.info.term) {
-      term = books.info.term;
+    var query = '';
+    if (books.info && books.info.query) {
+      query = books.info.query;
     }
 
     return (
       <div className="app-wrapper">
         <header>
           <h1><a href="/">React Books</a></h1>
-          <p>A React + Redux App Starter Kit</p>
+          <p>A demonstration of a very simple React + Redux app.</p>
           <SearchFormView />
           <p>
             <a href="https://github.com/pashasc/react_redux_starter_kit">
@@ -66,11 +43,11 @@ class AppContainer extends Component {
           </p>
         </header>
         <div className="books-layout">
-          {term != c.DEFAULT_SEARCH &&
-          <h1>results for: {term}</h1>}
+          {query != c.DEFAULT_SEARCH &&
+          <h1>results for: {query}</h1>}
           {is_fetching &&
           <div className="loading-books">
-            <img className="loading-gif" src="loading.gif"/>
+            <div className="loading-gif"></div>
           </div>}
           {book_exists &&
           <BookDetailView book={book.volume} />}
@@ -84,17 +61,3 @@ class AppContainer extends Component {
   }
 }
 
-AppContainer.propTypes = {
-  books: PropTypes.object.isRequired,
-  book: PropTypes.object.isRequired
-}
-
-const mapStateToProps = function (store) {
-  return {
-    books: store.booksState.books,
-    book: store.bookDetailsState.book,
-    pagination: store.paginationState.pagination
-  }
-}
-
-export default connect(mapStateToProps)(AppContainer);

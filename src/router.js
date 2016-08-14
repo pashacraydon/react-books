@@ -8,11 +8,12 @@
 
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import AppContainer from 'components/containers/AppContainer';
+import HomeContainer from 'components/containers/HomeContainer';
 
 export default (
   <Router history={browserHistory}>
-    <Route path="/" component={AppContainer} />
-    <Route path="page/:page/:query/" component={AppContainer} />
+    <Route path="/" component={HomeContainer} >
+      <Route path="page/:page/:query/:index" component={HomeContainer} />
+    </Route>
   </Router>
 );
