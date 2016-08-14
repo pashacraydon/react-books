@@ -20,13 +20,26 @@ import PaginationView from 'components/views/PaginationView';
 class AppContainer extends Component {
 
   componentWillMount () {
-    let search_info = {
-      'term': c.DEFAULT_SEARCH,
-      'index': c.SEARCH_START_INDEX,
-      'max_results': c.RESULTS_PER_PAGE
-    };
+    var searchInfo = {};
+    if (Object.keys(this.props.routeParams).length > 0) {
+      const { page, query } = this.props.routeParams;
+      let index = page * c.RESULTS_PER_PAGE;
 
-    booksApi.getBooks(search_info);
+      searchInfo = {
+        'term': query,
+        'index': index,
+        'max_results': c.RESULTS_PER_PAGE
+      };
+    }
+    else {
+      searchInfo = {
+        'term': c.DEFAULT_SEARCH,
+        'index': c.SEARCH_START_INDEX,
+        'max_results': c.RESULTS_PER_PAGE
+      };
+    }
+
+    booksApi.getBooks(searchInfo);
   }
 
   render () {

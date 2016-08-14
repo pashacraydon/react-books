@@ -12,6 +12,7 @@ import AppContainer from 'components/containers/AppContainer';
 
 export default (
   <Router history={browserHistory}>
-      <Route path="/" component={AppContainer} />
+    <Route path="/" component={AppContainer} />
+    <Route path="page/:page/:query/" component={AppContainer} />
   </Router>
 );

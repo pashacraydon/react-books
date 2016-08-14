@@ -17,8 +17,6 @@ export default class BooksItem extends Component {
       'show_overlay': false
     }
 
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
     this.showDetail = this.showDetail.bind(this);
   }
 
@@ -29,16 +27,6 @@ export default class BooksItem extends Component {
   showDetail(event) {
     event.preventDefault();
     booksApi.getBookDetails(this.state.id);
-  }
-
-  onMouseOver(event) {
-    event.preventDefault();
-    this.setState({ 'show_overlay': true });
-  }
-
-  onMouseOut(event) {
-    event.preventDefault();
-    this.setState({ 'show_overlay': false });
   }
 
   render () {
