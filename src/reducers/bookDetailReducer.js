@@ -10,6 +10,9 @@
 
 import * as types from 'actions/actionTypes';
 import React from 'react';
+import _ from 'lodash';
+import update from 'react-addons-update';
+import * as c from 'utils/constants';
 
 const initialState = {
   book: {
@@ -30,11 +33,15 @@ const bookDetailReducer = function(state = initialState, action) {
       });
 
     case types.GET_BOOK_DETAIL_SUCCESS:
+      var bookClone = _.cloneDeep(action.books.volumeInfo),
+        truncateDesc = bookClone.description.substring(0, c.MAX_DESCRIPTION_LENGTH).replace(/(<([^>]+)>)/ig, '') + '...',
+        newBook = update(bookClone, { $merge: { 'description': truncateDesc }});
+
       return Object.assign({}, state, {
         book: {
           isFetching: false,
           didInvalidate: false,
-          volume: action.books.volumeInfo
+          volume: newBook
         }
       });
 

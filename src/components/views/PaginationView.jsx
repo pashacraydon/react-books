@@ -26,7 +26,7 @@ export default class PaginationView extends Component {
 
     booksApi.getBooks({
       'term': term,
-      'index': index + (c.RESULTS_PER_PAGE - 1),
+      'index': index + (c.RESULTS_PER_PAGE),
       'max_results': c.RESULTS_PER_PAGE
     });
   }
@@ -39,29 +39,38 @@ export default class PaginationView extends Component {
 
     booksApi.getBooks({
       'term': term,
-      'index': index - (c.RESULTS_PER_PAGE - 1),
+      'index': index - (c.RESULTS_PER_PAGE),
       'max_results': c.RESULTS_PER_PAGE
     });
   }
 
   render () {
+    const { book_count, data } = this.props;
+
     var page = 1;
-    if (this.props.data.info && Object.keys(this.props.data.info).length > 0) {
-      page = this.props.data.info.index;
+    if (data.info && Object.keys(data.info).length > 0) {
+      page = data.info.index;
     }
 
     return (
       <div className="pagination">
-        {page >= c.RESULTS_PER_PAGE &&
+        {page > 1 &&
         <button
           onClick={this.onPrevPageClick}>
           Prev page
         </button>}
+        {book_count === c.RESULTS_PER_PAGE &&
         <button
           onClick={this.onNextPageClick}>
           Next page
-        </button>
+        </button>}
       </div>
     )
   }
 }
+
+PaginationView.propTypes = {
+  data: PropTypes.object.isRequired,
+  book_count: PropTypes.number.isRequired
+}
+

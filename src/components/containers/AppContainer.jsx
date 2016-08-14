@@ -53,7 +53,7 @@ class AppContainer extends Component {
           </p>
         </header>
         <div className="books-layout">
-          {term != '*' &&
+          {term != c.DEFAULT_SEARCH &&
           <h1>results for: {term}</h1>}
           {is_fetching &&
           <div className="loading-books">
@@ -63,7 +63,8 @@ class AppContainer extends Component {
           <BookDetailView book={book.volume} />}
           {books_exist &&
           <BooksLayout books={books.items} />}
-          <PaginationView data={pagination} />
+          {books_exist &&
+          <PaginationView data={pagination} book_count={books.items.length} />}
         </div>
       </div>
     )

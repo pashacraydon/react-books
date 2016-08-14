@@ -24,11 +24,7 @@ export default class BookDetailView extends Component {
 
   render () {
     const { book } = this.props;
-    const description = book.description ?
-                        book.description
-                            .substring(0, 300 - 3)
-                            .replace(/(<([^>]+)>)/ig, '') + '...'
-                        : '';
+    const img_src = book.imageLinks.small || book.imageLinks.medium || book.imageLinks.thumbnail;
     return (
       <div className="detail-view">
        <a className="close-detail"
@@ -36,11 +32,7 @@ export default class BookDetailView extends Component {
         href="#">&#8855;</a>
        <div className="wrap-book">
           {book.imageLinks &&
-          <img src=
-            {book.imageLinks.small ? book.imageLinks.small
-              :
-            book.imageLinks.medium} 
-          />}
+          <img src={img_src} />}
        </div>
       <div className="detail-info">
         {book.title && 
@@ -51,7 +43,7 @@ export default class BookDetailView extends Component {
         <strong>Author: {book.authors}</strong>}
         <br />
         {book.description &&
-        <div className="description">{description}</div>}
+        <div className="description">{book.description}</div>}
         </div>
       </div>
     )

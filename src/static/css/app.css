@@ -56,10 +56,61 @@ form button {
   cursor:pointer;
 }
 
-.book {
-  position: relative;
-  border: 1px solid #FFF;
+.book-item {
+  min-height: 200px;
+  width: 128px;
 }
+
+.book-item a {
+  position: relative;
+  margin: 40px 30px;
+  width:calc(128px + 2px);
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -ms-perspective: 1200px;
+  -o-perspective: 1200px;
+  perspective: 1200px;
+}
+
+.book-item a .wrap-book {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition:all 0.5s ease;
+  position: absolute;
+
+}
+
+.book-item a .wrap-book:after{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 30px;
+  background: #ccc;
+  -moz-transform: rotateY(-90deg);
+  -webkit-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+  -moz-transform-origin: 100%;
+  -ms-transform-origin: 100%;
+  -webkit-transform-origin: 100%;
+  transform-origin: 100%;
+}
+
+.book-item a:hover .wrap-book {
+    z-index: 2; 
+    -webkit-transform:rotateY(-40deg);
+    -moz-transform:rotateY(-40deg);
+    -ms-transform:rotateY(-40deg);
+    -o-transform:rotateY(-40deg);
+    transform:rotateY(-40deg);
+    transition:all 0.5s ease;
+}
+
+
 
 .overlay {
   position: absolute;

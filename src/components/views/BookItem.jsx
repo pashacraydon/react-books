@@ -22,10 +22,13 @@ export default class BooksItem extends Component {
     this.showDetail = this.showDetail.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({ 'id': this.props.book.id });
+  }
+
   showDetail(event) {
     event.preventDefault();
-    let book_id = event.target.dataset.bookid;
-    booksApi.getBookDetails(book_id);
+    booksApi.getBookDetails(this.state.id);
   }
 
   onMouseOver(event) {
@@ -39,23 +42,19 @@ export default class BooksItem extends Component {
   }
 
   render () {
-    const { volumeInfo, id } = this.props.book;
+    const { volumeInfo } = this.props.book;
     const { show_overlay } = this.state;
+
     return (
-      <li className="book">
+      <li className="book-item">
         <a href="#"
-          onMouseOver={this.onMouseOver}
-        >
-          {volumeInfo.imageLinks &&
-          <img src={volumeInfo.imageLinks.thumbnail} />}
-        </a>
-        {show_overlay &&
-        <a href="#" 
-          className="overlay"
-          data-bookid={id}
           onClick={this.showDetail}
-          onMouseOut={this.onMouseOut}>
-        </a>}
+        >
+          <div className="wrap-book">
+            {volumeInfo.imageLinks &&
+            <img src={volumeInfo.imageLinks.thumbnail} />}
+          </div>
+        </a>
       </li>
     )
   }
