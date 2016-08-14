@@ -9,10 +9,10 @@
 
 import * as types from 'actions/actionTypes';
 
-export function buildPagination(books, search_info) {
+export function buildPagination(books, searchInfo) {
   return {
     type: types.BUILD_PAGINATION,
     books,
-    search_info
+    searchInfo
   };
 }

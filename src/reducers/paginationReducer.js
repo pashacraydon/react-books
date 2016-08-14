@@ -25,7 +25,7 @@ const paginationReducer = function(state = initialState, action) {
       return Object.assign({}, state, {
         pagination: {
           totalItems: action.books.totalItems,
-          info: action.search_info
+          info: action.searchInfo
         }
       });
   }

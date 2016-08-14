@@ -15,10 +15,10 @@ export function getBooksRequest() {
   };
 }
 
-export function getBooksSuccess(books, search_info) {
+export function getBooksSuccess(books, searchInfo) {
   return {
     type: types.GET_BOOKS_SUCCESS,
     books,
-    search_info
+    searchInfo
   };
 }

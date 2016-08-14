@@ -36,7 +36,7 @@ const booksReducer = function(state = initialState, action) {
           didInvalidate: false,
           items: action.books.items,
           totalItems: action.books.totalItems,
-          info: action.search_info
+          info: action.searchInfo
         }
       });
   }
