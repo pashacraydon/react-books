@@ -4,7 +4,7 @@ var webpack = require('webpack');
 config = require('./webpack.config.js');
 
 config.entry = {
-  testExamplePage: ['./test/testExamplePage']
+  testBookActions: ['./test/actions/bookActions.test']
 };
 
 config.output = {
