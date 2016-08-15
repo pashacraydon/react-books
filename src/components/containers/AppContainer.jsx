@@ -63,7 +63,7 @@ class AppContainer extends Component {
     return (
       <div className="app-wrapper">
         <header>
-          <h1><a href="/">React Books</a></h1>
+          <h1><a href="/react_books/">React Books</a></h1>
           <p>A demonstration of a very simple React + Redux app.</p>
           <SearchFormView />
           <p>

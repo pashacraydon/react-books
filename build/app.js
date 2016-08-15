@@ -36426,7 +36426,7 @@
 	            null,
 	            _react2.default.createElement(
 	              'a',
-	              { href: '/' },
+	              { href: '/react_books/' },
 	              'React Books'
 	            )
 	          ),
