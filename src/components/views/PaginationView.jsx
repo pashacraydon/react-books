@@ -27,8 +27,8 @@ export default class PaginationView extends Component {
         prevPageIndex = (parseInt(index, radix) - c.RESULTS_PER_PAGE);
 
       page = Math.floor(index / c.RESULTS_PER_PAGE);
-      nextPage = `/page/${page + 1}/${query}/${nextPageIndex}/`,
-      prevPage = `/page/${page - 1}/${query}/${prevPageIndex}/`;
+      nextPage = `/react_books/page/${page + 1}/${query}/${nextPageIndex}/`,
+      prevPage = `/react_books/page/${page - 1}/${query}/${prevPageIndex}/`;
     }
 
     return (

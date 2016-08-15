@@ -17,7 +17,7 @@ export default class SearchView extends Component {
   onSearchSubmit(event) {
     event.preventDefault();
     let searchQuery = document.getElementsByName('q')[0].value;
-    browserHistory.push(`/page/0/${searchQuery}/1/`);
+    browserHistory.push(`/react_books/page/0/${searchQuery}/1/`);
   }
 
   render () {

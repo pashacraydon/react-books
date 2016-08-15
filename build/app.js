@@ -36254,8 +36254,6 @@
 	  value: true
 	});
 
-
-
 	var _react = __webpack_require__(/*! react */ 9);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -36866,7 +36864,7 @@
 	            prevPageIndex = parseInt(index, radix) - c.RESULTS_PER_PAGE;
 
 	        page = Math.floor(index / c.RESULTS_PER_PAGE);
-	        nextPage = '/page/' + (page + 1) + '/' + query + '/' + nextPageIndex + '/', prevPage = '/page/' + (page - 1) + '/' + query + '/' + prevPageIndex + '/';
+	        nextPage = '/react_books/page/' + (page + 1) + '/' + query + '/' + nextPageIndex + '/', prevPage = '/react_books/page/' + (page - 1) + '/' + query + '/' + prevPageIndex + '/';
 	      }
 
 	      return _react2.default.createElement(
@@ -36947,7 +36945,7 @@
 	    value: function onSearchSubmit(event) {
 	      event.preventDefault();
 	      var searchQuery = document.getElementsByName('q')[0].value;
-	      _reactRouter.browserHistory.push('/page/0/' + searchQuery + '/1/');
+	      _reactRouter.browserHistory.push('/react_books/page/0/' + searchQuery + '/1/');
 	    }
 	  }, {
 	    key: 'render',
