@@ -29,25 +29,25 @@ If you are coming from Backbone, there are a few differences in React.
 
 1. You change the UI by changing the state.
 
-You can't use jQuery to 'hide()' and 'show()' elements. If you are using jQuery at all in React, you're probably doing it wrong (don't use jQuery in react). In react, you would set a boolean value on a state attribute when you want to 'hide' an element. React will automatically re-render a component when it's state changes. In the 'jsx' the component returns, you would have a conditional around that element that excludes it if the state boolean hides it.
+    You can't use jQuery to 'hide()' and 'show()' elements. If you are using jQuery at all in React, you're probably doing it wrong (don't use jQuery in react). In react, you would set a boolean value on a state attribute when you want to 'hide' an element. React will automatically re-render a component when it's state changes. In the 'jsx' the component returns, you would have a conditional around that element that excludes it if the state boolean hides it.
 
 2. You can't mutate state.
 
-You may be used to changing the value of attributes and variables on the fly and passing them around. This is bad practice in React and there are good reasons for it. In a React + Redux app, you can update state by dispatching it with an action to a reducer. Reducers are pure functions which store a copy of a new state. 
+    You may be used to changing the value of attributes and variables on the fly and passing them around. This is bad practice in React and there are good reasons for it. In a React + Redux app, you can update state by dispatching it with an action to a reducer. Reducers are pure functions which store a copy of a new state. 
 
-You can use React Immutability helpers for creating copies of new state that merge new objects into lists, push objects into array etc..
+    You can use React Immutability helpers for creating copies of new state that merge new objects into lists, push objects into array etc..
 
 Explanation of app structure
 ============================
 
 1. /actions
 
-The only way to mutate state in a react app is to emit an action. An action is a plain javaScript object which describes what happened.
+    The only way to mutate state in a react app is to emit an action. An action is a plain javaScript object which describes what happened.
 
-The actions folder should contain;
-  * A file that exports all of the action types.
-  * Files that export specific actions
-  * Files that export more general, reusable actions
+    The actions folder should contain;
+      * A file that exports all of the action types.
+      * Files that export specific actions
+      * Files that export more general, reusable actions
 
 2. /api
 
