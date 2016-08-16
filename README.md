@@ -7,7 +7,7 @@ Demo it here: [React Books App](https://pashasc.github.io/react_books/ "React Bo
 
 ![alt tag](https://github.com/pashasc/react_books/blob/master/src/static/images/screen.png)
 
-This app demonstrates good practices structuring for building a React + Redux application. It uses webpack for compiling javaScript written in ES6 format and running a dev server. Setup is simple. Simply install the npm packages, ```npm install```. Then run a server, ```npm run server``` and visit ```http://localhost:8080/webpack-dev-server/```.
+This app uses webpack for compiling javaScript written in ES6 format and running a dev server. Simply install the npm packages, ```npm install```. Then run a server, ```npm run server``` and visit ```http://localhost:8080/webpack-dev-server/```.
 
 Script commands include; (tests not included yet, coming soon)
 
