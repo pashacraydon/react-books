@@ -61,11 +61,11 @@ Explanation of app structure
 
     View and layout components are dumb. They should only render state but never mutate it.
 
-    The idea for this separation of components is to make them more reusable. Particularly the dumb components. It is much easier to reuse a component that does not mutate state. Keep this in mind when you are structuring your application. The more specific you name a component, the less reusable it will become. Remember this and try to make your components reusable.
+    The idea for this separation of components is to make them more reusable. Particularly the dumb components. Keep this in mind when you are structuring your application. Also, the more specific you name a component, the less reusable it will become. Remember this and try to make your components reusable.
 
 4. /reducers
 
-    Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. They reduce a collection of values down to a single value. This folder should contain files for individual reducers
+    Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. This folder should contain files for individual types of reducers. There should be an index.js file in this folder which combines all the reducers for the store.
 
 5. /store.js
 
@@ -77,7 +77,7 @@ Explanation of app structure
 
 6. /router.js
 
-    Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that links can be created for them and the browser history (back button) works for them.
+    Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that people can link to them and the browser history (back button) works for them.
 
 
 
