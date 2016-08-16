@@ -51,33 +51,33 @@ Explanation of app structure
 
 2. /api
 
-Functions that facilitate network requests should go in the API folder. These functions use Async Actions to perform requests, dispatch the state of the request then store the response.
+    Functions that facilitate network requests should go in the API folder. These functions use Async Actions to perform requests, dispatch the state of the request then store the response.
 
 3. /components
 
-Components will make up the parts of your application. They are divided between container components and presentational components (layouts and views).
+    Components will make up the parts of your application. They are divided between container components and presentational components (layouts and views).
 
-Container components are smart components. They will deal with state and manage the other two (or more) components. State is passed into them which they render using view and layout  components. 
+    Container components are smart components. They will deal with state and manage the other two (or more) components. State is passed into them which they render using view and layout  components. 
 
-View and layout components are dumb. They should only render state but never mutate it.
+    View and layout components are dumb. They should only render state but never mutate it.
 
-The idea for this separation of components is to make them more reusable. Particularly the dumb components. It is much easier to reuse a component that does not mutate state. Keep this in mind when you are structuring your application. The more specific you name a component, the less reusable it will become. Remember this and try to make your components reusable.
+    The idea for this separation of components is to make them more reusable. Particularly the dumb components. It is much easier to reuse a component that does not mutate state. Keep this in mind when you are structuring your application. The more specific you name a component, the less reusable it will become. Remember this and try to make your components reusable.
 
 4. /reducers
 
-Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. They reduce a collection of values down to a single value. This folder should contain files for individual reducers
+    Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. They reduce a collection of values down to a single value. This folder should contain files for individual reducers
 
 5. /store.js
 
-This file should contain a Redux store of all the reducers.
+    This file should contain a Redux store of all the reducers.
 
 6. /app.js
 
-Initialize your application in this file.
+    Initialize your application in this file.
 
 6. /router.js
 
-Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that links can be created for them and the browser history (back button) works for them.
+    Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that links can be created for them and the browser history (back button) works for them.
 
 
 
