@@ -4,7 +4,8 @@ var webpack = require('webpack');
 config = require('./webpack.config.js');
 
 config.entry = {
-  testBookActions: ['./test/actions/bookActions.test']
+  testBookActions: ['./test/actions/bookActions.test'],
+  testBooksApi: ['./test/api/booksApi.test']
 };
 
 config.output = {
