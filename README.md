@@ -9,7 +9,7 @@ Demo it here: [React Books App](https://pashasc.github.io/react_books/ "React Bo
 
 This app uses webpack for compiling javaScript written in ES6 format and running a dev server. Simply install the npm packages, ```npm install```. Then run a server, ```npm run server``` and visit ```http://localhost:8080/webpack-dev-server/```.
 
-Script commands include; (tests not included yet, coming soon)
+Script commands include; (todo: more tests)
 
 | command  | info  |
 |---|---|
@@ -67,7 +67,7 @@ Explanation of app structure
 
     Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. This folder should contain files for individual types of reducers. There should be an index.js file in this folder which combines all the reducers for the store.
 
-5. *store.js*
+5. **store.js**
 
     This file should contain a Redux store of all the reducers.
 
