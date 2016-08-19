@@ -12,10 +12,10 @@ import store from 'store';
 import * as c from 'utils/constants';
 import * as booksApi from 'api/booksApi';
 import * as bookActions from 'actions/bookActions';
-import BooksLayout from 'components/layouts/BooksLayout';
-import BookDetailView from 'components/views/BookDetailView';
-import SearchFormView from 'components/views/SearchFormView';
-import PaginationView from 'components/views/PaginationView';
+import BooksLayout from 'components/presentations/BooksLayout';
+import BookDetailView from 'components/presentations/BookDetailView';
+import PaginationView from 'components/presentations/PaginationView';
+import HeaderView from 'components/presentations/HeaderView';
 
 class AppContainer extends Component {
 
@@ -62,17 +62,7 @@ class AppContainer extends Component {
 
     return (
       <div className="app-wrapper">
-        <header>
-          <h1><a href="/">React Books</a></h1>
-          <p>A demonstration of a very simple React + Redux app.</p>
-          <SearchFormView />
-          <p>
-            <a href="https://github.com/pashasc/react_redux_starter_kit">
-              Find it on Github
-            </a>
-          </p>
-
-        </header>
+        <HeaderView />
         <div className="books-layout">
           {query != c.DEFAULT_SEARCH &&
           <h1>results for: {query}</h1>}

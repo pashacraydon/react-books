@@ -7,7 +7,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import BookItem from 'components/views/BookItem';
+import BookItem from 'components/presentations/BookItem';
 
 export default class BooksLayout extends Component {
 
