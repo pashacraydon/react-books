@@ -1,12 +1,3 @@
-/**
- * @file booksApi.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Network request functions that connect with the Books API. 
- * These functions use Async Actions to perform requests, dispatch the state
- * of the request then store the response.
- */
 
 import fetch from 'isomorphic-fetch'
 import store from 'store';

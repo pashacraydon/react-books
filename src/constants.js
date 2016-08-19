@@ -1,10 +1,3 @@
-/**
- * @file constants.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Constants for the application.
- */
 
  export const GOOGLE_BOOKS_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes';
 

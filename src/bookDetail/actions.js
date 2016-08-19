@@ -1,13 +1,5 @@
-/**
- * @file bookDetailsActions.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- *  The only way to mutate state in a react app is to emit an action. 
- *  An action is a plain javaScript object which describes what happened.
- */
 
-import * as types from 'actions/actionTypes';
+import * as types from './actionTypes';
 
 export function getBookDetailRequest() {
   return {

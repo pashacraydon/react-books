@@ -1,18 +1,9 @@
-/**
- * @file bookReducer.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Reducers maintain a state tree in redux. 
- * Reducers are pure functions which do not ever mutate state but rather create a copy of a new state. 
- * They reduce a collection of values down to a single value. 
- */
 
-import * as types from 'actions/actionTypes';
+import * as types from './actionTypes';
 import React from 'react';
 import _ from 'lodash';
 import update from 'react-addons-update';
-import * as c from 'utils/constants';
+import * as c from 'constants';
 
 const initialState = {
   book: {
@@ -20,7 +11,7 @@ const initialState = {
   }
 };
 
-const bookDetailReducer = function(state = initialState, action) {
+export default (state = initialState, action) => {
 
   switch(action.type) {
 
@@ -54,5 +45,3 @@ const bookDetailReducer = function(state = initialState, action) {
   return state;
 
 }
-
-export default bookDetailReducer;

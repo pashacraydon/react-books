@@ -1,0 +1,1 @@
+export const BUILD_PAGINATION = 'BUILD_PAGINATION';
