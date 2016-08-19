@@ -1,24 +1,16 @@
 
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 import store from 'store';
-
-import booksJSON from 'books.json';
+import * as c from 'constants';
 
 import {
   getBooksSuccess,
   getBooksRequest
-} from 'actions/bookActions';
+} from './actions';
 
-import {
-  getBookDetailSuccess,
-  getBookDetailRequest
-} from 'actions/bookDetailActions';
+import * as pagination from 'pagination';
+const { buildPagination } = pagination.actions;
 
-import {
-  buildPagination
-} from 'actions/paginationActions';
-
-import * as c from 'utils/constants';
 
 /**
  * Get a series of books
@@ -33,17 +25,6 @@ export function getBooks(searchInfo) {
       store.dispatch(getBooksSuccess(json, searchInfo))
       store.dispatch(buildPagination(json, searchInfo))
     });
-}
-
-/**
- * Get the details for a single book
- */
-
-export function getBookDetails(id) {
-  store.dispatch(getBookDetailRequest())
-  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
-    .then(response => response.json())
-    .then(json => store.dispatch(getBookDetailSuccess(json)));
 }
 
 

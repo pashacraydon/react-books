@@ -1,12 +1,6 @@
-/**
- * @file BooksLayout.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Component View to show a single book
- */
 
-import * as booksApi from 'api/booksApi';
+
+import * as bookDetail from 'book-detail';
 import React, { Component, PropTypes } from 'react';
 
 export default class BooksItem extends Component {
@@ -26,7 +20,7 @@ export default class BooksItem extends Component {
 
   showDetail(event) {
     event.preventDefault();
-    booksApi.getBookDetails(this.state.id);
+    bookDetail.api.getBookDetails(this.state.id);
   }
 
   render () {

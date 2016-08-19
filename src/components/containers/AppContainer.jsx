@@ -1,17 +1,11 @@
-/**
- * @file BooksContainer.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- *  The index page component for searching books from.
- */
+
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import store from 'store';
-import * as c from 'utils/constants';
-import * as booksApi from 'api/booksApi';
-import * as bookActions from 'actions/bookActions';
+import * as c from 'constants';
+import * as books from 'books';
+
 import BooksLayout from 'components/presentations/BooksLayout';
 import BookDetailView from 'components/presentations/BookDetailView';
 import PaginationView from 'components/presentations/PaginationView';
@@ -31,7 +25,7 @@ class AppContainer extends Component {
         'maxResults': c.RESULTS_PER_PAGE
       };
 
-      booksApi.getBooks(searchInfo);
+      books.api.getBooks(searchInfo);
     }
   }
 
@@ -46,7 +40,7 @@ class AppContainer extends Component {
       'maxResults': c.RESULTS_PER_PAGE
     };
 
-    booksApi.getBooks(searchInfo);
+    books.api.getBooks(searchInfo);
   }
 
   render () {
@@ -91,7 +85,7 @@ AppContainer.propTypes = {
 const mapStateToProps = function (store) {
   return {
     books: store.booksState.books,
-    book: store.bookDetailsState.book,
+    book: store.bookDetailState.book,
     pagination: store.paginationState.pagination
   }
 }

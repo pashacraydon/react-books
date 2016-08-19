@@ -1,10 +1,4 @@
-/**
- * @file SearchView.jsx
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Component View to show a single book
- */
+
 
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';

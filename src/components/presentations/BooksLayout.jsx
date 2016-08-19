@@ -1,10 +1,3 @@
-/**
- * @file BooksLayout.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Component Layout to show a list of BookItem's
- */
 
 import React, { Component, PropTypes } from 'react';
 import BookItem from 'components/presentations/BookItem';

@@ -1,4 +1,5 @@
-import * as actions from './actions'
-import reducer, { initialState } from './reducer'
+import * as actions from './actions';
+import * as api from './api';
+import reducer, { initialState } from './reducer';
 
-export default { actions, initialState, reducer }
+export default { actions, api, reducer }

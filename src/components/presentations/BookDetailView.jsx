@@ -1,14 +1,6 @@
-/**
- * @file BooksLayout.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Component View to show a single book
- */
 
 import store from 'store';
-import * as booksApi from 'api/booksApi';
-import { destroyBookDetails } from 'actions/bookDetailActions';
+import bookDetail from 'book-detail';
 import React, { Component, PropTypes } from 'react';
 
 export default class BookDetailView extends Component {
@@ -19,7 +11,7 @@ export default class BookDetailView extends Component {
 
   destroyDetail(event) {
     event.preventDefault();
-    store.dispatch(destroyBookDetails());
+    store.dispatch(bookDetail.actions.destroyBookDetails());
   }
 
   render () {

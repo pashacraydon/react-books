@@ -1,13 +1,6 @@
-/**
- * @file PaginationView.jsx
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Paginate book results.
- */
 
-import * as c from 'utils/constants';
-import * as booksApi from 'api/booksApi';
+
+import * as c from 'constants';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 

@@ -1,10 +1,4 @@
-/**
- * @file HeaderView.jsx
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Component to display header information
- */
+
 
 import React, { Component } from 'react';
 import SearchFormView from 'components/presentations/SearchFormView';
