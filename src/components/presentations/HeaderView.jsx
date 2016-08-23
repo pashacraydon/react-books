@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import SearchFormView from 'components/presentations/SearchFormView';
 

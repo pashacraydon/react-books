@@ -1,9 +1,6 @@
-/**
- * @file router.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Handle url's
+ 
+ /**
+ * Handle url routes
  */
 
 import React from 'react';

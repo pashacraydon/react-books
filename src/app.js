@@ -1,10 +1,4 @@
-/**
- * @file app.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- * Start off the application.
- */
+
 
 import 'babel-polyfill';
 
