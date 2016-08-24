@@ -1,6 +1,6 @@
 
 import store from 'store';
-import bookDetail from 'book-detail';
+import bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
 
 export default class BookDetailView extends Component {

@@ -1,32 +1,22 @@
 /**
- * @file bookActions.test.js
+ * Test the files and functions in the books modules.
+ *
+ * @file modules.books.tests.js
  * @created by Example
  * @copyright Copyright (c) 2016 Example
- *
- * Test the book actions.
  */
 
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import nock from 'nock';
 import expect from 'expect';
-import * as types from 'actions/actionTypes';
-import booksJSON from '../../test/fixtures/books.json';
+import * as books from 'modules/books';
+import booksJSON from './fixtures/books.json';
 
-import {
-  getBooksRequest,
-  getBooksSuccess
-} from 'actions/bookActions';
+const { 
+  getBooksRequest, 
+  getBooksSuccess 
+} = books.actions;
+const { types } = books;
 
-
-describe('book actions', () => {
-  beforeEach(() => {
-
-  });
-
-  afterEach(() => {
-  });
-
+describe('actions', () => {
   it('should create an action to make a book request.', () => {
     const expectedAction = {
       type: types.GET_BOOKS_REQUEST

@@ -1,5 +1,5 @@
 
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import store from 'store';
 
 import {
@@ -16,9 +16,8 @@ import * as c from 'constants';
 
 export function getBookDetails(id) {
   store.dispatch(getBookDetailRequest())
-  return fetch(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
-    .then(response => response.json())
-    .then(json => store.dispatch(getBookDetailSuccess(json)));
+  return axios.get(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
+    .then(response => store.dispatch(getBookDetailSuccess(response.data)));
 }
 
 

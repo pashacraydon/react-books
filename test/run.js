@@ -1,3 +1,2 @@
 
-require('../test/browser');
-require('../test/build/testBookActions');
+require('../test/build/modulesBooksTest');

@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import store from 'store';
 import * as c from 'constants';
-import * as books from 'books';
+import * as books from 'modules/books';
 
 import BooksLayout from 'components/presentations/BooksLayout';
 import BookDetailView from 'components/presentations/BookDetailView';

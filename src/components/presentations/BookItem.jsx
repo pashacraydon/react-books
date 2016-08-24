@@ -1,6 +1,6 @@
 
 
-import * as bookDetail from 'book-detail';
+import * as bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
 
 export default class BooksItem extends Component {

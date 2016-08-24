@@ -29,6 +29,8 @@
     "url": "https://github.com/pashasc/react_redux_starter_kit/issues"
   },
   "dependencies": {
+    "axios": "^0.13.1",
+    "axios-mock-adapter": "^1.6.1",
     "babel": "^6.5.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -38,7 +40,6 @@
     "copy-webpack-plugin": "^3.0.1",
     "es6-promise": "^3.2.1",
     "fs": "0.0.2",
-    "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
     "npm": "^3.10.6",
     "react": "^15.3.0",
