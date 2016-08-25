@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "server": "webpack-dev-server --content-base build/",
-    "tests": "mocha test/run.js",
+    "tests": "mocha tests/run.js",
     "build": "webpack --config webpack.config.js --progress --colors",
     "build:debug": "webpack --config webpack.config.js --progress --colors --display-error-details",
     "build:compress": "webpack --config webpack.config.js --progress --colors --display-error-details",

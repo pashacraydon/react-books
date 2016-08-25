@@ -10,6 +10,10 @@ import BookDetailView from 'components/presentations/BookDetailView';
 import PaginationView from 'components/presentations/PaginationView';
 import HeaderView from 'components/presentations/HeaderView';
 
+const {
+  getBooks
+} = books.api;
+
 class AppContainer extends Component {
 
   /* Handles url routing from within the app */
@@ -24,7 +28,7 @@ class AppContainer extends Component {
         'maxResults': c.RESULTS_PER_PAGE
       };
 
-      books.api.getBooks(searchInfo);
+      store.dispatch(getBooks(searchInfo));
     }
   }
 
@@ -39,7 +43,7 @@ class AppContainer extends Component {
       'maxResults': c.RESULTS_PER_PAGE
     };
 
-    books.api.getBooks(searchInfo);
+    store.dispatch(getBooks(searchInfo));
   }
 
   render () {

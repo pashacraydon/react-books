@@ -3,6 +3,10 @@ import store from 'store';
 import bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
 
+const {
+  destroyBookDetails
+} = bookDetail.actions;
+
 export default class BookDetailView extends Component {
   constructor () {
     super();
@@ -11,7 +15,7 @@ export default class BookDetailView extends Component {
 
   destroyDetail(event) {
     event.preventDefault();
-    store.dispatch(bookDetail.actions.destroyBookDetails());
+    store.dispatch(destroyBookDetails());
   }
 
   render () {

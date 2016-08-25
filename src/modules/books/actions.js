@@ -7,10 +7,10 @@ export function getBooksRequest() {
   };
 }
 
-export function getBooksSuccess(books, searchInfo) {
+export function getBooksSuccess(response, searchInfo) {
   return {
     type: types.GET_BOOKS_SUCCESS,
-    books,
-    searchInfo
+    books: response.data,
+    searchInfo: searchInfo
   };
 }

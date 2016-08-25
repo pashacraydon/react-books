@@ -15,9 +15,11 @@ import * as c from 'constants';
  */
 
 export function getBookDetails(id) {
-  store.dispatch(getBookDetailRequest())
-  return axios.get(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
-    .then(response => store.dispatch(getBookDetailSuccess(response.data)));
+  return function (dispatch) {
+    dispatch(getBookDetailRequest());
+    return axios.get(`${c.GOOGLE_BOOKS_ENDPOINT}/${id}`)
+      .then(response => dispatch(getBookDetailSuccess(response)));
+  }
 }
 
 

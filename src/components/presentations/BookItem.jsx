@@ -1,7 +1,11 @@
 
-
+import store from 'store';
 import * as bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
+
+const {
+  getBookDetails
+} = bookDetail.api;
 
 export default class BooksItem extends Component {
   constructor () {
@@ -20,7 +24,7 @@ export default class BooksItem extends Component {
 
   showDetail(event) {
     event.preventDefault();
-    bookDetail.api.getBookDetails(this.state.id);
+    store.dispatch(getBookDetails(this.state.id));
   }
 
   render () {
