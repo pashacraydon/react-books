@@ -9,7 +9,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: [
       'src',
-      'node_modules'
+      'node_modules',
+      'tests',
     ]
   },
 

@@ -72,7 +72,7 @@ class AppContainer extends Component {
           {books_exist &&
           <BooksLayout books={books.items} />}
           {books_exist &&
-          <PaginationView data={pagination} book_count={books.items.length} />}
+          <PaginationView books={books} />}
         </div>
       </div>
     )

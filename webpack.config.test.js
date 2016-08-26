@@ -4,11 +4,13 @@ var webpack = require('webpack');
 config = require('./webpack.config.js');
 
 config.entry = {
-  modulesBooksTest: ['./test/modules.books.tests']
+  modulesBooksApiTests: ['./tests/modules/books/api.tests'],
+  modulesBooksActionsTests: ['./tests/modules/books/actions.tests'],
+  modulesBooksReducerTests: ['./tests/modules/books/reducer.tests']
 };
 
 config.output = {
-  path: path.resolve(__dirname, './test/build'),
+  path: path.resolve(__dirname, './tests/build'),
   pathinfo: true,
   filename: '[name].js'
 };

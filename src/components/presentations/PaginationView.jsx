@@ -6,15 +6,17 @@ import { Link } from 'react-router';
 
 export default class PaginationView extends Component {
   render () {
-    const { book_count, data } = this.props;
+    const { books } = this.props;
+
+    let bookCount = books.items.length;
 
     var page = 0,
       radix = 10,
       nextPage,
       prevPage;
 
-    if (data.info && Object.keys(data.info).length > 0) {
-      const { index, query } = data.info;
+    if (books.info && Object.keys(books.info).length > 0) {
+      const { index, query } = books.info;
         
       let nextPageIndex = (parseInt(index, radix) + c.RESULTS_PER_PAGE),
         prevPageIndex = (parseInt(index, radix) - c.RESULTS_PER_PAGE);
@@ -30,7 +32,7 @@ export default class PaginationView extends Component {
         <Link to={prevPage}>
           Prev page
         </Link>}
-        {(book_count === c.RESULTS_PER_PAGE && nextPage) &&
+        {(bookCount === c.RESULTS_PER_PAGE && nextPage) &&
         <Link to={nextPage}>
           Next page
         </Link>}
@@ -40,7 +42,6 @@ export default class PaginationView extends Component {
 }
 
 PaginationView.propTypes = {
-  data: PropTypes.object.isRequired,
-  book_count: PropTypes.number.isRequired
+  books: PropTypes.object.isRequired
 }
 

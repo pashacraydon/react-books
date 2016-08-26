@@ -8,10 +8,6 @@ import {
   getBooksRequest
 } from './actions';
 
-import * as pagination from 'modules/pagination';
-const { buildPagination } = pagination.actions;
-
-
 /**
  * Get a series of books
  */
@@ -21,10 +17,8 @@ export function getBooks(searchInfo) {
   return function (dispatch) {
     dispatch(getBooksRequest());
     return axios.get(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(query)}&startIndex=${index}&maxResults=${maxResults}&projection=full&fields=totalItems,items(id,volumeInfo)`)
-      .then((response) => {
-        dispatch(getBooksSuccess(response, searchInfo))
-        dispatch(buildPagination(response, searchInfo))
-      });
+      .then(response => dispatch(getBooksSuccess(response, searchInfo))
+    );
   }
 }
 
