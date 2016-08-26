@@ -81,15 +81,13 @@ class AppContainer extends Component {
 
 AppContainer.propTypes = {
   books: PropTypes.object.isRequired,
-  book: PropTypes.object.isRequired,
-  pagination: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired
 }
 
 const mapStateToProps = function (store) {
   return {
     books: store.booksState.books,
-    book: store.bookDetailState.book,
-    pagination: store.paginationState.pagination
+    book: store.bookDetailState.book
   }
 }
 
