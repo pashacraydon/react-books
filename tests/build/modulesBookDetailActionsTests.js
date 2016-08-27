@@ -42,12 +42,12 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**********************************!*\
-  !*** multi modulesBooksApiTests ***!
-  \**********************************/
+/*!*******************************************!*\
+  !*** multi modulesBookDetailActionsTests ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./tests/modules/books/api.tests */126);
+	module.exports = __webpack_require__(/*! ./tests/modules/book-detail/actions.tests */124);
 
 
 /***/ },
@@ -29064,297 +29064,28 @@
 	};
 
 /***/ },
-/* 121 */
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */
 /*!****************************************************!*\
-  !*** ./~/axios-mock-adapter/src/handle_request.js ***!
+  !*** ./tests/modules/book-detail/actions.tests.js ***!
   \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var utils = __webpack_require__(/*! ./utils */ 123);
-
-	function handleRequest(resolve, reject, config) {
-	  var url = config.url.slice(config.baseURL ? config.baseURL.length : 0);
-	  var handler = utils.findHandler(this.handlers, config.method, url, config.data);
-
-	  if (handler) {
-	    utils.purgeIfReplyOnce(this, handler);
-	    var response = handler[1] instanceof Function
-	      ? handler[1](config)
-	      : handler.slice(1);
-
-	    utils.settle(resolve, reject, {
-	      status: response[0],
-	      data: response[1],
-	      headers: response[2],
-	      config: config
-	    }, this.delayResponse);
-	  } else {
-	    utils.settle(resolve, reject, {
-	      status: 404,
-	      config: config
-	    }, this.delayResponse);
-	  }
-	}
-
-	module.exports = handleRequest;
-
-
-/***/ },
-/* 122 */
-/*!*******************************************!*\
-  !*** ./~/axios-mock-adapter/src/index.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
-
-	var handleRequest = __webpack_require__(/*! ./handle_request */ 121);
-
-	var verbs = ['get', 'post', 'head', 'delete', 'patch', 'put'];
-
-	function adapter() {
-	  return function(config) {
-	    // axios >= 0.13.0 only passes the config and expects a promise to be
-	    // returned. axios < 0.13.0 passes (config, resolve, reject).
-	    if (arguments.length === 3) {
-	      handleRequest.call(this, arguments[0], arguments[1], arguments[2]);
-	    } else {
-	      return new Promise(function(resolve, reject) {
-	        handleRequest.call(this, resolve, reject, config);
-	      }.bind(this));
-	    }
-	  }.bind(this);
-	}
-
-	function reset() {
-	  this.handlers = verbs.reduce(function(accumulator, verb) {
-	    accumulator[verb] = [];
-	    return accumulator;
-	  }, {});
-	  this.replyOnceHandlers = [];
-	}
-
-	function MockAdapter(axiosInstance, options) {
-	  reset.call(this);
-
-	  if (axiosInstance) {
-	    this.axiosInstance = axiosInstance;
-	    this.originalAdapter = axiosInstance.defaults.adapter;
-	    this.delayResponse = options && options.delayResponse > 0
-	      ? options.delayResponse
-	      : null;
-	    axiosInstance.defaults.adapter = adapter.call(this);
-	  }
-	}
-
-	MockAdapter.prototype.adapter = adapter;
-
-	MockAdapter.prototype.restore = function restore() {
-	  if (this.axiosInstance) {
-	    this.axiosInstance.defaults.adapter = this.originalAdapter;
-	  }
-	};
-
-	MockAdapter.prototype.reset = reset;
-
-	MockAdapter.prototype.onAny = function onAny(matcher, body) {
-	  var _this = this;
-	  return {
-	    reply: function reply(code, response, headers) {
-	      var handler = [matcher, code, response, headers, body];
-	      verbs.forEach(function(verb) {
-	        _this.handlers[verb].push(handler);
-	      });
-	      return _this;
-	    },
-
-	    replyOnce: function replyOnce(code, response, headers) {
-	      var handler = [matcher, code, response, headers, body];
-	      _this.replyOnceHandlers.push(handler);
-	      verbs.forEach(function(verb) {
-	        _this.handlers[verb].push(handler);
-	      });
-	      return _this;
-	    }
-	  };
-	};
-
-	verbs.forEach(function(method) {
-	  var methodName = 'on' + method.charAt(0).toUpperCase() + method.slice(1);
-	  MockAdapter.prototype[methodName] = function(matcher, body) {
-	    var _this = this;
-	    return {
-	      reply: function reply(code, response, headers) {
-	        var handler = [matcher, code, response, headers, body];
-	        _this.handlers[method].push(handler);
-	        return _this;
-	      },
-
-	      replyOnce: function replyOnce(code, response, headers) {
-	        var handler = [matcher, code, response, headers, body];
-	        _this.handlers[method].push(handler);
-	        _this.replyOnceHandlers.push(handler);
-	        return _this;
-	      }
-	    };
-	  };
-	});
-
-	module.exports = MockAdapter;
-
-
-/***/ },
-/* 123 */
-/*!*******************************************!*\
-  !*** ./~/axios-mock-adapter/src/utils.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var axios = __webpack_require__(/*! axios */ 20);
-	var deepEqual = __webpack_require__(/*! deep-equal */ 128);
-
-	function eql(a, b) {
-	  return deepEqual(a, b, { strict: true });
-	}
-
-	// < 0.13.0 will not have default headers set on a custom instance
-	var rejectWithError = !!axios.create().defaults.headers;
-
-	function find(array, predicate) {
-	  var length = array.length;
-	  for (var i = 0; i < length; i++) {
-	    var value = array[i];
-	    if (predicate(value)) return value;
-	  }
-	}
-
-	function findHandler(handlers, method, url, body) {
-	  return find(handlers[method.toLowerCase()], function(handler) {
-	    if (typeof handler[0] === 'string') {
-	      return url === handler[0] && isBodyMatching(body, handler[4]);
-	    } else if (handler[0] instanceof RegExp) {
-	      return handler[0].test(url) && isBodyMatching(body, handler[4]);
-	    }
-	  });
-	}
-
-	function isBodyMatching(body, requiredBody) {
-	  if (requiredBody === undefined) {
-	    return true;
-	  }
-	  var parsedBody;
-	  try {
-	    parsedBody = JSON.parse(body);
-	  } catch (e) { }
-	  return parsedBody ? eql(parsedBody, requiredBody) : eql(body, requiredBody);
-	}
-
-	function purgeIfReplyOnce(mock, handler) {
-	  var index = mock.replyOnceHandlers.indexOf(handler);
-	  if (index > -1) {
-	    mock.replyOnceHandlers.splice(index, 1);
-
-	    Object.keys(mock.handlers).forEach(function(key) {
-	      index = mock.handlers[key].indexOf(handler);
-	      if (index > -1) {
-	        mock.handlers[key].splice(index, 1);
-	      }
-	    });
-	  }
-	}
-
-	function settle(resolve, reject, response, delay) {
-	  if (delay > 0) {
-	    setTimeout(function() {
-	      settle(resolve, reject, response);
-	    }, delay);
-	    return;
-	  }
-
-	  if (response.config && response.config.validateStatus) {
-	    response.config.validateStatus(response.status)
-	      ? resolve(response)
-	      : reject(createErrorResponse(
-	        'Request failed with status code ' + response.status,
-	        response.config,
-	        response
-	      ));
-	    return;
-	  }
-
-	  // Support for axios < 0.11
-	  if (response.status >= 200 && response.status < 300) {
-	    resolve(response);
-	  } else {
-	    reject(response);
-	  }
-	}
-
-	function createErrorResponse(message, config, response) {
-	  // Support for axios < 0.13.0
-	  if (!rejectWithError) return response;
-
-	  var error = new Error(message);
-	  error.config = config;
-	  error.response = response;
-	  return error;
-	}
-
-	module.exports = {
-	  findHandler: findHandler,
-	  purgeIfReplyOnce: purgeIfReplyOnce,
-	  settle: settle
-	};
-
-
-/***/ },
-/* 124 */,
-/* 125 */,
-/* 126 */
-/*!******************************************!*\
-  !*** ./tests/modules/books/api.tests.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _axios = __webpack_require__(/*! axios */ 20);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	var _axiosMockAdapter = __webpack_require__(/*! axios-mock-adapter */ 122);
-
-	var _axiosMockAdapter2 = _interopRequireDefault(_axiosMockAdapter);
-
-	var _reduxMockStore = __webpack_require__(/*! redux-mock-store */ 131);
-
-	var _reduxMockStore2 = _interopRequireDefault(_reduxMockStore);
-
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 50);
-
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 	var _expect = __webpack_require__(/*! expect */ 77);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _store = __webpack_require__(/*! store */ 21);
+	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 69);
 
-	var _store2 = _interopRequireDefault(_store);
+	var bookDetail = _interopRequireWildcard(_bookDetail);
 
-	var _constants = __webpack_require__(/*! constants */ 9);
+	var _books = __webpack_require__(/*! fixtures/books.json */ 120);
 
-	var c = _interopRequireWildcard(_constants);
-
-	var _books = __webpack_require__(/*! modules/books */ 29);
-
-	var books = _interopRequireWildcard(_books);
-
-	var _books2 = __webpack_require__(/*! fixtures/books.json */ 120);
-
-	var _books3 = _interopRequireDefault(_books2);
+	var _books2 = _interopRequireDefault(_books);
 
 	function _interopRequireWildcard(obj) {
 	  if (obj && obj.__esModule) {
@@ -29372,295 +29103,43 @@
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 
-	var middlewares = [_reduxThunk2.default];
-	var mockStore = (0, _reduxMockStore2.default)(middlewares);
-	var types = books.types;
-	var initialState = books.initialState;
-	var actions = books.actions;
-	var api = books.api;
-	var getBooks = api.getBooks;
+	var _bookDetail$actions = bookDetail.actions;
+	var getBookDetailRequest = _bookDetail$actions.getBookDetailRequest;
+	var getBookDetailSuccess = _bookDetail$actions.getBookDetailSuccess;
+	var destroyBookDetails = _bookDetail$actions.destroyBookDetails;
+	var types = bookDetail.types;
 
-	describe('api', function () {
-	  beforeEach(function () {
-	    this.mock = new _axiosMockAdapter2.default(_axios2.default);
+	describe('actions', function () {
+	  it('should create an action to make a reuqest for a books details.', function () {
+	    var expectedAction = {
+	      type: types.GET_BOOK_DETAIL_REQUEST
+	    };
+
+	    (0, _expect2.default)(getBookDetailRequest()).toEqual(expectedAction);
 	  });
 
-	  afterEach(function () {
-	    this.mock.reset();
+	  it('should create an action to destroy a book detail.', function () {
+	    var expectedAction = {
+	      type: types.DESTROY_BOOK_DETAILS
+	    };
+
+	    (0, _expect2.default)(destroyBookDetails()).toEqual(expectedAction);
 	  });
 
-	  describe('getBooks()', function () {
-	    it('should create GET_BOOKS_SUCCESS when fetching books is done.', function () {
-	      var books = _books3.default,
-	          searchInfo = {
-	        'query': 'python',
-	        'index': 0,
-	        'maxResults': 20
-	      };
+	  it('should create an action to resolve a request to get a books details.', function () {
+	    var books = _books2.default;
+	    var response = {
+	      'data': books
+	    };
 
-	      var query = searchInfo.query;
-	      var index = searchInfo.index;
-	      var maxResults = searchInfo.maxResults;
+	    var expectedAction = {
+	      type: types.GET_BOOK_DETAIL_SUCCESS,
+	      books: books
+	    };
 
-	      this.mock.onGet(c.GOOGLE_BOOKS_ENDPOINT + '?q=' + encodeURIComponent(query) + '&startIndex=' + index + '&maxResults=' + maxResults + '&projection=full&fields=totalItems,items(id,volumeInfo)').reply(200, { response: { data: books } });
-
-	      var expectedActions = [{ type: 'GET_BOOKS_REQUEST' }, { type: 'GET_BOOKS_SUCCESS',
-	        books: { "response": {
-	            "data": books
-	          }
-	        },
-	        searchInfo: searchInfo
-	      }];
-
-	      var store = mockStore({ books: books });
-
-	      return store.dispatch(getBooks(searchInfo)).then(function () {
-	        (0, _expect2.default)(store.getActions()).toEqual(expectedActions);
-	      });
-	    });
+	    (0, _expect2.default)(getBookDetailSuccess(response)).toEqual(expectedAction);
 	  });
 	});
-
-/***/ },
-/* 127 */,
-/* 128 */
-/*!*******************************!*\
-  !*** ./~/deep-equal/index.js ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var pSlice = Array.prototype.slice;
-	var objectKeys = __webpack_require__(/*! ./lib/keys.js */ 130);
-	var isArguments = __webpack_require__(/*! ./lib/is_arguments.js */ 129);
-
-	var deepEqual = module.exports = function (actual, expected, opts) {
-	  if (!opts) opts = {};
-	  // 7.1. All identical values are equivalent, as determined by ===.
-	  if (actual === expected) {
-	    return true;
-
-	  } else if (actual instanceof Date && expected instanceof Date) {
-	    return actual.getTime() === expected.getTime();
-
-	  // 7.3. Other pairs that do not both pass typeof value == 'object',
-	  // equivalence is determined by ==.
-	  } else if (!actual || !expected || typeof actual != 'object' && typeof expected != 'object') {
-	    return opts.strict ? actual === expected : actual == expected;
-
-	  // 7.4. For all other Object pairs, including Array objects, equivalence is
-	  // determined by having the same number of owned properties (as verified
-	  // with Object.prototype.hasOwnProperty.call), the same set of keys
-	  // (although not necessarily the same order), equivalent values for every
-	  // corresponding key, and an identical 'prototype' property. Note: this
-	  // accounts for both named and indexed properties on Arrays.
-	  } else {
-	    return objEquiv(actual, expected, opts);
-	  }
-	}
-
-	function isUndefinedOrNull(value) {
-	  return value === null || value === undefined;
-	}
-
-	function isBuffer (x) {
-	  if (!x || typeof x !== 'object' || typeof x.length !== 'number') return false;
-	  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
-	    return false;
-	  }
-	  if (x.length > 0 && typeof x[0] !== 'number') return false;
-	  return true;
-	}
-
-	function objEquiv(a, b, opts) {
-	  var i, key;
-	  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
-	    return false;
-	  // an identical 'prototype' property.
-	  if (a.prototype !== b.prototype) return false;
-	  //~~~I've managed to break Object.keys through screwy arguments passing.
-	  //   Converting to array solves the problem.
-	  if (isArguments(a)) {
-	    if (!isArguments(b)) {
-	      return false;
-	    }
-	    a = pSlice.call(a);
-	    b = pSlice.call(b);
-	    return deepEqual(a, b, opts);
-	  }
-	  if (isBuffer(a)) {
-	    if (!isBuffer(b)) {
-	      return false;
-	    }
-	    if (a.length !== b.length) return false;
-	    for (i = 0; i < a.length; i++) {
-	      if (a[i] !== b[i]) return false;
-	    }
-	    return true;
-	  }
-	  try {
-	    var ka = objectKeys(a),
-	        kb = objectKeys(b);
-	  } catch (e) {//happens when one is a string literal and the other isn't
-	    return false;
-	  }
-	  // having the same number of owned properties (keys incorporates
-	  // hasOwnProperty)
-	  if (ka.length != kb.length)
-	    return false;
-	  //the same set of keys (although not necessarily the same order),
-	  ka.sort();
-	  kb.sort();
-	  //~~~cheap key test
-	  for (i = ka.length - 1; i >= 0; i--) {
-	    if (ka[i] != kb[i])
-	      return false;
-	  }
-	  //equivalent values for every corresponding key, and
-	  //~~~possibly expensive deep test
-	  for (i = ka.length - 1; i >= 0; i--) {
-	    key = ka[i];
-	    if (!deepEqual(a[key], b[key], opts)) return false;
-	  }
-	  return typeof a === typeof b;
-	}
-
-
-/***/ },
-/* 129 */
-/*!******************************************!*\
-  !*** ./~/deep-equal/lib/is_arguments.js ***!
-  \******************************************/
-/***/ function(module, exports) {
-
-	var supportsArgumentsClass = (function(){
-	  return Object.prototype.toString.call(arguments)
-	})() == '[object Arguments]';
-
-	exports = module.exports = supportsArgumentsClass ? supported : unsupported;
-
-	exports.supported = supported;
-	function supported(object) {
-	  return Object.prototype.toString.call(object) == '[object Arguments]';
-	};
-
-	exports.unsupported = unsupported;
-	function unsupported(object){
-	  return object &&
-	    typeof object == 'object' &&
-	    typeof object.length == 'number' &&
-	    Object.prototype.hasOwnProperty.call(object, 'callee') &&
-	    !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
-	    false;
-	};
-
-
-/***/ },
-/* 130 */
-/*!**********************************!*\
-  !*** ./~/deep-equal/lib/keys.js ***!
-  \**********************************/
-/***/ function(module, exports) {
-
-	exports = module.exports = typeof Object.keys === 'function'
-	  ? Object.keys : shim;
-
-	exports.shim = shim;
-	function shim (obj) {
-	  var keys = [];
-	  for (var key in obj) keys.push(key);
-	  return keys;
-	}
-
-
-/***/ },
-/* 131 */
-/*!*****************************************!*\
-  !*** ./~/redux-mock-store/lib/index.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = configureStore;
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
-	var _redux = __webpack_require__(/*! redux */ 22);
-
-	var isFunction = function isFunction(arg) {
-	  return typeof arg === 'function';
-	};
-
-	function configureStore() {
-	  var middlewares = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-
-	  return function mockStore() {
-	    var _getState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	    function mockStoreWithoutMiddleware() {
-	      var actions = [];
-	      var listeners = [];
-
-	      var self = {
-	        getState: function getState() {
-	          return isFunction(_getState) ? _getState() : _getState;
-	        },
-
-	        getActions: function getActions() {
-	          return actions;
-	        },
-
-	        dispatch: function dispatch(action) {
-	          if (typeof action === 'undefined') {
-	            throw new Error('Actions may not be an undefined.');
-	          }
-
-	          if (typeof action.type === 'undefined') {
-	            throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant? ' + 'Action: ' + JSON.stringify(action));
-	          }
-
-	          actions.push(action);
-
-	          for (var i = 0; i < listeners.length; i++) {
-	            listeners[i]();
-	          }
-
-	          return action;
-	        },
-
-	        clearActions: function clearActions() {
-	          actions = [];
-	        },
-
-	        subscribe: function subscribe(cb) {
-	          if (isFunction(cb)) {
-	            listeners.push(cb);
-	          }
-
-	          return function () {
-	            var index = listeners.indexOf(cb);
-
-	            if (index < 0) {
-	              return;
-	            }
-	            listeners.splice(index, 1);
-	          };
-	        }
-	      };
-
-	      return self;
-	    }
-
-	    var mockStoreWithMiddleware = _redux.applyMiddleware.apply(undefined, _toConsumableArray(middlewares))(mockStoreWithoutMiddleware);
-
-	    return mockStoreWithMiddleware();
-	  };
-	}
-
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

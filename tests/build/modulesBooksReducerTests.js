@@ -47,7 +47,7 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./tests/modules/books/reducer.tests */126);
+	module.exports = __webpack_require__(/*! ./tests/modules/books/reducer.tests */127);
 
 
 /***/ },
@@ -1264,7 +1264,7 @@
 	  value: true
 	});
 
-	var _objectInspect = __webpack_require__(/*! object-inspect */ 97);
+	var _objectInspect = __webpack_require__(/*! object-inspect */ 96);
 
 	var _objectInspect2 = _interopRequireDefault(_objectInspect);
 
@@ -2095,7 +2095,7 @@
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 113);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 112);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
@@ -2133,15 +2133,15 @@
 
 	var _createStore2 = _interopRequireDefault(_createStore);
 
-	var _combineReducers = __webpack_require__(/*! ./combineReducers */ 116);
+	var _combineReducers = __webpack_require__(/*! ./combineReducers */ 115);
 
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 
-	var _bindActionCreators = __webpack_require__(/*! ./bindActionCreators */ 115);
+	var _bindActionCreators = __webpack_require__(/*! ./bindActionCreators */ 114);
 
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 
-	var _applyMiddleware = __webpack_require__(/*! ./applyMiddleware */ 114);
+	var _applyMiddleware = __webpack_require__(/*! ./applyMiddleware */ 113);
 
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
@@ -4368,7 +4368,7 @@
 
 	var _has2 = _interopRequireDefault(_has);
 
-	var _tmatch = __webpack_require__(/*! tmatch */ 119);
+	var _tmatch = __webpack_require__(/*! tmatch */ 118);
 
 	var _tmatch2 = _interopRequireDefault(_tmatch);
 
@@ -5277,9 +5277,9 @@
   \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var getPrototype = __webpack_require__(/*! ./_getPrototype */ 93),
-	    isHostObject = __webpack_require__(/*! ./_isHostObject */ 94),
-	    isObjectLike = __webpack_require__(/*! ./isObjectLike */ 96);
+	var getPrototype = __webpack_require__(/*! ./_getPrototype */ 92),
+	    isHostObject = __webpack_require__(/*! ./_isHostObject */ 93),
+	    isObjectLike = __webpack_require__(/*! ./isObjectLike */ 95);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -22090,7 +22090,7 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../webpack/buildin/module.js */ 120)(module), __webpack_require__(/*! lodash */ 41)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../webpack/buildin/module.js */ 119)(module), __webpack_require__(/*! lodash */ 41)))
 
 /***/ },
 /* 42 */
@@ -22105,7 +22105,7 @@
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
 	var slice = Array.prototype.slice;
-	var isArgs = __webpack_require__(/*! ./isArguments */ 98);
+	var isArgs = __webpack_require__(/*! ./isArguments */ 97);
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -22273,7 +22273,7 @@
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 5);
 	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 44);
 
-	var checkReactTypeSpec = __webpack_require__(/*! ./checkReactTypeSpec */ 109);
+	var checkReactTypeSpec = __webpack_require__(/*! ./checkReactTypeSpec */ 108);
 
 	var canDefineProperty = __webpack_require__(/*! ./canDefineProperty */ 18);
 	var getIteratorFn = __webpack_require__(/*! ./getIteratorFn */ 19);
@@ -22541,7 +22541,7 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./lib/React */ 102);
+	module.exports = __webpack_require__(/*! ./lib/React */ 101);
 
 
 /***/ },
@@ -22609,7 +22609,7 @@
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _symbolObservable = __webpack_require__(/*! symbol-observable */ 117);
+	var _symbolObservable = __webpack_require__(/*! symbol-observable */ 116);
 
 	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -23870,6 +23870,10 @@
 
 	var actions = _interopRequireWildcard(_actions);
 
+	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 26);
+
+	var types = _interopRequireWildcard(_actionTypes);
+
 	var _api = __webpack_require__(/*! ./api */ 68);
 
 	var api = _interopRequireWildcard(_api);
@@ -23894,7 +23898,7 @@
 	  }
 	}
 
-	exports.default = { actions: actions, initialState: _reducer.initialState, reducer: _reducer2.default, api: api };
+	exports.default = { actions: actions, initialState: _reducer.initialState, reducer: _reducer2.default, api: api, types: types };
 	module.exports = exports['default'];
 
 /***/ },
@@ -23922,7 +23926,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 99);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 98);
 
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
@@ -25158,469 +25162,11 @@
 /***/ },
 /* 92 */
 /*!***********************************!*\
-  !*** ./tests/fixtures/books.json ***!
-  \***********************************/
-/***/ function(module, exports) {
-
-	module.exports = {
-		"totalItems": 946,
-		"items": [
-			{
-				"id": "KGIbfiiP1i4C",
-				"volumeInfo": {
-					"title": "Natural Language Processing with Python",
-					"authors": [
-						"Steven Bird",
-						"Ewan Klein",
-						"Edward Loper"
-					],
-					"publisher": "\"O'Reilly Media, Inc.\"",
-					"publishedDate": "2009-06-12",
-					"description": "This book offers a highly accessible introduction to natural language processing, the field that supports a variety of language technologies, from predictive text and email filtering to automatic summarization and translation. With it, you'll learn how to write Python programs that work with large collections of unstructured text. You'll access richly annotated datasets using a comprehensive range of linguistic data structures, and you'll understand the main algorithms for analyzing the content and structure of written communication. Packed with examples and exercises, Natural Language Processing with Python will help you: Extract information from unstructured text, either to guess the topic or identify \"named entities\" Analyze linguistic structure in text, including parsing and semantic analysis Access popular linguistic databases, including WordNet and treebanks Integrate techniques drawn from fields as diverse as linguistics and artificial intelligence This book will help you gain practical skills in natural language processing using the Python programming language and the Natural Language Toolkit (NLTK) open source library. If you're interested in developing web applications, analyzing multilingual news sources, or documenting endangered languages -- or if you're simply curious to have a programmer's perspective on how human language works -- you'll find Natural Language Processing with Python both fascinating and immensely useful.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9780596555719"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "0596555717"
-						}
-					],
-					"readingModes": {
-						"text": true,
-						"image": true
-					},
-					"pageCount": 504,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 4.5,
-					"ratingsCount": 5,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": true,
-					"contentVersion": "0.3.4.0.preview.3",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=KGIbfiiP1i4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=KGIbfiiP1i4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=KGIbfiiP1i4C&printsec=frontcover&dq=python&hl=&cd=2&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=KGIbfiiP1i4C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Natural_Language_Processing_with_Python.html?hl=&id=KGIbfiiP1i4C"
-				}
-			},
-			{
-				"id": "xUtsAQAAQBAJ",
-				"volumeInfo": {
-					"title": "Learn Python the Hard Way",
-					"subtitle": "A Very Simple Introduction to the Terrifyingly Beautiful World of Computers and Code",
-					"authors": [
-						"Zed A. Shaw"
-					],
-					"publisher": "Pearson Education",
-					"publishedDate": "2013-10-01",
-					"description": "You will learn Python! - Zed Shaw has perfected the world's best system for learning Python. Follow it, and you will succeed...just like hundreds of thousands of beginners before you! You bring the discipline, commitment, and persistence; the author supplies everything else. In Learn Python the Hard Way, Third Edition, you'll learn Python by working through 52 brilliantly crafted exercises. Read them. Type their code precisely (no copying and pasting)! Fix your mistakes. Watch the programs run. As you do, you'll learn how software works; what good programs look like; how to read, write, and think about code; and how to spot tiny differences that are hugely important. Most importantly, you'll learn the following, which you need to start writing excellent Python software of your own: * *Setting up your computer *Organizing and writing code *Commenting *Numbers and math *Variables, names, and printing *Strings and text *User input and interaction *Variables *Files and functions *Logic *Lists *Program design *Dictionaries *Modules, classes, and objects *Object-oriented programming *Inheritance and composition *Using Python packages *Debugging *Automated testing *Basic web development *Basic game development *It'll be hard at first. But soon, you'll just get it-and that will feel great. *This book will reward you for every minute you put into it. Soon, you'll know one of the world's most powerful, popular programming languages. You'll be a Python programmer. Watch Zed, too! The accompanying DVD contains 5+ hours of passionate, powerful teaching: a complete Python video course!",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9780321884916"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "0321884914"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 287,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 5,
-					"ratingsCount": 1,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "0.2.0.0.preview.1",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=xUtsAQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=xUtsAQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=xUtsAQAAQBAJ&printsec=frontcover&dq=python&hl=&cd=3&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=xUtsAQAAQBAJ&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Learn_Python_the_Hard_Way.html?hl=&id=xUtsAQAAQBAJ"
-				}
-			},
-			{
-				"id": "wqeVv09Y6hIC",
-				"volumeInfo": {
-					"title": "Python",
-					"subtitle": "A Study of Delphic Myth and Its Origins",
-					"authors": [
-						"Joseph Eddy Fontenrose"
-					],
-					"publisher": "Univ of California Press",
-					"publishedDate": "1959",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_10",
-							"identifier": "0520040910"
-						},
-						{
-							"type": "ISBN_13",
-							"identifier": "9780520040915"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 616,
-					"printType": "BOOK",
-					"categories": [
-						"Social Science"
-					],
-					"averageRating": 5,
-					"ratingsCount": 2,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "0.0.1.0.preview.1",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=wqeVv09Y6hIC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=wqeVv09Y6hIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=wqeVv09Y6hIC&printsec=frontcover&dq=python&hl=&cd=4&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=wqeVv09Y6hIC&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python.html?hl=&id=wqeVv09Y6hIC"
-				}
-			},
-			{
-				"id": "6TEcaEzA8N0C",
-				"volumeInfo": {
-					"title": "Python in a Nutshell",
-					"authors": [
-						"Alex Martelli"
-					],
-					"publisher": "\"O'Reilly Media, Inc.\"",
-					"publishedDate": "2003",
-					"description": "Demonstrates the programming language's strength as a Web development tool, covering syntax, data types, built-ins, the Python standard module library, and real world examples.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_10",
-							"identifier": "0596001886"
-						},
-						{
-							"type": "ISBN_13",
-							"identifier": "9780596001889"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 636,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 3,
-					"ratingsCount": 6,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "preview-1.0.0",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=6TEcaEzA8N0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=6TEcaEzA8N0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=6TEcaEzA8N0C&printsec=frontcover&dq=python&hl=&cd=5&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=6TEcaEzA8N0C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python_in_a_Nutshell.html?hl=&id=6TEcaEzA8N0C"
-				}
-			},
-			{
-				"id": "GxKWdn7u4w8C",
-				"volumeInfo": {
-					"title": "Text Processing in Python",
-					"authors": [
-						"David Mertz"
-					],
-					"publisher": "Addison-Wesley Professional",
-					"publishedDate": "2003",
-					"description": "bull; Demonstrates how Python is the perfect language for text-processing functions. bull; Provides practical pointers and tips that emphasize efficient, flexible, and maintainable approaches to text-processing challenges. bull; Helps programmers develop solutions for dealing with the increasing amounts of data with which we are all inundated.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_10",
-							"identifier": "0321112547"
-						},
-						{
-							"type": "ISBN_13",
-							"identifier": "9780321112545"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 520,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 4.5,
-					"ratingsCount": 2,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "1.0.0.0.preview.1",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=GxKWdn7u4w8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=GxKWdn7u4w8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=GxKWdn7u4w8C&printsec=frontcover&dq=python&hl=&cd=6&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=GxKWdn7u4w8C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Text_Processing_in_Python.html?hl=&id=GxKWdn7u4w8C"
-				}
-			},
-			{
-				"id": "v3n4_AK8vu0C",
-				"volumeInfo": {
-					"title": "Python for Data Analysis",
-					"subtitle": "Data Wrangling with Pandas, NumPy, and IPython",
-					"authors": [
-						"Wes McKinney"
-					],
-					"publisher": "\"O'Reilly Media, Inc.\"",
-					"publishedDate": "2012-10-08",
-					"description": "Python for Data Analysis is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python. It is also a practical, modern introduction to scientific computing in Python, tailored for data-intensive applications. This is a book about the parts of the Python language and libraries you’ll need to effectively solve a broad set of data analysis problems. This book is not an exposition on analytical methods using Python as the implementation language. Written by Wes McKinney, the main author of the pandas library, this hands-on book is packed with practical cases studies. It’s ideal for analysts new to Python and for Python programmers new to scientific computing. Use the IPython interactive shell as your primary development environment Learn basic and advanced NumPy (Numerical Python) features Get started with data analysis tools in the pandas library Use high-performance tools to load, clean, transform, merge, and reshape data Create scatter plots and static or interactive visualizations with matplotlib Apply the pandas groupby facility to slice, dice, and summarize datasets Measure data by points in time, whether it’s specific instances, fixed periods, or intervals Learn how to solve problems in web analytics, social sciences, finance, and economics, through detailed examples",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9781449323615"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "1449323618"
-						}
-					],
-					"readingModes": {
-						"text": true,
-						"image": true
-					},
-					"pageCount": 466,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": true,
-					"contentVersion": "4.9.7.0.preview.3",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=v3n4_AK8vu0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=v3n4_AK8vu0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=v3n4_AK8vu0C&printsec=frontcover&dq=python&hl=&cd=7&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=v3n4_AK8vu0C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python_for_Data_Analysis.html?hl=&id=v3n4_AK8vu0C"
-				}
-			},
-			{
-				"id": "aJQILlLxRmAC",
-				"volumeInfo": {
-					"title": "Python Programming",
-					"subtitle": "An Introduction to Computer Science",
-					"authors": [
-						"John M. Zelle"
-					],
-					"publisher": "Franklin, Beedle & Associates, Inc.",
-					"publishedDate": "2004",
-					"description": "This book is suitable for use in a university-level first course in computing (CS1), as well as the increasingly popular course known as CS0. It is difficult for many students to master basic concepts in computer science and programming. A large portion of the confusion can be blamed on the complexity of the tools and materials that are traditionally used to teach CS1 and CS2. This textbook was written with a single overarching goal: to present the core concepts of computer science as simply as possible without being simplistic.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9781887902991"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "1887902996"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 517,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 4,
-					"ratingsCount": 16,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "preview-1.0.0",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=aJQILlLxRmAC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=aJQILlLxRmAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=aJQILlLxRmAC&printsec=frontcover&dq=python&hl=&cd=8&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=aJQILlLxRmAC&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Programming.html?hl=&id=aJQILlLxRmAC"
-				}
-			},
-			{
-				"id": "2XliiK7FKoEC",
-				"volumeInfo": {
-					"title": "Violent Python",
-					"subtitle": "A Cookbook for Hackers, Forensic Analysts, Penetration Testers and Security Engineers",
-					"authors": [
-						"TJ O'Connor"
-					],
-					"publisher": "Newnes",
-					"publishedDate": "2012-12-28",
-					"description": "Violent Python shows you how to move from a theoretical understanding of offensive computing concepts to a practical implementation. Instead of relying on another attacker’s tools, this book will teach you to forge your own weapons using the Python programming language. This book demonstrates how to write Python scripts to automate large-scale network attacks, extract metadata, and investigate forensic artifacts. It also shows how to write code to intercept and analyze network traffic using Python, craft and spoof wireless frames to attack wireless and Bluetooth devices, and how to data-mine popular social media websites and evade modern anti-virus. Demonstrates how to write Python scripts to automate large-scale network attacks, extract metadata, and investigate forensic artifacts Write code to intercept and analyze network traffic using Python. Craft and spoof wireless frames to attack wireless and Bluetooth devices Data-mine popular social media websites and evade modern anti-virus",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9781597499644"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "1597499641"
-						}
-					],
-					"readingModes": {
-						"text": true,
-						"image": true
-					},
-					"pageCount": 288,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 3,
-					"ratingsCount": 1,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": true,
-					"contentVersion": "0.5.5.0.preview.3",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=2XliiK7FKoEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=2XliiK7FKoEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=2XliiK7FKoEC&printsec=frontcover&dq=python&hl=&cd=9&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=2XliiK7FKoEC&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Violent_Python.html?hl=&id=2XliiK7FKoEC"
-				}
-			},
-			{
-				"id": "yhfdQgq8JF4C",
-				"volumeInfo": {
-					"title": "Python Cookbook",
-					"authors": [
-						"Alex Martelli",
-						"David Ascher"
-					],
-					"publisher": "\"O'Reilly Media, Inc.\"",
-					"publishedDate": "2002",
-					"description": "Demonstrates the programming language's strength as a Web development tool, covering syntax, data types, built-ins, the Python standard module library, and real world examples.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_10",
-							"identifier": "0596001673"
-						},
-						{
-							"type": "ISBN_13",
-							"identifier": "9780596001674"
-						}
-					],
-					"readingModes": {
-						"text": false,
-						"image": true
-					},
-					"pageCount": 574,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 4,
-					"ratingsCount": 12,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": false,
-					"contentVersion": "preview-1.0.0",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=yhfdQgq8JF4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=yhfdQgq8JF4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=yhfdQgq8JF4C&printsec=frontcover&dq=python&hl=&cd=10&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=yhfdQgq8JF4C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Cookbook.html?hl=&id=yhfdQgq8JF4C"
-				}
-			},
-			{
-				"id": "Chr1NDlUcI8C",
-				"volumeInfo": {
-					"title": "Python Essential Reference",
-					"authors": [
-						"David M. Beazley"
-					],
-					"publisher": "Addison-Wesley Professional",
-					"publishedDate": "2009",
-					"description": "Presents a guide to the features and library modules of the Python programming language.",
-					"industryIdentifiers": [
-						{
-							"type": "ISBN_13",
-							"identifier": "9780672329784"
-						},
-						{
-							"type": "ISBN_10",
-							"identifier": "0672329786"
-						}
-					],
-					"readingModes": {
-						"text": true,
-						"image": true
-					},
-					"pageCount": 717,
-					"printType": "BOOK",
-					"categories": [
-						"Computers"
-					],
-					"averageRating": 4.5,
-					"ratingsCount": 6,
-					"maturityRating": "NOT_MATURE",
-					"allowAnonLogging": true,
-					"contentVersion": "0.3.2.0.preview.3",
-					"imageLinks": {
-						"smallThumbnail": "http://books.google.com/books/content?id=Chr1NDlUcI8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-						"thumbnail": "http://books.google.com/books/content?id=Chr1NDlUcI8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-					},
-					"language": "en",
-					"previewLink": "http://books.google.com/books?id=Chr1NDlUcI8C&printsec=frontcover&dq=python&hl=&cd=11&source=gbs_api",
-					"infoLink": "http://books.google.com/books?id=Chr1NDlUcI8C&dq=python&hl=&source=gbs_api",
-					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Essential_Reference.html?hl=&id=Chr1NDlUcI8C"
-				}
-			}
-		]
-	};
-
-/***/ },
-/* 93 */
-/*!***********************************!*\
   !*** ./~/lodash/_getPrototype.js ***!
   \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var overArg = __webpack_require__(/*! ./_overArg */ 95);
+	var overArg = __webpack_require__(/*! ./_overArg */ 94);
 
 	/** Built-in value references. */
 	var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -25629,7 +25175,7 @@
 
 
 /***/ },
-/* 94 */
+/* 93 */
 /*!***********************************!*\
   !*** ./~/lodash/_isHostObject.js ***!
   \***********************************/
@@ -25658,7 +25204,7 @@
 
 
 /***/ },
-/* 95 */
+/* 94 */
 /*!******************************!*\
   !*** ./~/lodash/_overArg.js ***!
   \******************************/
@@ -25682,7 +25228,7 @@
 
 
 /***/ },
-/* 96 */
+/* 95 */
 /*!**********************************!*\
   !*** ./~/lodash/isObjectLike.js ***!
   \**********************************/
@@ -25720,7 +25266,7 @@
 
 
 /***/ },
-/* 97 */
+/* 96 */
 /*!***********************************!*\
   !*** ./~/object-inspect/index.js ***!
   \***********************************/
@@ -25936,7 +25482,7 @@
 
 
 /***/ },
-/* 98 */
+/* 97 */
 /*!**************************************!*\
   !*** ./~/object-keys/isArguments.js ***!
   \**************************************/
@@ -25962,16 +25508,16 @@
 
 
 /***/ },
-/* 99 */
+/* 98 */
 /*!****************************************!*\
   !*** ./~/react-addons-update/index.js ***!
   \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! react/lib/update */ 112);
+	module.exports = __webpack_require__(/*! react/lib/update */ 111);
 
 /***/ },
-/* 100 */
+/* 99 */
 /*!***************************************!*\
   !*** ./~/react/lib/KeyEscapeUtils.js ***!
   \***************************************/
@@ -26038,7 +25584,7 @@
 	module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 101 */
+/* 100 */
 /*!************************************!*\
   !*** ./~/react/lib/PooledClass.js ***!
   \************************************/
@@ -26168,7 +25714,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 102 */
+/* 101 */
 /*!******************************!*\
   !*** ./~/react/lib/React.js ***!
   \******************************/
@@ -26189,16 +25735,16 @@
 
 	var _assign = __webpack_require__(/*! object-assign */ 7);
 
-	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 103);
+	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 102);
 	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 14);
-	var ReactPureComponent = __webpack_require__(/*! ./ReactPureComponent */ 107);
-	var ReactClass = __webpack_require__(/*! ./ReactClass */ 104);
-	var ReactDOMFactories = __webpack_require__(/*! ./ReactDOMFactories */ 105);
+	var ReactPureComponent = __webpack_require__(/*! ./ReactPureComponent */ 106);
+	var ReactClass = __webpack_require__(/*! ./ReactClass */ 103);
+	var ReactDOMFactories = __webpack_require__(/*! ./ReactDOMFactories */ 104);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 5);
-	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 106);
-	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 108);
+	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 105);
+	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 107);
 
-	var onlyChild = __webpack_require__(/*! ./onlyChild */ 110);
+	var onlyChild = __webpack_require__(/*! ./onlyChild */ 109);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 3);
 
 	var createElement = ReactElement.createElement;
@@ -26266,7 +25812,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 103 */
+/* 102 */
 /*!**************************************!*\
   !*** ./~/react/lib/ReactChildren.js ***!
   \**************************************/
@@ -26285,11 +25831,11 @@
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 101);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 100);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 5);
 
 	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 12);
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 111);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 110);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -26465,7 +26011,7 @@
 	module.exports = ReactChildren;
 
 /***/ },
-/* 104 */
+/* 103 */
 /*!***********************************!*\
   !*** ./~/react/lib/ReactClass.js ***!
   \***********************************/
@@ -27206,7 +26752,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 105 */
+/* 104 */
 /*!******************************************!*\
   !*** ./~/react/lib/ReactDOMFactories.js ***!
   \******************************************/
@@ -27385,7 +26931,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 106 */
+/* 105 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactPropTypes.js ***!
   \***************************************/
@@ -27825,7 +27371,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 107 */
+/* 106 */
 /*!*******************************************!*\
   !*** ./~/react/lib/ReactPureComponent.js ***!
   \*******************************************/
@@ -27875,7 +27421,7 @@
 	module.exports = ReactPureComponent;
 
 /***/ },
-/* 108 */
+/* 107 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactVersion.js ***!
   \*************************************/
@@ -27897,7 +27443,7 @@
 	module.exports = '15.3.1';
 
 /***/ },
-/* 109 */
+/* 108 */
 /*!*******************************************!*\
   !*** ./~/react/lib/checkReactTypeSpec.js ***!
   \*******************************************/
@@ -27993,7 +27539,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 110 */
+/* 109 */
 /*!**********************************!*\
   !*** ./~/react/lib/onlyChild.js ***!
   \**********************************/
@@ -28040,7 +27586,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 111 */
+/* 110 */
 /*!********************************************!*\
   !*** ./~/react/lib/traverseAllChildren.js ***!
   \********************************************/
@@ -28066,7 +27612,7 @@
 
 	var getIteratorFn = __webpack_require__(/*! ./getIteratorFn */ 19);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 4);
-	var KeyEscapeUtils = __webpack_require__(/*! ./KeyEscapeUtils */ 100);
+	var KeyEscapeUtils = __webpack_require__(/*! ./KeyEscapeUtils */ 99);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 3);
 
 	var SEPARATOR = '.';
@@ -28216,7 +27762,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 112 */
+/* 111 */
 /*!*******************************!*\
   !*** ./~/react/lib/update.js ***!
   \*******************************/
@@ -28338,7 +27884,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 113 */
+/* 112 */
 /*!*************************************!*\
   !*** ./~/redux-logger/lib/index.js ***!
   \*************************************/
@@ -28574,7 +28120,7 @@
 	module.exports = createLogger;
 
 /***/ },
-/* 114 */
+/* 113 */
 /*!****************************************!*\
   !*** ./~/redux/lib/applyMiddleware.js ***!
   \****************************************/
@@ -28640,7 +28186,7 @@
 	}
 
 /***/ },
-/* 115 */
+/* 114 */
 /*!*******************************************!*\
   !*** ./~/redux/lib/bindActionCreators.js ***!
   \*******************************************/
@@ -28699,7 +28245,7 @@
 	}
 
 /***/ },
-/* 116 */
+/* 115 */
 /*!****************************************!*\
   !*** ./~/redux/lib/combineReducers.js ***!
   \****************************************/
@@ -28835,7 +28381,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 117 */
+/* 116 */
 /*!**************************************!*\
   !*** ./~/symbol-observable/index.js ***!
   \**************************************/
@@ -28844,12 +28390,12 @@
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
 	'use strict';
 
-	module.exports = __webpack_require__(/*! ./ponyfill */ 118)(global || window || this);
+	module.exports = __webpack_require__(/*! ./ponyfill */ 117)(global || window || this);
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 118 */
+/* 117 */
 /*!*****************************************!*\
   !*** ./~/symbol-observable/ponyfill.js ***!
   \*****************************************/
@@ -28877,7 +28423,7 @@
 
 
 /***/ },
-/* 119 */
+/* 118 */
 /*!***************************!*\
   !*** ./~/tmatch/index.js ***!
   \***************************/
@@ -29041,7 +28587,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1), __webpack_require__(/*! ./~/buffer/index.js */ 30).Buffer))
 
 /***/ },
-/* 120 */
+/* 119 */
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -29060,12 +28606,471 @@
 
 
 /***/ },
+/* 120 */
+/*!***********************************!*\
+  !*** ./tests/fixtures/books.json ***!
+  \***********************************/
+/***/ function(module, exports) {
+
+	module.exports = {
+		"totalItems": 946,
+		"items": [
+			{
+				"id": "KGIbfiiP1i4C",
+				"volumeInfo": {
+					"title": "Natural Language Processing with Python",
+					"authors": [
+						"Steven Bird",
+						"Ewan Klein",
+						"Edward Loper"
+					],
+					"publisher": "\"O'Reilly Media, Inc.\"",
+					"publishedDate": "2009-06-12",
+					"description": "This book offers a highly accessible introduction to natural language processing, the field that supports a variety of language technologies, from predictive text and email filtering to automatic summarization and translation. With it, you'll learn how to write Python programs that work with large collections of unstructured text. You'll access richly annotated datasets using a comprehensive range of linguistic data structures, and you'll understand the main algorithms for analyzing the content and structure of written communication. Packed with examples and exercises, Natural Language Processing with Python will help you: Extract information from unstructured text, either to guess the topic or identify \"named entities\" Analyze linguistic structure in text, including parsing and semantic analysis Access popular linguistic databases, including WordNet and treebanks Integrate techniques drawn from fields as diverse as linguistics and artificial intelligence This book will help you gain practical skills in natural language processing using the Python programming language and the Natural Language Toolkit (NLTK) open source library. If you're interested in developing web applications, analyzing multilingual news sources, or documenting endangered languages -- or if you're simply curious to have a programmer's perspective on how human language works -- you'll find Natural Language Processing with Python both fascinating and immensely useful.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9780596555719"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "0596555717"
+						}
+					],
+					"readingModes": {
+						"text": true,
+						"image": true
+					},
+					"pageCount": 504,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 4.5,
+					"ratingsCount": 5,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": true,
+					"contentVersion": "0.3.4.0.preview.3",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=KGIbfiiP1i4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=KGIbfiiP1i4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=KGIbfiiP1i4C&printsec=frontcover&dq=python&hl=&cd=2&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=KGIbfiiP1i4C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Natural_Language_Processing_with_Python.html?hl=&id=KGIbfiiP1i4C"
+				}
+			},
+			{
+				"id": "xUtsAQAAQBAJ",
+				"volumeInfo": {
+					"title": "Learn Python the Hard Way",
+					"subtitle": "A Very Simple Introduction to the Terrifyingly Beautiful World of Computers and Code",
+					"authors": [
+						"Zed A. Shaw"
+					],
+					"publisher": "Pearson Education",
+					"publishedDate": "2013-10-01",
+					"description": "You will learn Python! - Zed Shaw has perfected the world's best system for learning Python. Follow it, and you will succeed...just like hundreds of thousands of beginners before you! You bring the discipline, commitment, and persistence; the author supplies everything else. In Learn Python the Hard Way, Third Edition, you'll learn Python by working through 52 brilliantly crafted exercises. Read them. Type their code precisely (no copying and pasting)! Fix your mistakes. Watch the programs run. As you do, you'll learn how software works; what good programs look like; how to read, write, and think about code; and how to spot tiny differences that are hugely important. Most importantly, you'll learn the following, which you need to start writing excellent Python software of your own: * *Setting up your computer *Organizing and writing code *Commenting *Numbers and math *Variables, names, and printing *Strings and text *User input and interaction *Variables *Files and functions *Logic *Lists *Program design *Dictionaries *Modules, classes, and objects *Object-oriented programming *Inheritance and composition *Using Python packages *Debugging *Automated testing *Basic web development *Basic game development *It'll be hard at first. But soon, you'll just get it-and that will feel great. *This book will reward you for every minute you put into it. Soon, you'll know one of the world's most powerful, popular programming languages. You'll be a Python programmer. Watch Zed, too! The accompanying DVD contains 5+ hours of passionate, powerful teaching: a complete Python video course!",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9780321884916"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "0321884914"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 287,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 5,
+					"ratingsCount": 1,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "0.2.0.0.preview.1",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=xUtsAQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=xUtsAQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=xUtsAQAAQBAJ&printsec=frontcover&dq=python&hl=&cd=3&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=xUtsAQAAQBAJ&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Learn_Python_the_Hard_Way.html?hl=&id=xUtsAQAAQBAJ"
+				}
+			},
+			{
+				"id": "wqeVv09Y6hIC",
+				"volumeInfo": {
+					"title": "Python",
+					"subtitle": "A Study of Delphic Myth and Its Origins",
+					"authors": [
+						"Joseph Eddy Fontenrose"
+					],
+					"publisher": "Univ of California Press",
+					"publishedDate": "1959",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_10",
+							"identifier": "0520040910"
+						},
+						{
+							"type": "ISBN_13",
+							"identifier": "9780520040915"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 616,
+					"printType": "BOOK",
+					"categories": [
+						"Social Science"
+					],
+					"averageRating": 5,
+					"ratingsCount": 2,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "0.0.1.0.preview.1",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=wqeVv09Y6hIC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=wqeVv09Y6hIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=wqeVv09Y6hIC&printsec=frontcover&dq=python&hl=&cd=4&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=wqeVv09Y6hIC&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python.html?hl=&id=wqeVv09Y6hIC"
+				}
+			},
+			{
+				"id": "6TEcaEzA8N0C",
+				"volumeInfo": {
+					"title": "Python in a Nutshell",
+					"authors": [
+						"Alex Martelli"
+					],
+					"publisher": "\"O'Reilly Media, Inc.\"",
+					"publishedDate": "2003",
+					"description": "Demonstrates the programming language's strength as a Web development tool, covering syntax, data types, built-ins, the Python standard module library, and real world examples.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_10",
+							"identifier": "0596001886"
+						},
+						{
+							"type": "ISBN_13",
+							"identifier": "9780596001889"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 636,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 3,
+					"ratingsCount": 6,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "preview-1.0.0",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=6TEcaEzA8N0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=6TEcaEzA8N0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=6TEcaEzA8N0C&printsec=frontcover&dq=python&hl=&cd=5&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=6TEcaEzA8N0C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python_in_a_Nutshell.html?hl=&id=6TEcaEzA8N0C"
+				}
+			},
+			{
+				"id": "GxKWdn7u4w8C",
+				"volumeInfo": {
+					"title": "Text Processing in Python",
+					"authors": [
+						"David Mertz"
+					],
+					"publisher": "Addison-Wesley Professional",
+					"publishedDate": "2003",
+					"description": "bull; Demonstrates how Python is the perfect language for text-processing functions. bull; Provides practical pointers and tips that emphasize efficient, flexible, and maintainable approaches to text-processing challenges. bull; Helps programmers develop solutions for dealing with the increasing amounts of data with which we are all inundated.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_10",
+							"identifier": "0321112547"
+						},
+						{
+							"type": "ISBN_13",
+							"identifier": "9780321112545"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 520,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 4.5,
+					"ratingsCount": 2,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "1.0.0.0.preview.1",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=GxKWdn7u4w8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=GxKWdn7u4w8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=GxKWdn7u4w8C&printsec=frontcover&dq=python&hl=&cd=6&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=GxKWdn7u4w8C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Text_Processing_in_Python.html?hl=&id=GxKWdn7u4w8C"
+				}
+			},
+			{
+				"id": "v3n4_AK8vu0C",
+				"volumeInfo": {
+					"title": "Python for Data Analysis",
+					"subtitle": "Data Wrangling with Pandas, NumPy, and IPython",
+					"authors": [
+						"Wes McKinney"
+					],
+					"publisher": "\"O'Reilly Media, Inc.\"",
+					"publishedDate": "2012-10-08",
+					"description": "Python for Data Analysis is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python. It is also a practical, modern introduction to scientific computing in Python, tailored for data-intensive applications. This is a book about the parts of the Python language and libraries you’ll need to effectively solve a broad set of data analysis problems. This book is not an exposition on analytical methods using Python as the implementation language. Written by Wes McKinney, the main author of the pandas library, this hands-on book is packed with practical cases studies. It’s ideal for analysts new to Python and for Python programmers new to scientific computing. Use the IPython interactive shell as your primary development environment Learn basic and advanced NumPy (Numerical Python) features Get started with data analysis tools in the pandas library Use high-performance tools to load, clean, transform, merge, and reshape data Create scatter plots and static or interactive visualizations with matplotlib Apply the pandas groupby facility to slice, dice, and summarize datasets Measure data by points in time, whether it’s specific instances, fixed periods, or intervals Learn how to solve problems in web analytics, social sciences, finance, and economics, through detailed examples",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9781449323615"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "1449323618"
+						}
+					],
+					"readingModes": {
+						"text": true,
+						"image": true
+					},
+					"pageCount": 466,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": true,
+					"contentVersion": "4.9.7.0.preview.3",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=v3n4_AK8vu0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=v3n4_AK8vu0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=v3n4_AK8vu0C&printsec=frontcover&dq=python&hl=&cd=7&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=v3n4_AK8vu0C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python_for_Data_Analysis.html?hl=&id=v3n4_AK8vu0C"
+				}
+			},
+			{
+				"id": "aJQILlLxRmAC",
+				"volumeInfo": {
+					"title": "Python Programming",
+					"subtitle": "An Introduction to Computer Science",
+					"authors": [
+						"John M. Zelle"
+					],
+					"publisher": "Franklin, Beedle & Associates, Inc.",
+					"publishedDate": "2004",
+					"description": "This book is suitable for use in a university-level first course in computing (CS1), as well as the increasingly popular course known as CS0. It is difficult for many students to master basic concepts in computer science and programming. A large portion of the confusion can be blamed on the complexity of the tools and materials that are traditionally used to teach CS1 and CS2. This textbook was written with a single overarching goal: to present the core concepts of computer science as simply as possible without being simplistic.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9781887902991"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "1887902996"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 517,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 4,
+					"ratingsCount": 16,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "preview-1.0.0",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=aJQILlLxRmAC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=aJQILlLxRmAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=aJQILlLxRmAC&printsec=frontcover&dq=python&hl=&cd=8&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=aJQILlLxRmAC&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Programming.html?hl=&id=aJQILlLxRmAC"
+				}
+			},
+			{
+				"id": "2XliiK7FKoEC",
+				"volumeInfo": {
+					"title": "Violent Python",
+					"subtitle": "A Cookbook for Hackers, Forensic Analysts, Penetration Testers and Security Engineers",
+					"authors": [
+						"TJ O'Connor"
+					],
+					"publisher": "Newnes",
+					"publishedDate": "2012-12-28",
+					"description": "Violent Python shows you how to move from a theoretical understanding of offensive computing concepts to a practical implementation. Instead of relying on another attacker’s tools, this book will teach you to forge your own weapons using the Python programming language. This book demonstrates how to write Python scripts to automate large-scale network attacks, extract metadata, and investigate forensic artifacts. It also shows how to write code to intercept and analyze network traffic using Python, craft and spoof wireless frames to attack wireless and Bluetooth devices, and how to data-mine popular social media websites and evade modern anti-virus. Demonstrates how to write Python scripts to automate large-scale network attacks, extract metadata, and investigate forensic artifacts Write code to intercept and analyze network traffic using Python. Craft and spoof wireless frames to attack wireless and Bluetooth devices Data-mine popular social media websites and evade modern anti-virus",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9781597499644"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "1597499641"
+						}
+					],
+					"readingModes": {
+						"text": true,
+						"image": true
+					},
+					"pageCount": 288,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 3,
+					"ratingsCount": 1,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": true,
+					"contentVersion": "0.5.5.0.preview.3",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=2XliiK7FKoEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=2XliiK7FKoEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=2XliiK7FKoEC&printsec=frontcover&dq=python&hl=&cd=9&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=2XliiK7FKoEC&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Violent_Python.html?hl=&id=2XliiK7FKoEC"
+				}
+			},
+			{
+				"id": "yhfdQgq8JF4C",
+				"volumeInfo": {
+					"title": "Python Cookbook",
+					"authors": [
+						"Alex Martelli",
+						"David Ascher"
+					],
+					"publisher": "\"O'Reilly Media, Inc.\"",
+					"publishedDate": "2002",
+					"description": "Demonstrates the programming language's strength as a Web development tool, covering syntax, data types, built-ins, the Python standard module library, and real world examples.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_10",
+							"identifier": "0596001673"
+						},
+						{
+							"type": "ISBN_13",
+							"identifier": "9780596001674"
+						}
+					],
+					"readingModes": {
+						"text": false,
+						"image": true
+					},
+					"pageCount": 574,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 4,
+					"ratingsCount": 12,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": false,
+					"contentVersion": "preview-1.0.0",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=yhfdQgq8JF4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=yhfdQgq8JF4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=yhfdQgq8JF4C&printsec=frontcover&dq=python&hl=&cd=10&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=yhfdQgq8JF4C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Cookbook.html?hl=&id=yhfdQgq8JF4C"
+				}
+			},
+			{
+				"id": "Chr1NDlUcI8C",
+				"volumeInfo": {
+					"title": "Python Essential Reference",
+					"authors": [
+						"David M. Beazley"
+					],
+					"publisher": "Addison-Wesley Professional",
+					"publishedDate": "2009",
+					"description": "Presents a guide to the features and library modules of the Python programming language.",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_13",
+							"identifier": "9780672329784"
+						},
+						{
+							"type": "ISBN_10",
+							"identifier": "0672329786"
+						}
+					],
+					"readingModes": {
+						"text": true,
+						"image": true
+					},
+					"pageCount": 717,
+					"printType": "BOOK",
+					"categories": [
+						"Computers"
+					],
+					"averageRating": 4.5,
+					"ratingsCount": 6,
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": true,
+					"contentVersion": "0.3.2.0.preview.3",
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/content?id=Chr1NDlUcI8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/content?id=Chr1NDlUcI8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=Chr1NDlUcI8C&printsec=frontcover&dq=python&hl=&cd=11&source=gbs_api",
+					"infoLink": "http://books.google.com/books?id=Chr1NDlUcI8C&dq=python&hl=&source=gbs_api",
+					"canonicalVolumeLink": "http://books.google.com/books/about/Python_Essential_Reference.html?hl=&id=Chr1NDlUcI8C"
+				}
+			}
+		]
+	};
+
+/***/ },
 /* 121 */,
 /* 122 */,
 /* 123 */,
 /* 124 */,
 /* 125 */,
-/* 126 */
+/* 126 */,
+/* 127 */
 /*!**********************************************!*\
   !*** ./tests/modules/books/reducer.tests.js ***!
   \**********************************************/
@@ -29085,7 +29090,7 @@
 
 	var books = _interopRequireWildcard(_books);
 
-	var _books2 = __webpack_require__(/*! fixtures/books.json */ 92);
+	var _books2 = __webpack_require__(/*! fixtures/books.json */ 120);
 
 	var _books3 = _interopRequireDefault(_books2);
 

@@ -1,45 +1,45 @@
-/**
- * Test the files and functions in the books modules.
- *
- * @file modules.books.tests.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- */
+
 
 import expect from 'expect';
-import * as books from 'modules/books';
-import booksJSON from '../tests/fixtures/books.json';
+import * as bookDetail from 'modules/book-detail';
+import booksJSON from 'fixtures/books.json';
 
 const { 
-  getBooksRequest, 
-  getBooksSuccess 
-} = books.actions;
-const { types } = books;
+  getBookDetailRequest,
+  getBookDetailSuccess,
+  destroyBookDetails
+} = bookDetail.actions;
+const { types } = bookDetail;
 
 describe('actions', () => {
-  it('should create an action to make a book request.', () => {
+  it('should create an action to make a reuqest for a books details.', () => {
     const expectedAction = {
-      type: types.GET_BOOKS_REQUEST
+      type: types.GET_BOOK_DETAIL_REQUEST
     };
 
-    expect(getBooksRequest()).toEqual(expectedAction);
+    expect(getBookDetailRequest()).toEqual(expectedAction);
   });
 
-  it('should create an action to resolve a book request successfully.', () => {
+  it('should create an action to destroy a book detail.', () => {
+    const expectedAction = {
+      type: types.DESTROY_BOOK_DETAILS
+    };
+
+    expect(destroyBookDetails()).toEqual(expectedAction);
+  });
+
+  it('should create an action to resolve a request to get a books details.', () => {
     const books = booksJSON;
-    const searchInfo = { 
-      'query': 'python',
-      'index': 0,
-      'maxResults': 20
+    const response = {
+      'data': books
     };
 
     const expectedAction = {
-      type: types.GET_BOOKS_SUCCESS,
-      books,
-      searchInfo
+      type: types.GET_BOOK_DETAIL_SUCCESS,
+      books
     };
 
-    expect(getBooksSuccess(books, searchInfo)).toEqual(expectedAction);
+    expect(getBookDetailSuccess(response)).toEqual(expectedAction);
   });
 
 });
