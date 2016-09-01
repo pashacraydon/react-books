@@ -10,7 +10,7 @@ export function getBookDetailRequest() {
 export function getBookDetailSuccess(response) {
   return {
     type: types.GET_BOOK_DETAIL_SUCCESS,
-    books: response.data
+    book: response.data
   };
 }
 

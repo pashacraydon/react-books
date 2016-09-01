@@ -5,7 +5,7 @@ import booksJSON from 'fixtures/books.json';
 
 const { types, actions } = books;
 
-describe('actions', () => {
+describe('book actions', () => {
   it('should create a success action to resolve a request to get books.', () => {
     const response = { data: booksJSON };
     const books = booksJSON;

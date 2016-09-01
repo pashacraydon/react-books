@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
-export default class SearchView extends Component {
+export default class SearchForm extends Component {
   constructor() {
     super();
   }

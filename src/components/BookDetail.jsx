@@ -7,7 +7,7 @@ const {
   destroyBookDetails
 } = bookDetail.actions;
 
-export default class BookDetailView extends Component {
+export default class BookDetail extends Component {
   constructor () {
     super();
     this.destroyDetail = this.destroyDetail.bind(this);
@@ -46,6 +46,6 @@ export default class BookDetailView extends Component {
   }
 }
 
-BookDetailView.propTypes = {
+BookDetail.propTypes = {
   book: PropTypes.object.isRequired
 }

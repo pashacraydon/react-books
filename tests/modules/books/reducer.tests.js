@@ -6,7 +6,7 @@ import booksJSON from 'fixtures/books.json';
 
 const { types, initialState, actions, reducer } = books;
 
-describe('reducer', () => {
+describe('book reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})

@@ -4,7 +4,7 @@ import * as c from 'constants';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class PaginationView extends Component {
+export default class Pagination extends Component {
   render () {
     const { books } = this.props;
 
@@ -41,7 +41,7 @@ export default class PaginationView extends Component {
   }
 }
 
-PaginationView.propTypes = {
+Pagination.propTypes = {
   books: PropTypes.object.isRequired
 }
 

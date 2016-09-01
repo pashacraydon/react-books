@@ -42,12 +42,12 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**************************************!*\
-  !*** multi modulesBooksReducerTests ***!
-  \**************************************/
+/*!*******************************************!*\
+  !*** multi modulesBookDetailReducerTests ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./tests/modules/books/reducer.tests */133);
+	module.exports = __webpack_require__(/*! ./tests/modules/book-detail/reducer.tests */130);
 
 
 /***/ },
@@ -29073,16 +29073,13 @@
 /* 127 */,
 /* 128 */,
 /* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */
-/*!**********************************************!*\
-  !*** ./tests/modules/books/reducer.tests.js ***!
-  \**********************************************/
+/* 130 */
+/*!****************************************************!*\
+  !*** ./tests/modules/book-detail/reducer.tests.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(_) {'use strict';
 
 	var _expect = __webpack_require__(/*! expect */ 77);
 
@@ -29092,13 +29089,17 @@
 
 	var c = _interopRequireWildcard(_constants);
 
-	var _books = __webpack_require__(/*! modules/books */ 49);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 99);
 
-	var books = _interopRequireWildcard(_books);
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-	var _books2 = __webpack_require__(/*! fixtures/books.json */ 92);
+	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 50);
 
-	var _books3 = _interopRequireDefault(_books2);
+	var bookDetail = _interopRequireWildcard(_bookDetail);
+
+	var _books = __webpack_require__(/*! fixtures/books.json */ 92);
+
+	var _books2 = _interopRequireDefault(_books);
 
 	function _interopRequireWildcard(obj) {
 	  if (obj && obj.__esModule) {
@@ -29116,56 +29117,51 @@
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 
-	var types = books.types;
-	var initialState = books.initialState;
-	var actions = books.actions;
-	var reducer = books.reducer;
+	var types = bookDetail.types;
+	var initialState = bookDetail.initialState;
+	var actions = bookDetail.actions;
+	var reducer = bookDetail.reducer;
 
-	describe('book reducer', function () {
+	describe('book-detail reducer', function () {
 	  it('should return the initial state', function () {
 	    (0, _expect2.default)(reducer(undefined, {})).toEqual({
-	      books: {
-	        'items': []
+	      book: {
+	        volume: {}
 	      }
 	    });
 	  });
 
-	  it('should handle GET_BOOKS_REQUEST', function () {
+	  it('should handle GET_BOOK_DETAIL_REQUEST', function () {
 	    (0, _expect2.default)(reducer([], {
-	      type: types.GET_BOOKS_REQUEST
+	      type: types.GET_BOOK_DETAIL_REQUEST
 	    })).toEqual({
-	      books: {
+	      book: {
 	        'didInvalidate': false,
 	        'isFetching': true
 	      }
 	    });
 	  });
 
-	  it('should handle GET_BOOKS_SUCCESS', function () {
+	  it('should handle GET_BOOK_DETAIL_SUCCESS', function () {
 
-	    var searchInfo = {
-	      'query': 'python',
-	      'index': 0,
-	      'maxResults': 20
-	    };
-
-	    var books = _books3.default;
+	    var book = _books2.default.items[0];
+	    var bookClone = _.cloneDeep(book.volumeInfo),
+	        truncateDesc = bookClone.description.substring(0, c.MAX_DESCRIPTION_LENGTH).replace(/(<([^>]+)>)/ig, '') + '...',
+	        newBook = (0, _reactAddonsUpdate2.default)(bookClone, { $merge: { 'description': truncateDesc } });
 
 	    (0, _expect2.default)(reducer(initialState, {
-	      type: types.GET_BOOKS_SUCCESS,
-	      books: books,
-	      searchInfo: searchInfo
+	      type: types.GET_BOOK_DETAIL_SUCCESS,
+	      book: book
 	    })).toEqual({
-	      books: {
+	      book: {
 	        isFetching: false,
 	        didInvalidate: false,
-	        items: books.items,
-	        totalItems: books.totalItems,
-	        info: searchInfo
+	        volume: newBook
 	      }
 	    });
 	  });
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! lodash */ 40)))
 
 /***/ }
 /******/ ]);

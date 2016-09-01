@@ -14,7 +14,7 @@ const mockStore = configureMockStore(middlewares);
 const { types, initialState, actions, api } = books;
 const { getBooks } = api;
 
-describe('api', () => {
+describe('book api', () => {
   beforeEach(function () {
     this.mock = new MockAdapter(axios);
   });

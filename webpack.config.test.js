@@ -7,7 +7,9 @@ config.entry = {
   modulesBooksApiTests: ['./tests/modules/books/api.tests'],
   modulesBooksActionsTests: ['./tests/modules/books/actions.tests'],
   modulesBooksReducerTests: ['./tests/modules/books/reducer.tests'],
-  modulesBookDetailActionsTests: ['./tests/modules/book-detail/actions.tests']
+  modulesBookDetailActionsTests: ['./tests/modules/book-detail/actions.tests'],
+  modulesBookDetailApiTests: ['./tests/modules/book-detail/api.tests'],
+  modulesBookDetailReducerTests: ['./tests/modules/book-detail/reducer.tests']
 };
 
 config.output = {

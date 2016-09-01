@@ -5,10 +5,10 @@ import store from 'store';
 import * as c from 'constants';
 import * as books from 'modules/books';
 
-import BooksLayout from 'components/presentations/BooksLayout';
-import BookDetailView from 'components/presentations/BookDetailView';
-import PaginationView from 'components/presentations/PaginationView';
-import HeaderView from 'components/presentations/HeaderView';
+import Books from 'components/Books';
+import BookDetail from 'components/BookDetail';
+import Pagination from 'components/Pagination';
+import Header from 'components/Header';
 
 const {
   getBooks
@@ -59,7 +59,7 @@ class AppContainer extends Component {
 
     return (
       <div className="app-wrapper">
-        <HeaderView />
+        <Header />
         <div className="books-layout">
           {query != c.DEFAULT_SEARCH &&
           <h1>results for: {query}</h1>}
@@ -68,11 +68,11 @@ class AppContainer extends Component {
             <div className="loading-gif"></div>
           </div>}
           {book_exists &&
-          <BookDetailView book={book.volume} />}
+          <BookDetail book={book.volume} />}
           {books_exist &&
-          <BooksLayout books={books.items} />}
+          <Books books={books.items} />}
           {books_exist &&
-          <PaginationView books={books} />}
+          <Pagination books={books} />}
         </div>
       </div>
     )
@@ -92,3 +92,4 @@ const mapStateToProps = function (store) {
 }
 
 export default connect(mapStateToProps)(AppContainer);
+export { AppContainer as PureAppContainer }; // export component outside of connect for testing

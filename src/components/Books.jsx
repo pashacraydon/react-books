@@ -1,21 +1,21 @@
 
 import React, { Component, PropTypes } from 'react';
-import BookItem from 'components/presentations/BookItem';
+import Book from 'components/Book';
 
-export default class BooksLayout extends Component {
+export default class Books extends Component {
 
   render () {
     const { books } = this.props;
     return (
       <ul className="books-list">
         {books.map((book, i) => {
-          return <BookItem key={i} book={book} />;
+          return <Book key={i} book={book} />;
         })}
       </ul>
     )
   }
 }
 
-BooksLayout.propTypes = {
+Books.propTypes = {
   books: PropTypes.array.isRequired
 }

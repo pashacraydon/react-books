@@ -11,7 +11,7 @@ const {
 } = bookDetail.actions;
 const { types } = bookDetail;
 
-describe('actions', () => {
+describe('book-detail actions', () => {
   it('should create an action to make a reuqest for a books details.', () => {
     const expectedAction = {
       type: types.GET_BOOK_DETAIL_REQUEST
@@ -28,15 +28,15 @@ describe('actions', () => {
     expect(destroyBookDetails()).toEqual(expectedAction);
   });
 
-  it('should create an action to resolve a request to get a books details.', () => {
-    const books = booksJSON;
+  it('should create an action to resolve a request to get a book details.', () => {
+    const book = booksJSON.items[0];
     const response = {
-      'data': books
+      'data': book
     };
 
     const expectedAction = {
       type: types.GET_BOOK_DETAIL_SUCCESS,
-      books
+      book
     };
 
     expect(getBookDetailSuccess(response)).toEqual(expectedAction);
