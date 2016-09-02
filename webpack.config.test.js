@@ -9,7 +9,8 @@ config.entry = {
   modulesBooksReducerTests: ['./tests/modules/books/reducer.tests'],
   modulesBookDetailActionsTests: ['./tests/modules/book-detail/actions.tests'],
   modulesBookDetailApiTests: ['./tests/modules/book-detail/api.tests'],
-  modulesBookDetailReducerTests: ['./tests/modules/book-detail/reducer.tests']
+  modulesBookDetailReducerTests: ['./tests/modules/book-detail/reducer.tests'],
+  componentAppContainerTests: ['./tests/components/AppContainer.tests']
 };
 
 config.output = {

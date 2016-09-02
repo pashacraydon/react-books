@@ -9,46 +9,35 @@ import * as c from 'constants';
 import booksJSON from 'fixtures/books.json';
 import { PureAppContainer } from 'components/containers/AppContainer';
 
-
-const {
-  createCollection
-} = collectionsModule.api;
+import Books from 'components/Books';
+import BookDetail from 'components/BookDetail';
+import Pagination from 'components/Pagination';
+import Header from 'components/Header';
 
 const { shallow, mount } = enzyme;
-const collections = collectionsJSON;
+const books = booksJSON;
+const bookInfo = books.items[0].volumeInfo;
+const book = { 'volume': bookInfo };
 
-function setup(opts) {
-  opts || (opts = {});
+function setup(properties = {}) {
 
-  const props = opts.props || {
-    collections: collections,
-    content: [{}],
-    route: {
-      'path': expect.createSpy()
-    },
+  const props = Object.assign({
     params: {
-      'collection_id': '12345'
+      query: 'python',
+      index: 1
     },
-    routeParams:  {},
-    collectionsState: {
-      'collections': collections,
-      'collection': expect.createSpy()
+    routeParams: {
+      page: 1,
+      query: 'python',
+      index: 1
     },
-    'errors': {
-      'exist': true,
-      'description': '',
-      'css_class': ''
-    },
-    'success': {
-      'exist': false,
-      'description': '',
-      'css_class': ''
-    }
-  };
+    books: books,
+    book: {}
+  }, properties);
 
   const enzymeWrapper = mount(
     <Provider store={store}>
-      <PureCreateCollection {...props} />
+      <PureAppContainer {...props} />
     </Provider>
   )
 
@@ -61,82 +50,96 @@ function setup(opts) {
 describe('<AppContainer />', () => {
   it('should render self and subcomponents', () => {
     const { enzymeWrapper } = setup();
-
-    expect(enzymeWrapper.find(CreateCollectionView).length).toExist();
-    expect(enzymeWrapper.find(LibraryNavigation).length).toExist();
+    expect(enzymeWrapper.find('.app-wrapper').length).toExist();
+    expect(enzymeWrapper.find(Books).length).toExist();
+    expect(enzymeWrapper.find(Header).length).toExist();
+    expect(enzymeWrapper.find(Pagination).length).toExist();
   });
 
-  it('will mount', () => {
-    var spy = sinon.spy(PureCreateCollection.prototype, 'componentWillMount');
-    const { enzymeWrapper } = setup();
-    expect(spy.calledOnce).toExist();
-    spy.restore();
-  });
-
-  it('should call onNameChangeHandler() on name changes.', () => {
-    var spy = sinon.spy(PureCreateCollection.prototype, 'onNameChangeHandler');
-
-    const { enzymeWrapper } = setup();
-    const nameField = enzymeWrapper.find('input');
-    const event = { target: { value: 'Example colleciton name' } };
-    nameField.simulate('change', event);
-
-    expect(spy.calledOnce).toExist();
-    spy.restore();
-  });
-
-  it('should call onDescriptionChange() on description changes.', () => {
-    var spy = sinon.spy(PureCreateCollection.prototype, 'onDescriptionChangeHandler');
-
-    const { enzymeWrapper } = setup();
-    const descriptionField = enzymeWrapper.find('textarea');
-    const event = { target: { value: 'Example colleciton name' } };
-    descriptionField.simulate('change', event);
-
-    expect(spy.calledOnce).toExist();
-    spy.restore();
-  });
-
-  it('should render an error if user enters an existing collection name.', () => {
-    const expectedError = 'You have a collection with this name, did you mean something else?';
-
-    const { enzymeWrapper } = setup();
-    const nameField = enzymeWrapper.find('input');
-    const event = { target: { value: 'My JavaScript Collection' } };
-    nameField.simulate('change', event);
-
-    const actualError = enzymeWrapper.find('.error').last().text();
-    expect(actualError).toEqual(expectedError);
-  });
-
-  it('should render an error if user did not enter a name.', () => {
-    const expectedError = 'You must enter a name.';
-
-    const { enzymeWrapper } = setup();
-    const nameField = enzymeWrapper.find('input');
-    const event = { target: { value: '' } };
-    nameField.simulate('change', event);
-    enzymeWrapper.find('.save-button').simulate('click');
-
-    const actualError = enzymeWrapper.find('.error').last().text();
-    expect(actualError).toEqual(expectedError);
-  });
-
-  it('should dispatch a request to create a new collection if user enters a name and clicks the save button.', () => {
-    const { enzymeWrapper } = setup();
-
-    const mock = new MockAdapter(axios);
-    mock.onPost(`${c.BOWERBIRD_ENDPOINT}/collections/`)
-      .reply(200, { response: { data: collections[0] }
+  it('should render <BookDetail /> if book exists.', () => {
+    const { enzymeWrapper } = setup({
+      book: book
     });
 
-    const nameField = enzymeWrapper.find('input');
-    const event = { target: { value: 'My new collection' } };
-    nameField.simulate('change', event);
-    enzymeWrapper.find('.save-button').simulate('click');
+    expect(enzymeWrapper.find(BookDetail).length).toExist();
+  });
 
-    expect(store.getState().collectionsState.isFetching).toExist();
-    mock.reset();
+  describe('componentWillMount()', () => {
+    it('will mount', () => {
+      var spy = sinon.spy(PureAppContainer.prototype, 'componentWillMount');
+      const { enzymeWrapper } = setup();
+      expect(spy.calledOnce).toExist();
+      spy.restore();
+    });
+
+    it('should dispatch a request to get books.', () => {
+      const searchInfo = {
+        query: 'python',
+        index: 1,
+        maxResults: 20
+      };
+
+      const mock = new MockAdapter(axios);
+      mock.onPost(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(searchInfo.query)}&startIndex=${searchInfo.index}&maxResults=${searchInfo.maxResults}&projection=full&fields=totalItems,items(id,volumeInfo)`)
+        .reply(200, { response: { data: book }
+      });
+
+      setup();
+      expect(store.getState().booksState.isFetching).toExist();
+      mock.restore();
+    });
+  });
+
+  describe('componentWillReceiveProps()', () => {
+    it('should be invoked when the value of props change.', () => {
+      var spy = sinon.spy(PureAppContainer.prototype, 'componentWillReceiveProps');
+      const { enzymeWrapper, props } = setup();
+      const nextProps = {
+        params: {
+          query: 'python',
+          index: 21
+        },
+        routeParams: {
+          page: 2,
+          query: 'python',
+          index: 21
+        }
+      };
+
+      enzymeWrapper.setProps(...nextProps);
+      expect(spy.calledOnce).toExist();
+      spy.restore();
+    });
+
+    it('should dispatch a request to get books.', () => {
+      const { enzymeWrapper, props } = setup();
+      const nextProps = {
+        params: {
+          query: 'python',
+          index: 21
+        },
+        routeParams: {
+          page: 2,
+          query: 'python',
+          index: 21
+        }
+      };
+      const searchInfo = {
+        query: 'python',
+        index: 1,
+        maxResults: 20
+      };
+
+      const mock = new MockAdapter(axios);
+      mock.onPost(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(searchInfo.query)}&startIndex=${searchInfo.index}&maxResults=${searchInfo.maxResults}&projection=full&fields=totalItems,items(id,volumeInfo)`)
+        .reply(200, { response: { data: book }
+      });
+
+      enzymeWrapper.setProps(...nextProps);
+      expect(store.getState().booksState.isFetching).toExist();
+      mock.restore();
+    });
   });
 });
+
 

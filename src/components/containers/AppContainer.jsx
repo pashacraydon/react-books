@@ -52,6 +52,8 @@ class AppContainer extends Component {
     const books_exist = (books.items && books.items.length > 0);
     const is_fetching = (books.isFetching || book.isFetching);
 
+    console.log(book);
+
     var query = '';
     if (books.info && books.info.query) {
       query = books.info.query;

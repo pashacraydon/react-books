@@ -1,5 +1,7 @@
 
 global.jsdom = require('jsdom');
+global.enzyme = require('enzyme');
+global.sinon = require('sinon');
 
 global.document = jsdom.jsdom(
   '<!DOCTYPE html data-debug=1>' +

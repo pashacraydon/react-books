@@ -23,10 +23,8 @@ describe('book reducer', () => {
         type: types.GET_BOOKS_REQUEST
       })
     ).toEqual({
-      books: {
-        'didInvalidate': false,
-        'isFetching': true
-      }
+      'didInvalidate': false,
+      'isFetching': true
     });
   });
 
@@ -47,9 +45,9 @@ describe('book reducer', () => {
         searchInfo: searchInfo
       })
     ).toEqual({
+      isFetching: false,
+      didInvalidate: false,
       books: {
-        isFetching: false,
-        didInvalidate: false,
         items: books.items,
         totalItems: books.totalItems,
         info: searchInfo
