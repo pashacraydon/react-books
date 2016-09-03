@@ -21,6 +21,7 @@ export default class BookDetail extends Component {
   render () {
     const { book } = this.props;
     const img_src = book.imageLinks.small || book.imageLinks.medium || book.imageLinks.thumbnail;
+    const rand = Math.random();
     return (
       <div className="detail-view">
        <a className="close-detail"

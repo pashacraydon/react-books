@@ -1,7 +1,9 @@
 
+
 import store from 'store';
 import * as bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const {
   getBookDetails
@@ -22,6 +24,10 @@ export default class Book extends Component {
     this.setState({ 'id': this.props.book.id });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ 'id': nextProps.book.id });
+  }
+
   showDetail(event) {
     event.preventDefault();
     store.dispatch(getBookDetails(this.state.id));
@@ -38,7 +44,16 @@ export default class Book extends Component {
         >
           <div className="wrap-book">
             {volumeInfo.imageLinks &&
-            <img src={volumeInfo.imageLinks.thumbnail} />}
+            <ReactCSSTransitionGroup 
+              transitionAppear={true} 
+              transitionAppearTimeout={500} 
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}
+              transitionName="fade-in"
+            >
+              <img key={volumeInfo.imageLinks.thumbnail}
+                src={volumeInfo.imageLinks.thumbnail} />
+              </ReactCSSTransitionGroup>}
           </div>
         </a>
       </li>

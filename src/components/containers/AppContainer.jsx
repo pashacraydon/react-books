@@ -10,6 +10,8 @@ import BookDetail from 'components/BookDetail';
 import Pagination from 'components/Pagination';
 import Header from 'components/Header';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 const {
   getBooks
 } = books.api;
@@ -47,10 +49,12 @@ class AppContainer extends Component {
   }
 
   render () {
-    const { books, book, pagination } = this.props;
+    const { booksState, bookDetailState, pagination } = this.props;
+    const { books } = booksState;
+    const { book } = bookDetailState;
     const book_exists = (book.volume && Object.keys(book.volume).length > 0);
     const books_exist = (books.items && books.items.length > 0);
-    const is_fetching = (books.isFetching || book.isFetching);
+    const is_fetching = (booksState.isFetching || bookDetailState.isFetching);
 
     var query = '';
     if (books.info && books.info.query) {
@@ -68,7 +72,15 @@ class AppContainer extends Component {
             <div className="loading-gif"></div>
           </div>}
           {book_exists &&
-          <BookDetail book={book.volume} />}
+          <ReactCSSTransitionGroup 
+            transitionAppear={true} 
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            transitionName="fade-in"
+          >
+            <BookDetail book={book.volume} />
+          </ReactCSSTransitionGroup>}
           {books_exist &&
           <Books books={books.items} />}
           {books_exist &&
@@ -80,14 +92,14 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
-  books: PropTypes.object.isRequired,
-  book: PropTypes.object.isRequired
+  booksState: PropTypes.object.isRequired,
+  bookDetailState: PropTypes.object.isRequired
 }
 
 const mapStateToProps = function (store) {
   return {
-    books: store.booksState.books,
-    book: store.bookDetailState.book
+    booksState: store.booksState,
+    bookDetailState: store.bookDetailState
   }
 }
 
