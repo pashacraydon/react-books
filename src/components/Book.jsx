@@ -7,7 +7,7 @@ const {
   getBookDetails
 } = bookDetail.api;
 
-export default class BooksItem extends Component {
+export default class Book extends Component {
   constructor () {
     super();
 
@@ -46,6 +46,6 @@ export default class BooksItem extends Component {
   }
 }
 
-BooksItem.propTypes = {
+Book.propTypes = {
   book: PropTypes.object.isRequired
 }

@@ -10,7 +10,13 @@ config.entry = {
   modulesBookDetailActionsTests: ['./tests/modules/book-detail/actions.tests'],
   modulesBookDetailApiTests: ['./tests/modules/book-detail/api.tests'],
   modulesBookDetailReducerTests: ['./tests/modules/book-detail/reducer.tests'],
-  componentAppContainerTests: ['./tests/components/AppContainer.tests']
+  componentAppContainerTests: ['./tests/components/AppContainer.tests'],
+  componentBookTests: ['./tests/components/Book.tests'],
+  componentBookDetailTests: ['./tests/components/BookDetail.tests'],
+  componentBooksTests: ['./tests/components/Books.tests'],
+  componentHeaderTests: ['./tests/components/Header.tests'],
+  componentSearchFormTests: ['./tests/components/SearchForm.tests'],
+  componentPaginationTests: ['./tests/components/Pagination.tests']
 };
 
 config.output = {

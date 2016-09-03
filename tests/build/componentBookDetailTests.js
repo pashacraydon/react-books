@@ -42,12 +42,12 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*******************************************!*\
-  !*** multi modulesBookDetailActionsTests ***!
-  \*******************************************/
+/*!**************************************!*\
+  !*** multi componentBookDetailTests ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./tests/modules/book-detail/actions.tests */208);
+	module.exports = __webpack_require__(/*! ./tests/components/BookDetail.tests */203);
 
 
 /***/ },
@@ -29553,7 +29553,123 @@
 /* 188 */,
 /* 189 */,
 /* 190 */,
-/* 191 */,
+/* 191 */
+/*!***************************************!*\
+  !*** ./src/components/BookDetail.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _store = __webpack_require__(/*! store */ 22);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 55);
+
+	var _bookDetail2 = _interopRequireDefault(_bookDetail);
+
+	var _react = __webpack_require__(/*! react */ 5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var destroyBookDetails = _bookDetail2.default.actions.destroyBookDetails;
+
+	var BookDetail = function (_Component) {
+	  _inherits(BookDetail, _Component);
+
+	  function BookDetail() {
+	    _classCallCheck(this, BookDetail);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BookDetail).call(this));
+
+	    _this.destroyDetail = _this.destroyDetail.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(BookDetail, [{
+	    key: 'destroyDetail',
+	    value: function destroyDetail(event) {
+	      event.preventDefault();
+	      _store2.default.dispatch(destroyBookDetails());
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var book = this.props.book;
+
+	      var img_src = book.imageLinks.small || book.imageLinks.medium || book.imageLinks.thumbnail;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'detail-view' },
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'close-detail',
+	            onClick: this.destroyDetail,
+	            href: '#' },
+	          '⊗'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'wrap-book' },
+	          book.imageLinks && _react2.default.createElement('img', { src: img_src })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'detail-info' },
+	          book.title && _react2.default.createElement(
+	            'h1',
+	            null,
+	            book.title
+	          ),
+	          book.subtitle && _react2.default.createElement(
+	            'h3',
+	            null,
+	            book.subtitle
+	          ),
+	          book.authors && _react2.default.createElement(
+	            'strong',
+	            null,
+	            'Author: ',
+	            book.authors
+	          ),
+	          _react2.default.createElement('br', null),
+	          book.description && _react2.default.createElement(
+	            'div',
+	            { className: 'description' },
+	            book.description
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return BookDetail;
+	}(_react.Component);
+
+	exports.default = BookDetail;
+
+
+	BookDetail.propTypes = {
+	  book: _react.PropTypes.object.isRequired
+	};
+	module.exports = exports['default'];
+
+/***/ },
 /* 192 */,
 /* 193 */,
 /* 194 */,
@@ -29565,15 +29681,10 @@
 /* 200 */,
 /* 201 */,
 /* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */
-/*!****************************************************!*\
-  !*** ./tests/modules/book-detail/actions.tests.js ***!
-  \****************************************************/
+/* 203 */
+/*!**********************************************!*\
+  !*** ./tests/components/BookDetail.tests.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29582,65 +29693,62 @@
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 55);
+	var _react = __webpack_require__(/*! react */ 5);
 
-	var bookDetail = _interopRequireWildcard(_bookDetail);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _store = __webpack_require__(/*! store */ 22);
+
+	var _store2 = _interopRequireDefault(_store);
 
 	var _books = __webpack_require__(/*! fixtures/books.json */ 116);
 
 	var _books2 = _interopRequireDefault(_books);
 
-	function _interopRequireWildcard(obj) {
-	  if (obj && obj.__esModule) {
-	    return obj;
-	  } else {
-	    var newObj = {};if (obj != null) {
-	      for (var key in obj) {
-	        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-	      }
-	    }newObj.default = obj;return newObj;
-	  }
-	}
+	var _BookDetail = __webpack_require__(/*! components/BookDetail */ 191);
+
+	var _BookDetail2 = _interopRequireDefault(_BookDetail);
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 
-	var _bookDetail$actions = bookDetail.actions;
-	var getBookDetailRequest = _bookDetail$actions.getBookDetailRequest;
-	var getBookDetailSuccess = _bookDetail$actions.getBookDetailSuccess;
-	var destroyBookDetails = _bookDetail$actions.destroyBookDetails;
-	var types = bookDetail.types;
+	var _enzyme = enzyme;
+	var mount = _enzyme.mount;
 
-	describe('book-detail actions', function () {
-	  it('should create an action to make a reuqest for a books details.', function () {
-	    var expectedAction = {
-	      type: types.GET_BOOK_DETAIL_REQUEST
-	    };
+	var singleBook = _books2.default.items[0].volumeInfo;
 
-	    (0, _expect2.default)(getBookDetailRequest()).toEqual(expectedAction);
+	function setup() {
+	  var properties = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  var props = Object.assign({
+	    book: singleBook
+	  }, properties);
+
+	  var enzymeWrapper = mount(_react2.default.createElement(_BookDetail2.default, props));
+
+	  return {
+	    props: props,
+	    enzymeWrapper: enzymeWrapper
+	  };
+	}
+
+	describe('<BookDetail />', function () {
+	  it('should render self and subcomponents', function () {
+	    var _setup = setup();
+
+	    var enzymeWrapper = _setup.enzymeWrapper;
+
+	    (0, _expect2.default)(enzymeWrapper.find('.detail-view').length).toExist();
 	  });
 
-	  it('should create an action to destroy a book detail.', function () {
-	    var expectedAction = {
-	      type: types.DESTROY_BOOK_DETAILS
-	    };
+	  it('clicking close detail link should empty the book details state.', function () {
+	    var _setup2 = setup();
 
-	    (0, _expect2.default)(destroyBookDetails()).toEqual(expectedAction);
-	  });
+	    var enzymeWrapper = _setup2.enzymeWrapper;
 
-	  it('should create an action to resolve a request to get a book details.', function () {
-	    var book = _books2.default.items[0];
-	    var response = {
-	      'data': book
-	    };
-
-	    var expectedAction = {
-	      type: types.GET_BOOK_DETAIL_SUCCESS,
-	      book: book
-	    };
-
-	    (0, _expect2.default)(getBookDetailSuccess(response)).toEqual(expectedAction);
+	    enzymeWrapper.find('a').simulate('click');
+	    (0, _expect2.default)(Object.keys(_store2.default.getState().bookDetailState.book).length).toNotExist();
 	  });
 	});
 

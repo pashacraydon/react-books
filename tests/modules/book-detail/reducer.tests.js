@@ -24,16 +24,13 @@ describe('book-detail reducer', () => {
         type: types.GET_BOOK_DETAIL_REQUEST
       })
     ).toEqual({
-      book: {
-        'didInvalidate': false,
-        'isFetching': true
-      }
+      'didInvalidate': false,
+      'isFetching': true
     });
   });
 
   it('should handle GET_BOOK_DETAIL_SUCCESS', () => {
-
-    const book = booksJSON.items[0];
+    const book = booksJSON.items[1];
     let bookClone = _.cloneDeep(book.volumeInfo),
       truncateDesc = `${bookClone.description.substring(0, c.MAX_DESCRIPTION_LENGTH).replace(/(<([^>]+)>)/ig, '')}...`,
       newBook = update(bookClone, { $merge: { 'description': truncateDesc }});
@@ -44,9 +41,9 @@ describe('book-detail reducer', () => {
         book: book,
       })
     ).toEqual({
+      isFetching: false,
+      didInvalidate: false,
       book: {
-        isFetching: false,
-        didInvalidate: false,
         volume: newBook
       }
     });

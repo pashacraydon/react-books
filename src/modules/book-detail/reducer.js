@@ -17,10 +17,8 @@ export default (state = initialState, action) => {
 
     case types.GET_BOOK_DETAIL_REQUEST:
       return Object.assign({}, state, { 
-        book: {
-          isFetching: true,
-          didInvalidate: false
-        }
+        isFetching: true,
+        didInvalidate: false
       });
 
     case types.GET_BOOK_DETAIL_SUCCESS:
@@ -29,9 +27,9 @@ export default (state = initialState, action) => {
         newBook = update(bookClone, { $merge: { 'description': truncateDesc }});
 
       return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
         book: {
-          isFetching: false,
-          didInvalidate: false,
           volume: newBook
         }
       });

@@ -42,12 +42,12 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*******************************************!*\
-  !*** multi modulesBookDetailActionsTests ***!
-  \*******************************************/
+/*!********************************!*\
+  !*** multi componentBookTests ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./tests/modules/book-detail/actions.tests */208);
+	module.exports = __webpack_require__(/*! ./tests/components/Book.tests */202);
 
 
 /***/ },
@@ -29495,15 +29495,162 @@
 /* 130 */,
 /* 131 */,
 /* 132 */,
-/* 133 */,
+/* 133 */
+/*!*******************************!*\
+  !*** ./~/deep-equal/index.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var pSlice = Array.prototype.slice;
+	var objectKeys = __webpack_require__(/*! ./lib/keys.js */ 141);
+	var isArguments = __webpack_require__(/*! ./lib/is_arguments.js */ 140);
+
+	var deepEqual = module.exports = function (actual, expected, opts) {
+	  if (!opts) opts = {};
+	  // 7.1. All identical values are equivalent, as determined by ===.
+	  if (actual === expected) {
+	    return true;
+
+	  } else if (actual instanceof Date && expected instanceof Date) {
+	    return actual.getTime() === expected.getTime();
+
+	  // 7.3. Other pairs that do not both pass typeof value == 'object',
+	  // equivalence is determined by ==.
+	  } else if (!actual || !expected || typeof actual != 'object' && typeof expected != 'object') {
+	    return opts.strict ? actual === expected : actual == expected;
+
+	  // 7.4. For all other Object pairs, including Array objects, equivalence is
+	  // determined by having the same number of owned properties (as verified
+	  // with Object.prototype.hasOwnProperty.call), the same set of keys
+	  // (although not necessarily the same order), equivalent values for every
+	  // corresponding key, and an identical 'prototype' property. Note: this
+	  // accounts for both named and indexed properties on Arrays.
+	  } else {
+	    return objEquiv(actual, expected, opts);
+	  }
+	}
+
+	function isUndefinedOrNull(value) {
+	  return value === null || value === undefined;
+	}
+
+	function isBuffer (x) {
+	  if (!x || typeof x !== 'object' || typeof x.length !== 'number') return false;
+	  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
+	    return false;
+	  }
+	  if (x.length > 0 && typeof x[0] !== 'number') return false;
+	  return true;
+	}
+
+	function objEquiv(a, b, opts) {
+	  var i, key;
+	  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
+	    return false;
+	  // an identical 'prototype' property.
+	  if (a.prototype !== b.prototype) return false;
+	  //~~~I've managed to break Object.keys through screwy arguments passing.
+	  //   Converting to array solves the problem.
+	  if (isArguments(a)) {
+	    if (!isArguments(b)) {
+	      return false;
+	    }
+	    a = pSlice.call(a);
+	    b = pSlice.call(b);
+	    return deepEqual(a, b, opts);
+	  }
+	  if (isBuffer(a)) {
+	    if (!isBuffer(b)) {
+	      return false;
+	    }
+	    if (a.length !== b.length) return false;
+	    for (i = 0; i < a.length; i++) {
+	      if (a[i] !== b[i]) return false;
+	    }
+	    return true;
+	  }
+	  try {
+	    var ka = objectKeys(a),
+	        kb = objectKeys(b);
+	  } catch (e) {//happens when one is a string literal and the other isn't
+	    return false;
+	  }
+	  // having the same number of owned properties (keys incorporates
+	  // hasOwnProperty)
+	  if (ka.length != kb.length)
+	    return false;
+	  //the same set of keys (although not necessarily the same order),
+	  ka.sort();
+	  kb.sort();
+	  //~~~cheap key test
+	  for (i = ka.length - 1; i >= 0; i--) {
+	    if (ka[i] != kb[i])
+	      return false;
+	  }
+	  //equivalent values for every corresponding key, and
+	  //~~~possibly expensive deep test
+	  for (i = ka.length - 1; i >= 0; i--) {
+	    key = ka[i];
+	    if (!deepEqual(a[key], b[key], opts)) return false;
+	  }
+	  return typeof a === typeof b;
+	}
+
+
+/***/ },
 /* 134 */,
 /* 135 */,
 /* 136 */,
 /* 137 */,
 /* 138 */,
 /* 139 */,
-/* 140 */,
-/* 141 */,
+/* 140 */
+/*!******************************************!*\
+  !*** ./~/deep-equal/lib/is_arguments.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	var supportsArgumentsClass = (function(){
+	  return Object.prototype.toString.call(arguments)
+	})() == '[object Arguments]';
+
+	exports = module.exports = supportsArgumentsClass ? supported : unsupported;
+
+	exports.supported = supported;
+	function supported(object) {
+	  return Object.prototype.toString.call(object) == '[object Arguments]';
+	};
+
+	exports.unsupported = unsupported;
+	function unsupported(object){
+	  return object &&
+	    typeof object == 'object' &&
+	    typeof object.length == 'number' &&
+	    Object.prototype.hasOwnProperty.call(object, 'callee') &&
+	    !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
+	    false;
+	};
+
+
+/***/ },
+/* 141 */
+/*!**********************************!*\
+  !*** ./~/deep-equal/lib/keys.js ***!
+  \**********************************/
+/***/ function(module, exports) {
+
+	exports = module.exports = typeof Object.keys === 'function'
+	  ? Object.keys : shim;
+
+	exports.shim = shim;
+	function shim (obj) {
+	  var keys = [];
+	  for (var key in obj) keys.push(key);
+	  return keys;
+	}
+
+
+/***/ },
 /* 142 */,
 /* 143 */,
 /* 144 */,
@@ -29516,9 +29663,252 @@
 /* 151 */,
 /* 152 */,
 /* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
+/* 154 */
+/*!****************************************************!*\
+  !*** ./~/axios-mock-adapter/src/handle_request.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var utils = __webpack_require__(/*! ./utils */ 156);
+
+	function handleRequest(resolve, reject, config) {
+	  var url = config.url.slice(config.baseURL ? config.baseURL.length : 0);
+	  var handler = utils.findHandler(this.handlers, config.method, url, config.data);
+
+	  if (handler) {
+	    utils.purgeIfReplyOnce(this, handler);
+	    var response = handler[1] instanceof Function
+	      ? handler[1](config)
+	      : handler.slice(1);
+
+	    utils.settle(resolve, reject, {
+	      status: response[0],
+	      data: response[1],
+	      headers: response[2],
+	      config: config
+	    }, this.delayResponse);
+	  } else {
+	    utils.settle(resolve, reject, {
+	      status: 404,
+	      config: config
+	    }, this.delayResponse);
+	  }
+	}
+
+	module.exports = handleRequest;
+
+
+/***/ },
+/* 155 */
+/*!*******************************************!*\
+  !*** ./~/axios-mock-adapter/src/index.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var handleRequest = __webpack_require__(/*! ./handle_request */ 154);
+
+	var verbs = ['get', 'post', 'head', 'delete', 'patch', 'put'];
+
+	function adapter() {
+	  return function(config) {
+	    // axios >= 0.13.0 only passes the config and expects a promise to be
+	    // returned. axios < 0.13.0 passes (config, resolve, reject).
+	    if (arguments.length === 3) {
+	      handleRequest.call(this, arguments[0], arguments[1], arguments[2]);
+	    } else {
+	      return new Promise(function(resolve, reject) {
+	        handleRequest.call(this, resolve, reject, config);
+	      }.bind(this));
+	    }
+	  }.bind(this);
+	}
+
+	function reset() {
+	  this.handlers = verbs.reduce(function(accumulator, verb) {
+	    accumulator[verb] = [];
+	    return accumulator;
+	  }, {});
+	  this.replyOnceHandlers = [];
+	}
+
+	function MockAdapter(axiosInstance, options) {
+	  reset.call(this);
+
+	  if (axiosInstance) {
+	    this.axiosInstance = axiosInstance;
+	    this.originalAdapter = axiosInstance.defaults.adapter;
+	    this.delayResponse = options && options.delayResponse > 0
+	      ? options.delayResponse
+	      : null;
+	    axiosInstance.defaults.adapter = adapter.call(this);
+	  }
+	}
+
+	MockAdapter.prototype.adapter = adapter;
+
+	MockAdapter.prototype.restore = function restore() {
+	  if (this.axiosInstance) {
+	    this.axiosInstance.defaults.adapter = this.originalAdapter;
+	  }
+	};
+
+	MockAdapter.prototype.reset = reset;
+
+	MockAdapter.prototype.onAny = function onAny(matcher, body) {
+	  var _this = this;
+	  return {
+	    reply: function reply(code, response, headers) {
+	      var handler = [matcher, code, response, headers, body];
+	      verbs.forEach(function(verb) {
+	        _this.handlers[verb].push(handler);
+	      });
+	      return _this;
+	    },
+
+	    replyOnce: function replyOnce(code, response, headers) {
+	      var handler = [matcher, code, response, headers, body];
+	      _this.replyOnceHandlers.push(handler);
+	      verbs.forEach(function(verb) {
+	        _this.handlers[verb].push(handler);
+	      });
+	      return _this;
+	    }
+	  };
+	};
+
+	verbs.forEach(function(method) {
+	  var methodName = 'on' + method.charAt(0).toUpperCase() + method.slice(1);
+	  MockAdapter.prototype[methodName] = function(matcher, body) {
+	    var _this = this;
+	    return {
+	      reply: function reply(code, response, headers) {
+	        var handler = [matcher, code, response, headers, body];
+	        _this.handlers[method].push(handler);
+	        return _this;
+	      },
+
+	      replyOnce: function replyOnce(code, response, headers) {
+	        var handler = [matcher, code, response, headers, body];
+	        _this.handlers[method].push(handler);
+	        _this.replyOnceHandlers.push(handler);
+	        return _this;
+	      }
+	    };
+	  };
+	});
+
+	module.exports = MockAdapter;
+
+
+/***/ },
+/* 156 */
+/*!*******************************************!*\
+  !*** ./~/axios-mock-adapter/src/utils.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var axios = __webpack_require__(/*! axios */ 26);
+	var deepEqual = __webpack_require__(/*! deep-equal */ 133);
+
+	function eql(a, b) {
+	  return deepEqual(a, b, { strict: true });
+	}
+
+	// < 0.13.0 will not have default headers set on a custom instance
+	var rejectWithError = !!axios.create().defaults.headers;
+
+	function find(array, predicate) {
+	  var length = array.length;
+	  for (var i = 0; i < length; i++) {
+	    var value = array[i];
+	    if (predicate(value)) return value;
+	  }
+	}
+
+	function findHandler(handlers, method, url, body) {
+	  return find(handlers[method.toLowerCase()], function(handler) {
+	    if (typeof handler[0] === 'string') {
+	      return url === handler[0] && isBodyMatching(body, handler[4]);
+	    } else if (handler[0] instanceof RegExp) {
+	      return handler[0].test(url) && isBodyMatching(body, handler[4]);
+	    }
+	  });
+	}
+
+	function isBodyMatching(body, requiredBody) {
+	  if (requiredBody === undefined) {
+	    return true;
+	  }
+	  var parsedBody;
+	  try {
+	    parsedBody = JSON.parse(body);
+	  } catch (e) { }
+	  return parsedBody ? eql(parsedBody, requiredBody) : eql(body, requiredBody);
+	}
+
+	function purgeIfReplyOnce(mock, handler) {
+	  var index = mock.replyOnceHandlers.indexOf(handler);
+	  if (index > -1) {
+	    mock.replyOnceHandlers.splice(index, 1);
+
+	    Object.keys(mock.handlers).forEach(function(key) {
+	      index = mock.handlers[key].indexOf(handler);
+	      if (index > -1) {
+	        mock.handlers[key].splice(index, 1);
+	      }
+	    });
+	  }
+	}
+
+	function settle(resolve, reject, response, delay) {
+	  if (delay > 0) {
+	    setTimeout(function() {
+	      settle(resolve, reject, response);
+	    }, delay);
+	    return;
+	  }
+
+	  if (response.config && response.config.validateStatus) {
+	    response.config.validateStatus(response.status)
+	      ? resolve(response)
+	      : reject(createErrorResponse(
+	        'Request failed with status code ' + response.status,
+	        response.config,
+	        response
+	      ));
+	    return;
+	  }
+
+	  // Support for axios < 0.11
+	  if (response.status >= 200 && response.status < 300) {
+	    resolve(response);
+	  } else {
+	    reject(response);
+	  }
+	}
+
+	function createErrorResponse(message, config, response) {
+	  // Support for axios < 0.13.0
+	  if (!rejectWithError) return response;
+
+	  var error = new Error(message);
+	  error.config = config;
+	  error.response = response;
+	  return error;
+	}
+
+	module.exports = {
+	  findHandler: findHandler,
+	  purgeIfReplyOnce: purgeIfReplyOnce,
+	  settle: settle
+	};
+
+
+/***/ },
 /* 157 */,
 /* 158 */,
 /* 159 */,
@@ -29549,7 +29939,108 @@
 /* 184 */,
 /* 185 */,
 /* 186 */,
-/* 187 */,
+/* 187 */
+/*!*********************************!*\
+  !*** ./src/components/Book.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _store = __webpack_require__(/*! store */ 22);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 55);
+
+	var bookDetail = _interopRequireWildcard(_bookDetail);
+
+	var _react = __webpack_require__(/*! react */ 5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var getBookDetails = bookDetail.api.getBookDetails;
+
+	var Book = function (_Component) {
+	  _inherits(Book, _Component);
+
+	  function Book() {
+	    _classCallCheck(this, Book);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Book).call(this));
+
+	    _this.state = {
+	      'show_overlay': false
+	    };
+
+	    _this.showDetail = _this.showDetail.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Book, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.setState({ 'id': this.props.book.id });
+	    }
+	  }, {
+	    key: 'showDetail',
+	    value: function showDetail(event) {
+	      event.preventDefault();
+	      _store2.default.dispatch(getBookDetails(this.state.id));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var volumeInfo = this.props.book.volumeInfo;
+	      var show_overlay = this.state.show_overlay;
+
+
+	      return _react2.default.createElement(
+	        'li',
+	        { className: 'book-item' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#',
+	            onClick: this.showDetail
+	          },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'wrap-book' },
+	            volumeInfo.imageLinks && _react2.default.createElement('img', { src: volumeInfo.imageLinks.thumbnail })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Book;
+	}(_react.Component);
+
+	exports.default = Book;
+
+
+	Book.propTypes = {
+	  book: _react.PropTypes.object.isRequired
+	};
+	module.exports = exports['default'];
+
+/***/ },
 /* 188 */,
 /* 189 */,
 /* 190 */,
@@ -29564,16 +30055,10 @@
 /* 199 */,
 /* 200 */,
 /* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */
-/*!****************************************************!*\
-  !*** ./tests/modules/book-detail/actions.tests.js ***!
-  \****************************************************/
+/* 202 */
+/*!****************************************!*\
+  !*** ./tests/components/Book.tests.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29582,13 +30067,33 @@
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _bookDetail = __webpack_require__(/*! modules/book-detail */ 55);
+	var _react = __webpack_require__(/*! react */ 5);
 
-	var bookDetail = _interopRequireWildcard(_bookDetail);
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(/*! axios */ 26);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _axiosMockAdapter = __webpack_require__(/*! axios-mock-adapter */ 155);
+
+	var _axiosMockAdapter2 = _interopRequireDefault(_axiosMockAdapter);
+
+	var _store = __webpack_require__(/*! store */ 22);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _constants = __webpack_require__(/*! constants */ 12);
+
+	var c = _interopRequireWildcard(_constants);
 
 	var _books = __webpack_require__(/*! fixtures/books.json */ 116);
 
 	var _books2 = _interopRequireDefault(_books);
+
+	var _Book = __webpack_require__(/*! components/Book */ 187);
+
+	var _Book2 = _interopRequireDefault(_Book);
 
 	function _interopRequireWildcard(obj) {
 	  if (obj && obj.__esModule) {
@@ -29606,41 +30111,49 @@
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 
-	var _bookDetail$actions = bookDetail.actions;
-	var getBookDetailRequest = _bookDetail$actions.getBookDetailRequest;
-	var getBookDetailSuccess = _bookDetail$actions.getBookDetailSuccess;
-	var destroyBookDetails = _bookDetail$actions.destroyBookDetails;
-	var types = bookDetail.types;
+	var _enzyme = enzyme;
+	var shallow = _enzyme.shallow;
+	var mount = _enzyme.mount;
 
-	describe('book-detail actions', function () {
-	  it('should create an action to make a reuqest for a books details.', function () {
-	    var expectedAction = {
-	      type: types.GET_BOOK_DETAIL_REQUEST
-	    };
+	var singleBook = _books2.default.items[0];
 
-	    (0, _expect2.default)(getBookDetailRequest()).toEqual(expectedAction);
+	function setup() {
+	  var properties = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  var props = Object.assign({
+	    book: singleBook
+	  }, properties);
+
+	  var enzymeWrapper = mount(_react2.default.createElement(_Book2.default, props));
+
+	  return {
+	    props: props,
+	    enzymeWrapper: enzymeWrapper
+	  };
+	}
+
+	describe('<Book />', function () {
+	  it('should render self and subcomponents', function () {
+	    var _setup = setup();
+
+	    var enzymeWrapper = _setup.enzymeWrapper;
+
+	    (0, _expect2.default)(enzymeWrapper.find('.book-item').length).toExist();
 	  });
 
-	  it('should create an action to destroy a book detail.', function () {
-	    var expectedAction = {
-	      type: types.DESTROY_BOOK_DETAILS
-	    };
+	  it('clicking book should make request to get book details.', function () {
+	    var _setup2 = setup();
 
-	    (0, _expect2.default)(destroyBookDetails()).toEqual(expectedAction);
-	  });
+	    var enzymeWrapper = _setup2.enzymeWrapper;
 
-	  it('should create an action to resolve a request to get a book details.', function () {
-	    var book = _books2.default.items[0];
-	    var response = {
-	      'data': book
-	    };
+	    var mock = new _axiosMockAdapter2.default(_axios2.default);
+	    mock.onPost(c.GOOGLE_BOOKS_ENDPOINT + '/' + singleBook.id).reply(200, { response: { data: singleBook }
+	    });
 
-	    var expectedAction = {
-	      type: types.GET_BOOK_DETAIL_SUCCESS,
-	      book: book
-	    };
+	    enzymeWrapper.find('a').simulate('click');
 
-	    (0, _expect2.default)(getBookDetailSuccess(response)).toEqual(expectedAction);
+	    (0, _expect2.default)(_store2.default.getState().bookDetailState.isFetching).toExist();
+	    mock.reset();
 	  });
 	});
 

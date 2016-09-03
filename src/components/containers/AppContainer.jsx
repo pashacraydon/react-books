@@ -20,7 +20,7 @@ class AppContainer extends Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.params != nextProps.params) {
       const { page, query } = this.props.routeParams;
-      let index = page * c.RESULTS_PER_PAGE;
+      let index = (page * c.RESULTS_PER_PAGE);
 
       let searchInfo = {
         'query': nextProps.params.query,
@@ -51,8 +51,6 @@ class AppContainer extends Component {
     const book_exists = (book.volume && Object.keys(book.volume).length > 0);
     const books_exist = (books.items && books.items.length > 0);
     const is_fetching = (books.isFetching || book.isFetching);
-
-    console.log(book);
 
     var query = '';
     if (books.info && books.info.query) {

@@ -22,6 +22,7 @@ export default class Pagination extends Component {
         prevPageIndex = (parseInt(index, radix) - c.RESULTS_PER_PAGE);
 
       page = Math.floor(index / c.RESULTS_PER_PAGE);
+
       nextPage = `/page/${page + 1}/${query}/${nextPageIndex}/`,
       prevPage = `/page/${page - 1}/${query}/${prevPageIndex}/`;
     }

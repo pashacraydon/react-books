@@ -20,7 +20,6 @@ const bookInfo = books.items[0].volumeInfo;
 const book = { 'volume': bookInfo };
 
 function setup(properties = {}) {
-
   const props = Object.assign({
     params: {
       query: 'python',
