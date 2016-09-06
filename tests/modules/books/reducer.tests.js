@@ -4,9 +4,10 @@ import * as c from 'constants';
 import * as books from 'modules/books';
 import booksJSON from 'fixtures/books.json';
 
-const { types, initialState, actions, reducer } = books;
+//const { types, initialState, actions, reducer } = books;
 
 describe('book reducer', () => {
+  /*
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
@@ -54,6 +55,6 @@ describe('book reducer', () => {
       }
     });
   });
-
+ */
 });
 

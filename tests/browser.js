@@ -4,10 +4,9 @@ global.enzyme = require('enzyme');
 global.sinon = require('sinon');
 
 global.document = jsdom.jsdom(
-  '<!DOCTYPE html data-debug=1>' +
+  '<!DOCTYPE html>' +
     '<head></head>' +
     '<body>' +
-      '<div id="mocha-fixture"></div>' +
     '</body>' +
   '</html>'
 );

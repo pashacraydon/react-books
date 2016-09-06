@@ -3,7 +3,6 @@
 import store from 'store';
 import * as bookDetail from 'modules/book-detail';
 import React, { Component, PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const {
   getBookDetails
@@ -44,16 +43,8 @@ export default class Book extends Component {
         >
           <div className="wrap-book">
             {volumeInfo.imageLinks &&
-            <ReactCSSTransitionGroup 
-              transitionAppear={true} 
-              transitionAppearTimeout={500} 
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={500}
-              transitionName="fade-in"
-            >
-              <img key={volumeInfo.imageLinks.thumbnail}
-                src={volumeInfo.imageLinks.thumbnail} />
-              </ReactCSSTransitionGroup>}
+            <img key={volumeInfo.imageLinks.thumbnail}
+              src={volumeInfo.imageLinks.thumbnail} />}
           </div>
         </a>
       </li>

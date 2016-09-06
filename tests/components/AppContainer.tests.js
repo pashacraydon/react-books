@@ -30,8 +30,12 @@ function setup(properties = {}) {
       query: 'python',
       index: 1
     },
-    books: books,
-    book: {}
+    booksState: {
+      books: books
+    },
+    bookDetailState: {
+      book: {}
+    }
   }, properties);
 
   const enzymeWrapper = mount(
@@ -55,12 +59,16 @@ describe('<AppContainer />', () => {
     expect(enzymeWrapper.find(Pagination).length).toExist();
   });
 
-  it('should render <BookDetail /> if book exists.', () => {
+  it('should render <BookDetail /> if book exists.', (done) => {
     const { enzymeWrapper } = setup({
       book: book
     });
 
-    expect(enzymeWrapper.find(BookDetail).length).toExist();
+    setTimeout(() => {
+      done();
+      // wait for ReactCSSTransitionGroup
+      expect(enzymeWrapper.find(BookDetail).length).toExist();
+    }, 500);
   });
 
   describe('componentWillMount()', () => {

@@ -16,7 +16,7 @@ function setup(properties = {}) {
     book: singleBook
   }, properties);
 
-  const enzymeWrapper = mount(
+  const enzymeWrapper = shallow(
     <Book {...props} />
   )
 
@@ -40,7 +40,7 @@ describe('<Book />', () => {
       .reply(200, { response: { data: singleBook }
     });
 
-    enzymeWrapper.find('a').simulate('click');
+    enzymeWrapper.find('a').simulate('click', { preventDefault() {} });
 
     expect(store.getState().bookDetailState.isFetching).toExist();
     mock.reset();

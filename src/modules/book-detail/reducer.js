@@ -22,15 +22,17 @@ export default (state = initialState, action) => {
       });
 
     case types.GET_BOOK_DETAIL_SUCCESS:
-      var bookClone = _.cloneDeep(action.book.volumeInfo),
-        truncateDesc = `${bookClone.description.substring(0, c.MAX_DESCRIPTION_LENGTH).replace(/(<([^>]+)>)/ig, '')}...`,
-        newBook = update(bookClone, { $merge: { 'description': truncateDesc }});
+      if (action.book.volumeInfo.description) {
+        var bookClone = _.cloneDeep(action.book.volumeInfo),
+          truncateDesc = `${bookClone.description.substring(0, c.MAX_DESCRIPTION_LENGTH).replace(/(<([^>]+)>)/ig, '')}...`,
+          newBook = update(bookClone, { $merge: { 'description': truncateDesc }});
+      }
 
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         book: {
-          volume: newBook
+          volume: (typeof newBook != undefined) ? newBook : action.book.volumeInfo
         }
       });
 
