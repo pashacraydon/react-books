@@ -9,7 +9,15 @@ Demo it here: [React Books App](https://pashasc.github.io/react_books/ "React Bo
 
 This app uses webpack for compiling javaScript written in ES6 format and running a dev server. Simply install the npm packages, ```npm install```. Then run a server, ```npm run server``` and visit ```http://localhost:8080/webpack-dev-server/```.
 
-Script commands include; (todo: more tests)
+Table of contents
+=================
+
+1. <a href="#user-content-whats-different-about-react">What's different about react</a>
+2. <a href="#user-content-explanation-of-app-structure">Explanation of app structure</a>
+
+
+Script commands
+===============
 
 | command  | info  |
 |---|---|
