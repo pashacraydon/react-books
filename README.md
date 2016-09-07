@@ -92,42 +92,45 @@ So the above familiar bit of jQuery might look like this in React.
 Explanation of app structure
 ============================
 
-1. **/actions**
+1. **/components**
 
-    The only way to mutate state in a react app is to emit an action. An action is a plain javaScript object which describes what happened.
+    Components will make up the parts of your application. They are divided between container components and the rest of the components.
 
-    The actions folder should contain;
-      * A file that exports all of the action types.
-      * Files that export specific actions
-      * Files that export more general, reusable actions
+    Container components are smart components. They will deal with state and manage the other components that they render, pass props or callbacks into. 
 
-2. **/api**
+    Container components listen to state updates via Redux Connect. They automatically pick up state changes which they pass down to their 'child' components as props. 
 
-    Functions that facilitate network requests should go in the API folder. These functions use Async Actions to perform requests, dispatch the state of the request then store the response.
+    The rest of the components should be 'dumb' or 'presentational' components. This way they are reusable, so they shouldn't handle much state.
 
-3. **/components**
+2. **/modules**
 
-    Components will make up the parts of your application. They are divided between container components and presentational components (layouts and views).
+    Modules are the parts of the application which deal with state. They are self-contained units which should expose public functions in index.js for other parts of the application.
 
-    Container components are smart components. They will deal with state and manage the other two (or more) components. State is passed into them which they render using view and layout  components. 
+    A module will usually contain these files.
 
-    View and layout components are dumb. They should only render state but never mutate it.
+    1. **actionTypes.js**
+    2. **actions.js** 
 
-    The idea for this separation of components is to make them more reusable. Particularly the dumb components. Keep this in mind when you are structuring your application. Also, the more specific you name a component, the less reusable it will become. Remember this and try to make your components reusable.
+        The only way to mutate state in a react app is to emit an action. An action is a plain javaScript object which describes what happened. ActionTypes are kinds of actions.
 
-4. **/reducers**
+    3. **reducer.js**
 
-    Reducers maintain a state tree in redux. Reducers are pure functions which do not ever mutate / change state but rather create a copy of a new state. This folder should contain files for individual types of reducers. There should be an index.js file in this folder which combines all the reducers for the store.
+        Reducers maintain a state tree in redux. Reducers are pure functions which do not mutate / change state but rather create a copy of a new state. 
 
-5. **store.js**
+    3. **api.js**
+
+        Functions that facilitate network requests should go in the API file. These functions use Redux Thunk Async Actions to perform requests, dispatch the state of the request then store the response.
+
+
+3. **store.js**
 
     This file should contain a Redux store of all the reducers.
 
-6. **app.js**
+4. **app.js**
 
     Initialize your application in this file.
 
-6. **router.js**
+5. **router.js**
 
     Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that people can link to them and the browser history (back button) works for them.
 
