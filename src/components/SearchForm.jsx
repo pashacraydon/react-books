@@ -11,7 +11,7 @@ export default class SearchForm extends Component {
   onSearchSubmit(event) {
     event.preventDefault();
     let searchQuery = document.getElementsByName('q')[0].value;
-    browserHistory.push(`/react_books/page/0/${searchQuery}/1/`);
+    browserHistory.push(`/react-books/page/0/${searchQuery}/1/`);
   }
 
   render () {

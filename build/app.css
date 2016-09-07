@@ -4,6 +4,35 @@ body {
   margin: 0;
 }
 
+
+.fade-in-appear {
+  opacity: 0.01;
+}
+
+.fade-in-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.fade-in-enter {
+  opacity: 0.35;
+}
+
+.fade-in-enter.fade-in-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-in-leave {
+  opacity: 1;
+}
+
+.fade-in-leave.fade-in-leave-active {
+  opacity: 0.35;
+  transition: opacity 300ms ease-in;
+}
+
+
 header {
   width: 21%;
   padding: 2em 2% 2em;
