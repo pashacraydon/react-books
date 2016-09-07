@@ -129,6 +129,50 @@ Explanation of app structure
 
         Functions that facilitate network requests should go in the API file. These functions use Redux Thunk Async Actions to perform requests, dispatch the state of the request then store the response.
 
+        You can dispatch an action to facilitate these. Example; 
+
+            let searchInfo = {
+              'query': 'python books',
+              'index': 1,
+              'maxResults': 20
+            };
+
+            store.dispatch(getBooks(searchInfo));
+
+        This triggers two actions. The first action ```dispatch(getBooksRequest());``` will update the books state ```isFetching``` to be true so the UI can show a spinner while the request is handled. The second action, ```dispatch(getBooksSuccess(response, searchInfo))``` happens when the request is resolved. It sends the response to the Redux store for storing the books information in the reducer.
+
+            export function getBooks(searchInfo) {
+              const { query, maxResults, index } = searchInfo;
+              return function (dispatch) {
+                dispatch(getBooksRequest());
+                return axios.get(`${c.GOOGLE_BOOKS_ENDPOINT}?q=${encodeURIComponent(query)}&startIndex=${index}&maxResults=${maxResults}&projection=full&fields=totalItems,items(id,volumeInfo)`)
+                  .then(response => dispatch(getBooksSuccess(response, searchInfo))
+                );
+              }
+            }
+
+        This function returns a Promise so in the component that dispatched the action ```store.dispatch(getBooks(searchInfo));``` you can include additional logic if it's necessary.
+
+            store.dispatch(getBooks(searchInfo))
+              .then((response) {
+                ...
+              });
+
+    4. **index.js**
+
+        Modules should expose functions via this file. You should not directly import functions in modules from other parts of the application. This is best practice to avoid recursive imports and keep code decoupled. 
+
+        For example, this is wrong;
+
+            import getBooks from 'modules/books/api';
+
+        This is right;
+
+            import * as books from 'modules/books';
+            const { getBooks } = books.api;
+
+        If another part of the application needs to dip into a module to manipulate some things, the module should instead expose a function via index.js that does the manipulations that other parts of the app can run instead.
+
 
 3. **store.js**
 
