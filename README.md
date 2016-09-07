@@ -46,11 +46,11 @@ If you are coming from Backbone, there are a few differences in React.
         }
       });
 
-    In React the parts of your interface are broken up into components. A component returns the html it should show based on it’s state.
+In React the parts of your interface are broken up into components. A component returns the html it should show based on it’s state.
 
-    Simply changing the state of a component will cause it to re-render and show the new state, completely handled by React, with no action on your part.
+Simply changing the state of a component will cause it to re-render and show the new state, completely handled by React, with no action on your part.
 
-    So the above familiar bit of jQuery might look like this in React.
+So the above familiar bit of jQuery might look like this in React.
 
 .. code:: javaScript
      import React, { Component } from 'react';
