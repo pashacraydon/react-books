@@ -22,14 +22,10 @@ Script commands include; (todo: more tests)
 | npm run watch:test | watch for changes to test files and compile them automatically |
 | npm run watch:test:debug | include an informative error stack trace while watching for changes to the test files |
 
-Whats new in React
-==================
+Whats different about React
+===========================
 
-If you are coming from Backbone, there are a few differences in React. 
-
-1. **Whats different about React.**
-
-You update the UI by updating the state
+**You update the UI by updating the state.**
 
 Using jQuery you might write some code like this to show or hide an element.
 
@@ -51,7 +47,7 @@ Simply changing the state of a component will cause it to re-render and show the
 
 So the above familiar bit of jQuery might look like this in React.
 
-   import React, { Component } from 'react';
+    import React, { Component } from 'react';
 
     export default class MyDropDown extends Component {
       constructor () {
