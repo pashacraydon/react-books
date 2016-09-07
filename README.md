@@ -14,6 +14,7 @@ Table of contents
 
 1. <a href="#user-content-whats-different-about-react">What's different about react</a>
 2. <a href="#user-content-explanation-of-app-structure">Explanation of app structure</a>
+3. <a href="#user-content-testing">Testing</a>
 
 
 Script commands
@@ -160,7 +161,7 @@ Explanation of app structure
 
     4. **index.js**
 
-        Modules should expose functions via this file. You should not directly import functions in modules from other parts of the application. This is best practice to avoid recursive imports and keep code decoupled. 
+        Modules should expose functions via this file. You should not directly import functions in modules from other parts of the application to use. This is best practice to avoid recursive imports and keep code decoupled. 
 
         For example, this is wrong;
 
@@ -174,18 +175,73 @@ Explanation of app structure
         If another part of the application needs to dip into a module to manipulate some things, the module should instead expose a function via index.js that does the manipulations that other parts of the app can run instead.
 
 
-3. **store.js**
+3. **reducers.js**
+  
+    This file combines all of the reducers from each module for the Redux Connect store. When state changes happen in the modules, components can listen to the changes via Redux Connect and pick up the exports here.
 
-    This file should contain a Redux store of all the reducers.
+        var reducers = combineReducers({
+          booksState: books.reducer,
+          bookDetailState: bookDetail.reducer
+        });
 
-4. **app.js**
+    Example connecting to the Redux store.
+
+        class AppContainer extends Component {
+
+          render () {
+            const { booksState, bookDetailState } = this.props;
+
+            return (
+              <div className="app-wrapper">
+                ...
+              </div>
+            )
+          }
+        }
+
+        AppContainer.propTypes = {
+          booksState: PropTypes.object.isRequired,
+          bookDetailState: PropTypes.object.isRequired
+        }
+
+        const mapStateToProps = function (store) {
+          return {
+            booksState: store.booksState,
+            bookDetailState: store.bookDetailState
+          }
+        }
+
+        export default connect(mapStateToProps)(AppContainer);
+
+    Now when dispatching an action, the new state changes will show up in the ```booksState``` props and can be passed down to ```child``` components for UI updates.
+
+4. **store.js**
+
+    This file should contain a Redux store of all the reducers. This file is where you can add middleware such as Redux Thunk. 
+
+5. **app.js**
 
     Initialize your application in this file.
 
-5. **router.js**
+6. **router.js**
 
     Create routes in this file. Use Reacts router <Link> to create links that use routes. It is best practice to use routes for displaying pages of content so that people can link to them and the browser history (back button) works for them.
 
+
+Testing
+=======
+
+1. Tests use 'axios-mock-adapter' for mocking the axios network requests.
+
+  Example creating a mock axios request;
+
+      let book = booksJSON.items[0];
+      this.mock.onGet(`${c.GOOGLE_BOOKS_ENDPOINT}/${book.id}`)
+        .reply(200, { response: { data: book } });
+
+  Check out the npm package for more documentation on using axios-mock-adapter. Also, check out ```tests/modules/book-detail/api.tests.js``` for an example using this to mock a redux store. Also, the Redux documentation is really great.
+
+2. Tests use enzyme for testing components. It has a great API for testing click simulations, mounting to mocks, state changes and more. Check out ```tests/components``` for examples.
 
 
 
