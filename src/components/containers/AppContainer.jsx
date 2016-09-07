@@ -1,21 +1,20 @@
-/**
- * @file BooksContainer.js
- * @created by Example
- * @copyright Copyright (c) 2016 Example
- *
- *  The index page component for searching books from.
- */
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import store from 'store';
-import * as c from 'utils/constants';
-import * as booksApi from 'api/booksApi';
-import * as bookActions from 'actions/bookActions';
-import BooksLayout from 'components/layouts/BooksLayout';
-import BookDetailView from 'components/views/BookDetailView';
-import SearchFormView from 'components/views/SearchFormView';
-import PaginationView from 'components/views/PaginationView';
+import * as c from 'constants';
+import * as books from 'modules/books';
+
+import Books from 'components/Books';
+import BookDetail from 'components/BookDetail';
+import Pagination from 'components/Pagination';
+import Header from 'components/Header';
+
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+const {
+  getBooks
+} = books.api;
 
 class AppContainer extends Component {
 
@@ -23,7 +22,7 @@ class AppContainer extends Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.params != nextProps.params) {
       const { page, query } = this.props.routeParams;
-      let index = page * c.RESULTS_PER_PAGE;
+      let index = (page * c.RESULTS_PER_PAGE);
 
       let searchInfo = {
         'query': nextProps.params.query,
@@ -31,7 +30,7 @@ class AppContainer extends Component {
         'maxResults': c.RESULTS_PER_PAGE
       };
 
-      booksApi.getBooks(searchInfo);
+      store.dispatch(getBooks(searchInfo));
     }
   }
 
@@ -46,14 +45,16 @@ class AppContainer extends Component {
       'maxResults': c.RESULTS_PER_PAGE
     };
 
-    booksApi.getBooks(searchInfo);
+    store.dispatch(getBooks(searchInfo));
   }
 
   render () {
-    const { books, book, pagination } = this.props;
+    const { booksState, bookDetailState, pagination } = this.props;
+    const { books } = booksState;
+    const { book } = bookDetailState;
     const book_exists = (book.volume && Object.keys(book.volume).length > 0);
     const books_exist = (books.items && books.items.length > 0);
-    const is_fetching = (books.isFetching || book.isFetching);
+    const is_fetching = (booksState.isFetching || bookDetailState.isFetching);
 
     var query = '';
     if (books.info && books.info.query) {
@@ -62,17 +63,7 @@ class AppContainer extends Component {
 
     return (
       <div className="app-wrapper">
-        <header>
-          <h1><a href="/react_books/">React Books</a></h1>
-          <p>A demonstration of a very simple React + Redux app.</p>
-          <SearchFormView />
-          <p>
-            <a href="https://github.com/pashasc/react_redux_starter_kit">
-              Find it on Github
-            </a>
-          </p>
-
-        </header>
+        <Header />
         <div className="books-layout">
           {query != c.DEFAULT_SEARCH &&
           <h1>results for: {query}</h1>}
@@ -81,11 +72,19 @@ class AppContainer extends Component {
             <div className="loading-gif"></div>
           </div>}
           {book_exists &&
-          <BookDetailView book={book.volume} />}
+          <ReactCSSTransitionGroup 
+            transitionAppear={true} 
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            transitionName="fade-in"
+          >
+            <BookDetail book={book.volume} />
+          </ReactCSSTransitionGroup>}
           {books_exist &&
-          <BooksLayout books={books.items} />}
+          <Books books={books.items} />}
           {books_exist &&
-          <PaginationView data={pagination} book_count={books.items.length} />}
+          <Pagination books={books} />}
         </div>
       </div>
     )
@@ -93,17 +92,16 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
-  books: PropTypes.object.isRequired,
-  book: PropTypes.object.isRequired,
-  pagination: PropTypes.object.isRequired
+  booksState: PropTypes.object.isRequired,
+  bookDetailState: PropTypes.object.isRequired
 }
 
 const mapStateToProps = function (store) {
   return {
-    books: store.booksState.books,
-    book: store.bookDetailsState.book,
-    pagination: store.paginationState.pagination
+    booksState: store.booksState,
+    bookDetailState: store.bookDetailState
   }
 }
 
 export default connect(mapStateToProps)(AppContainer);
+export { AppContainer as PureAppContainer }; // export component outside of connect for testing

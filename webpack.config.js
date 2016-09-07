@@ -9,7 +9,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: [
       'src',
-      'node_modules'
+      'node_modules',
+      'tests',
     ]
   },
 
@@ -55,6 +56,7 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.ProvidePlugin({
       _: 'lodash'
     }),
