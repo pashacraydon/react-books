@@ -27,15 +27,73 @@ Whats new in React
 
 If you are coming from Backbone, there are a few differences in React. 
 
-1. **You change the UI by changing the state.**
+1. **Whats different about React.**
 
-    You can't use jQuery to 'hide()' and 'show()' elements. If you are using jQuery at all in React, you're probably doing it wrong (don't use jQuery in react). In react, you would set a boolean value on a state attribute when you want to 'hide' an element. React will automatically re-render a component when it's state changes. In the 'jsx' the component returns, you would have a conditional around that element that excludes it if the state boolean hides it.
+    You update the UI by updating the state
 
-2. **You can't mutate state.**
+    Using jQuery you might write some code like this to show or hide an element.
 
-    You may be used to changing the value of attributes and variables on the fly and passing them around. This is bad practice in React and there are good reasons for it. In a React + Redux app, you can update state by dispatching it with an action to a reducer. Reducers are pure functions which store a copy of a new state. 
+.. code:: javaScript
+      $('.element').on('click', function (event) {
+        event.preventDefault();
+        var $dropdown = $(this).closest('.my-dropdown');
 
-    You can use React Immutability helpers for creating copies of new state that merge new objects into lists, push objects into array etc..
+        if ($dropdown.is(':visible')) {
+          $dropdown.hide();
+        }
+        else {
+          $dropdown.show();
+        }
+      });
+
+    In React the parts of your interface are broken up into components. A component returns the html it should show based on it’s state.
+
+    Simply changing the state of a component will cause it to re-render and show the new state, completely handled by React, with no action on your part.
+
+    So the above familiar bit of jQuery might look like this in React.
+
+.. code:: javaScript
+     import React, { Component } from 'react';
+
+      export default class MyDropDown extends Component {
+        constructor () {
+          super();
+
+          this.state = {
+            'is_hidden': true
+          }
+
+          this.showDropdown = this.showDropdown.bind(this);
+          this.hideDropdown = this.hideDropdown.bind(this);
+        }
+
+        showDropdown (event) {
+          this.setState({ 'is_hidden': false });
+        }
+
+        hideDropdown (event) {
+          this.setState({ 'is_hidden': true });
+        }
+
+        render () {
+          return (
+            {!this.state.is_hidden &&
+            <div className="my-dropdown">
+              <div>Dropdown text</div>
+              <a href="#"
+                onClick={this.hideDropdown}>
+              Hide Dropdown
+              </a>
+            </div>}
+            {this.state.is_hidden &&
+            <a href="#"
+              onClick={this.showDropdown}>
+            Show Dropdown
+            </a>}
+          )
+        }
+      }
+
 
 Explanation of app structure
 ============================
