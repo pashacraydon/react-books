@@ -3,7 +3,7 @@ React Books
 
 A demonstration of a simple React + Redux application. It fetches metadata from the Google Books API.
 
-Demo it here: [React Books App](https://pashasc.github.io/react_books/ "React Books App")
+Demo it here: [React Books App](https://pashasc.github.io/react-books/ "React Books App")
 
 ![alt tag](https://github.com/pashasc/react_books/blob/master/src/static/images/screen.png)
 
