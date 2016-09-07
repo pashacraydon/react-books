@@ -29,22 +29,21 @@ If you are coming from Backbone, there are a few differences in React.
 
 1. **Whats different about React.**
 
-    You update the UI by updating the state
+You update the UI by updating the state
 
-    Using jQuery you might write some code like this to show or hide an element.
+Using jQuery you might write some code like this to show or hide an element.
 
-.. code:: javaScript
-      $('.element').on('click', function (event) {
-        event.preventDefault();
-        var $dropdown = $(this).closest('.my-dropdown');
+    $('.element').on('click', function (event) {
+      event.preventDefault();
+      var $dropdown = $(this).closest('.my-dropdown');
 
-        if ($dropdown.is(':visible')) {
-          $dropdown.hide();
-        }
-        else {
-          $dropdown.show();
-        }
-      });
+      if ($dropdown.is(':visible')) {
+        $dropdown.hide();
+      }
+      else {
+        $dropdown.show();
+      }
+    });
 
 In React the parts of your interface are broken up into components. A component returns the html it should show based on it’s state.
 
@@ -52,47 +51,46 @@ Simply changing the state of a component will cause it to re-render and show the
 
 So the above familiar bit of jQuery might look like this in React.
 
-.. code:: javaScript
-     import React, { Component } from 'react';
+   import React, { Component } from 'react';
 
-      export default class MyDropDown extends Component {
-        constructor () {
-          super();
+    export default class MyDropDown extends Component {
+      constructor () {
+        super();
 
-          this.state = {
-            'is_hidden': true
-          }
-
-          this.showDropdown = this.showDropdown.bind(this);
-          this.hideDropdown = this.hideDropdown.bind(this);
+        this.state = {
+          'is_hidden': true
         }
 
-        showDropdown (event) {
-          this.setState({ 'is_hidden': false });
-        }
-
-        hideDropdown (event) {
-          this.setState({ 'is_hidden': true });
-        }
-
-        render () {
-          return (
-            {!this.state.is_hidden &&
-            <div className="my-dropdown">
-              <div>Dropdown text</div>
-              <a href="#"
-                onClick={this.hideDropdown}>
-              Hide Dropdown
-              </a>
-            </div>}
-            {this.state.is_hidden &&
-            <a href="#"
-              onClick={this.showDropdown}>
-            Show Dropdown
-            </a>}
-          )
-        }
+        this.showDropdown = this.showDropdown.bind(this);
+        this.hideDropdown = this.hideDropdown.bind(this);
       }
+
+      showDropdown (event) {
+        this.setState({ 'is_hidden': false });
+      }
+
+      hideDropdown (event) {
+        this.setState({ 'is_hidden': true });
+      }
+
+      render () {
+        return (
+          {!this.state.is_hidden &&
+          <div className="my-dropdown">
+            <div>Dropdown text</div>
+            <a href="#"
+              onClick={this.hideDropdown}>
+            Hide Dropdown
+            </a>
+          </div>}
+          {this.state.is_hidden &&
+          <a href="#"
+            onClick={this.showDropdown}>
+          Show Dropdown
+          </a>}
+        )
+      }
+    }
 
 
 Explanation of app structure
