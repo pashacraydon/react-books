@@ -11,11 +11,6 @@ const {
 export default class Book extends Component {
   constructor () {
     super();
-
-    this.state = {
-      'show_overlay': false
-    }
-
     this.showDetail = this.showDetail.bind(this);
   }
 
@@ -34,7 +29,6 @@ export default class Book extends Component {
 
   render () {
     const { volumeInfo } = this.props.book;
-    const { show_overlay } = this.state;
 
     return (
       <li className="book-item">
